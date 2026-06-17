@@ -439,6 +439,16 @@ namespace YiXianBot
                     tlbl.color = string.IsNullOrEmpty(s_poolErr) ? new Color(0.86f, 0.92f, 1f, 1f) : new Color(1f, 0.5f, 0.5f, 1f);
                     string modeName = s_poolMode == 1 ? "已空置顶" : (s_poolMode == 2 ? "危险(剩≤3)置顶" : "手牌置顶");
                     tlbl.text = string.IsNullOrEmpty(s_poolErr) ? ("本局卡池  ·  " + ordered.Count + " 种  ·  " + modeName + "  ·  其余剩少在前   (Tab 关闭)") : ("卡池: " + s_poolErr);
+
+                    // 底部操作提示(帮助):告诉用户这个卡池页面怎么用
+                    var tipGo = new GameObject("Tip"); tipGo.transform.SetParent(s_poolGo.transform, false);
+                    var tiprt = AddRT(tipGo); tiprt.anchorMin = new Vector2(0f, 0f); tiprt.anchorMax = new Vector2(1f, 0f);
+                    tiprt.pivot = new Vector2(0.5f, 0f); tiprt.anchoredPosition = new Vector2(0f, 3f); tiprt.sizeDelta = new Vector2(0f, 22f);
+                    var tiplbl = tipGo.AddComponent(typeof(TextMeshProUGUI)) as TextMeshProUGUI;
+                    if (f != null) tiplbl.font = f; tiplbl.fontSize = 17f; tiplbl.alignment = TextAlignmentOptions.Center;
+                    tiplbl.raycastTarget = false; tiplbl.enableWordWrapping = false; tiplbl.color = new Color(0.55f, 0.62f, 0.75f, 1f);
+                    tiplbl.text = "滚轮上下滚动   ·   右侧切换置顶(手牌/已空/危险)   ·   游戏内悬浮手牌按 D 换牌   ·   再按 Tab 关闭";
+
                     s_poolDirty = false;
                 }
                 s_poolGo.SetActive(true);
