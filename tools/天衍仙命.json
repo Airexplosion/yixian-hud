@@ -1,0 +1,864 @@
+[
+ {
+  "id": 37,
+  "name": "天衍-触类旁通",
+  "effect": "主动使用（冷却2轮）：修为减1，从随机5张其他副职业牌（金丹期以上）中选择1张获得",
+  "template": "主动使用（冷却{countParam}轮）：修为减1，从随机{otherParams[0]}张其他副职业牌（金丹期以上）中选择1张获得",
+  "countParam": 2,
+  "otherParams": [
+   5
+  ],
+  "effectRound": null
+ },
+ {
+  "id": 83,
+  "name": "天衍-云泉道茶",
+  "effect": "到达第13轮后：修为减2，获得2张[云泉道茶]",
+  "template": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 2,
+  "otherParams": [
+   1
+  ],
+  "effectRound": 13
+ },
+ {
+  "id": 84,
+  "name": "天衍-剑不出鞘",
+  "effect": "自身回合若未攻击，回合结束时加1[剑意]",
+  "template": "自身回合若未攻击，回合结束时加{otherParams[0]}【KEYWORD_剑意】",
+  "countParam": null,
+  "otherParams": [
+   1
+  ],
+  "effectRound": null
+ },
+ {
+  "id": 85,
+  "name": "天衍-云雾变幻",
+  "effect": "换牌机会储存无上限；\n每轮开始时，若上一轮未使用[云雾变幻]的效果换牌，额外加2换牌机会",
+  "template": "换牌机会储存无上限；\n每轮开始时，若上一轮未使用【TALENT_18】的效果换牌，额外加{otherParams[0]}换牌机会",
+  "countParam": null,
+  "otherParams": [
+   2
+  ],
+  "effectRound": null
+ },
+ {
+  "id": 86,
+  "name": "天衍-炎舞",
+  "effect": "到达第13轮后：修为减1，获得1张[狂剑•炎舞]",
+  "template": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 1,
+  "otherParams": [
+   2
+  ],
+  "effectRound": 13
+ },
+ {
+  "id": 87,
+  "name": "天衍-崩雪",
+  "effect": "到达第10轮后：修为减1，获得1张[云剑•崩雪]",
+  "template": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 1,
+  "otherParams": [
+   3
+  ],
+  "effectRound": 10
+ },
+ {
+  "id": 88,
+  "name": "天衍-血脉潜能",
+  "effect": "主动使用（限1次）：命元+3，换牌机会+1；\n每次触发[血脉潜能]抽牌后，本天衍仙命的剩余可使用次数+1",
+  "template": "主动使用（限{countParam}次）：命元+{otherParams[0]}，换牌机会+{otherParams[1]}；\n每次触发【TALENT_19】抽牌后，本天衍仙命的剩余可使用次数+1",
+  "countParam": 1,
+  "otherParams": [
+   3,
+   1
+  ],
+  "effectRound": null
+ },
+ {
+  "id": 90,
+  "name": "天衍-九霄玲珑镯",
+  "effect": "到达第13轮后：修为减1，获得1张[九霄玲珑镯]",
+  "template": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 1,
+  "otherParams": [
+   16
+  ],
+  "effectRound": 13
+ },
+ {
+  "id": 91,
+  "name": "天衍-唤雨",
+  "effect": "到达第11轮后：修为减1，获得1张[云剑•唤雨]",
+  "template": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 1,
+  "otherParams": [
+   15
+  ],
+  "effectRound": 11
+ },
+ {
+  "id": 92,
+  "name": "天衍-潜龙",
+  "effect": "修为减2，获得2张[云剑•潜龙]",
+  "template": "修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 2,
+  "otherParams": [
+   331
+  ],
+  "effectRound": null
+ },
+ {
+  "id": 93,
+  "name": "天衍-玲珑剑阵",
+  "effect": "到达第9轮后：修为减1，获得1张[玲珑剑阵]",
+  "template": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 1,
+  "otherParams": [
+   332
+  ],
+  "effectRound": 9
+ },
+ {
+  "id": 94,
+  "name": "天衍-猫爪",
+  "effect": "到达第4轮后：修为减2，获得2张[云剑•猫爪]",
+  "template": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 2,
+  "otherParams": [
+   8
+  ],
+  "effectRound": 4
+ },
+ {
+  "id": 95,
+  "name": "天衍-好奇心",
+  "effect": "每次战斗失败后，[好奇心]增加1次触发机会",
+  "template": "每次战斗失败后，【TALENT_129】增加1次触发机会",
+  "countParam": null,
+  "otherParams": [],
+  "effectRound": null
+ },
+ {
+  "id": 96,
+  "name": "天衍-灵猫乱剑",
+  "effect": "到达第11轮后：修为减1，获得1张[灵猫乱剑]",
+  "template": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 1,
+  "otherParams": [
+   9
+  ],
+  "effectRound": 11
+ },
+ {
+  "id": 97,
+  "name": "天衍-灵猫踏云",
+  "effect": "每次使用云剑时获得1层[云海]",
+  "template": "每次使用云剑时获得1层【KEYWORD_云海】",
+  "countParam": null,
+  "otherParams": [],
+  "effectRound": null
+ },
+ {
+  "id": 98,
+  "name": "天衍-飞砂",
+  "effect": "修为减2，获得2张[云剑•飞砂]",
+  "template": "修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 2,
+  "otherParams": [
+   36
+  ],
+  "effectRound": null
+ },
+ {
+  "id": 104,
+  "name": "天衍-铸剑师",
+  "effect": "无视仙命[铸剑师]的次数上限，且[澄心剑胚]每轮多加1攻",
+  "template": "无视仙命【TALENT_92】的次数上限，且【19】每轮多加{otherParams[0]}攻",
+  "countParam": null,
+  "otherParams": [
+   1
+  ],
+  "effectRound": null
+ },
+ {
+  "id": 107,
+  "name": "天衍-悟剑天赋",
+  "effect": "主动使用（限1次）：修为减1，从随机3张自身当前境界或上个境界的“剑”牌中选择1张获得并加入仙命[悟剑天赋]领悟的牌中",
+  "template": "主动使用（限{countParam}次）：修为减1，从随机{otherParams[0]}张自身当前境界或上个境界的“剑”牌中选择1张获得并加入仙命【TALENT_189】领悟的牌中",
+  "countParam": 1,
+  "otherParams": [
+   3
+  ],
+  "effectRound": null
+ },
+ {
+  "id": 108,
+  "name": "天衍-曳影剑阵",
+  "effect": "到达第13轮后：修为减1，获得1张[曳影剑阵]；[曳影剑阵]将同时视作“云剑”“狂剑”“灵剑”和“剑阵”",
+  "template": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】；【{otherParams[0]}】将同时视作“云剑”“狂剑”“灵剑”和“剑阵”",
+  "countParam": 1,
+  "otherParams": [
+   213
+  ],
+  "effectRound": 13
+ },
+ {
+  "id": 110,
+  "name": "天衍-勤学苦练",
+  "effect": "合成卡牌时也会增加[勤学苦练]1次计数",
+  "template": "合成卡牌时也会增加【TALENT_29】1次计数",
+  "countParam": null,
+  "otherParams": [],
+  "effectRound": null
+ },
+ {
+  "id": 111,
+  "name": "天衍-飞鸿踏雪",
+  "effect": "到达第10轮后：修为减1，获得1张[飞鸿踏雪]",
+  "template": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 1,
+  "otherParams": [
+   12
+  ],
+  "effectRound": 10
+ },
+ {
+  "id": 112,
+  "name": "天衍-瓮中捉鳖",
+  "effect": "到达第10轮后：修为减1，获得1张[瓮中捉鳖]",
+  "template": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 1,
+  "otherParams": [
+   5
+  ],
+  "effectRound": 10
+ },
+ {
+  "id": 113,
+  "name": "天衍-血脉威能",
+  "effect": "主动使用（限1次）：修为减1，从随机3张自身当前境界或上个境界的牌中选择1张获得；\n每次触发[血脉威能]抽牌后，重置本天衍仙命的使用次数",
+  "template": "主动使用（限{countParam}次）：修为减1，从随机{otherParams[0]}张自身当前境界或上个境界的牌中选择1张获得；\n每次触发【TALENT_114】抽牌后，重置本天衍仙命的使用次数",
+  "countParam": 1,
+  "otherParams": [
+   3
+  ],
+  "effectRound": null
+ },
+ {
+  "id": 114,
+  "name": "天衍-无极卦盘",
+  "effect": "到达第6轮后：修为减1，获得1张[无极卦盘]",
+  "template": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 1,
+  "otherParams": [
+   28
+  ],
+  "effectRound": 6
+ },
+ {
+  "id": 115,
+  "name": "天衍-狂雷电闪",
+  "effect": "到达第13轮后：修为减1，获得1张[狂雷电闪]",
+  "template": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 1,
+  "otherParams": [
+   29
+  ],
+  "effectRound": 13
+ },
+ {
+  "id": 116,
+  "name": "天衍-先天灵躯",
+  "effect": "突破境界时[先天灵躯]抽牌的效果改为从随机3张同境界的牌中选择1张获得",
+  "template": "突破境界时【TALENT_37】抽牌的效果改为从随机{otherParams[0]}张同境界的牌中选择1张获得",
+  "countParam": null,
+  "otherParams": [
+   3
+  ],
+  "effectRound": null
+ },
+ {
+  "id": 117,
+  "name": "天衍-灯焰飞舞",
+  "effect": "到达第6轮后：修为减1，获得1张[灯焰飞舞]",
+  "template": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 1,
+  "otherParams": [
+   6
+  ],
+  "effectRound": 6
+ },
+ {
+  "id": 118,
+  "name": "天衍-旋灯占卦",
+  "effect": "到达第10轮后：修为减1，获得1张[旋灯占卦]",
+  "template": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 1,
+  "otherParams": [
+   7
+  ],
+  "effectRound": 10
+ },
+ {
+  "id": 119,
+  "name": "天衍-运筹帷幄",
+  "effect": "手牌上限+10；每轮少加1修为，多抽1张牌",
+  "template": "手牌上限+{otherParams[0]}；每轮少加1修为，多抽1张牌",
+  "countParam": null,
+  "otherParams": [
+   10
+  ],
+  "effectRound": null
+ },
+ {
+  "id": 120,
+  "name": "天衍-七星定魂",
+  "effect": "若卡组第8格空着，则战斗开始时放入[七星定魂]，若已有[七星定魂]则改为将其升级",
+  "template": "若卡组第8格空着，则战斗开始时放入【11】，若已有【11】则改为将其升级",
+  "countParam": null,
+  "otherParams": [],
+  "effectRound": null
+ },
+ {
+  "id": 122,
+  "name": "天衍-星爆术",
+  "effect": "到达第7轮后：修为减2，获得2张[星爆术]",
+  "template": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 2,
+  "otherParams": [
+   10
+  ],
+  "effectRound": 7
+ },
+ {
+  "id": 123,
+  "name": "天衍-星月折扇",
+  "effect": "到达第13轮后：修为减1，获得1张[星月折扇]",
+  "template": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 1,
+  "otherParams": [
+   23
+  ],
+  "effectRound": 13
+ },
+ {
+  "id": 124,
+  "name": "天衍-计出万全",
+  "effect": "使用最后1次换牌机会进行换牌时优先换到自身当前境界的牌",
+  "template": "使用最后1次换牌机会进行换牌时优先换到自身当前境界的牌",
+  "countParam": null,
+  "otherParams": [],
+  "effectRound": null
+ },
+ {
+  "id": 125,
+  "name": "天衍-算无遗策",
+  "effect": "修为减1，获得1张[算无遗策]",
+  "template": "修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 1,
+  "otherParams": [
+   22
+  ],
+  "effectRound": null
+ },
+ {
+  "id": 126,
+  "name": "天衍-卜卦",
+  "effect": "战斗结束时，保存剩余[卦象]（最多4），下场战斗开始时获得保存的[卦象]",
+  "template": "战斗结束时，保存剩余【KEYWORD_卦象】（最多{otherParams[0]}），下场战斗开始时获得保存的【KEYWORD_卦象】",
+  "countParam": null,
+  "otherParams": [
+   4
+  ],
+  "effectRound": null
+ },
+ {
+  "id": 129,
+  "name": "天衍-悠然葫芦",
+  "effect": "到达第6轮后：修为减1，获得1张[悠然葫芦]",
+  "template": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 1,
+  "otherParams": [
+   13
+  ],
+  "effectRound": 6
+ },
+ {
+  "id": 130,
+  "name": "天衍-五行传承",
+  "effect": "到达第14轮后：修为减1，获得1张[五行传承]",
+  "template": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 1,
+  "otherParams": [
+   31
+  ],
+  "effectRound": 14
+ },
+ {
+  "id": 131,
+  "name": "天衍-先天印记",
+  "effect": "战斗开始时，[激活]先天五行[相生]的[五行]和[克制]的[五行]",
+  "template": "战斗开始时，【KEYWORD_激活】先天五行[相生]的【KEYWORD_五行】和[克制]的【KEYWORD_五行】",
+  "countParam": null,
+  "otherParams": [],
+  "effectRound": null
+ },
+ {
+  "id": 132,
+  "name": "天衍-先天五行",
+  "effect": "主动使用（限1次）：从随机5张不同[五行]的牌中选择1张获得，并将自身的[先天五行]改为该[五行]",
+  "template": "主动使用（限{countParam}次）：从随机5张不同【KEYWORD_五行】的牌中选择1张获得，并将自身的【TALENT_109】改为该【KEYWORD_五行】",
+  "countParam": 1,
+  "otherParams": [],
+  "effectRound": null
+ },
+ {
+  "id": 134,
+  "name": "天衍-双鸳逆克",
+  "effect": "到达第10轮后：修为减2，获得2张[双鸳逆克]",
+  "template": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 2,
+  "otherParams": [
+   32
+  ],
+  "effectRound": 10
+ },
+ {
+  "id": 136,
+  "name": "天衍-桃花印",
+  "effect": "修为减1，获得1张[木灵•桃花印]",
+  "template": "修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 1,
+  "otherParams": [
+   20
+  ],
+  "effectRound": null
+ },
+ {
+  "id": 138,
+  "name": "天衍-木灵印记",
+  "effect": "战斗开始时[激活木灵]并加1[灵气]",
+  "template": "战斗开始时【KEYWORD_激活木灵】并加{otherParams[0]}【KEYWORD_灵气】",
+  "countParam": null,
+  "otherParams": [
+   1
+  ],
+  "effectRound": null
+ },
+ {
+  "id": 139,
+  "name": "天衍-春雨",
+  "effect": "到达第10轮后：修为减1，获得1张[水灵•春雨]",
+  "template": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 1,
+  "otherParams": [
+   17
+  ],
+  "effectRound": 10
+ },
+ {
+  "id": 140,
+  "name": "天衍-猛虎之躯",
+  "effect": "战斗开始时，自身每有10生命，就额外加1生命及上限",
+  "template": "战斗开始时，自身每有{otherParams[0]}生命，就额外加1生命及上限",
+  "countParam": null,
+  "otherParams": [
+   10
+  ],
+  "effectRound": null
+ },
+ {
+  "id": 141,
+  "name": "天衍-山崩",
+  "effect": "到达第13轮后：修为减1，获得1张[土灵•山崩]",
+  "template": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 1,
+  "otherParams": [
+   21
+  ],
+  "effectRound": 13
+ },
+ {
+  "id": 142,
+  "name": "天衍-锟铻金环",
+  "effect": "到达第6轮后：修为减1，获得1张[锟铻金环]",
+  "template": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 1,
+  "otherParams": [
+   38
+  ],
+  "effectRound": 6
+ },
+ {
+  "id": 143,
+  "name": "天衍-土灵印记",
+  "effect": "战斗开始时[激活土灵]并加4[防]",
+  "template": "战斗开始时【KEYWORD_激活土灵】并加{otherParams[0]}【KEYWORD_防】",
+  "countParam": null,
+  "otherParams": [
+   4
+  ],
+  "effectRound": null
+ },
+ {
+  "id": 144,
+  "name": "天衍-刚劲",
+  "effect": "到达第10轮后：修为减1，获得1张[金灵•刚劲]",
+  "template": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 1,
+  "otherParams": [
+   18
+  ],
+  "effectRound": 10
+ },
+ {
+  "id": 145,
+  "name": "天衍-秘印亲和",
+  "effect": "突破至金丹期和元婴期时，[秘印亲和]也可自选“秘印”",
+  "template": "突破至金丹期和元婴期时，【TALENT_136】也可自选“秘印”",
+  "countParam": null,
+  "otherParams": [],
+  "effectRound": null
+ },
+ {
+  "id": 146,
+  "name": "天衍-火灵印记",
+  "effect": "战斗开始时[激活火灵]并减对方2生命上限",
+  "template": "战斗开始时【KEYWORD_激活火灵】并减对方{otherParams[0]}生命上限",
+  "countParam": null,
+  "otherParams": [
+   2
+  ],
+  "effectRound": null
+ },
+ {
+  "id": 150,
+  "name": "天衍-锻体不息",
+  "effect": "到达第4轮后：修为减2，获得2张[锻体不息]",
+  "template": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 2,
+  "otherParams": [
+   45
+  ],
+  "effectRound": 4
+ },
+ {
+  "id": 153,
+  "name": "天衍-崩裂之拳",
+  "effect": "使用[耗生命]的牌时，向对方造成所需[耗生命]40%的[伤害]",
+  "template": "使用【KEYWORD_耗生命】的牌时，向对方造成所需【KEYWORD_耗生命】{otherParams[0]}%的[伤害]",
+  "countParam": null,
+  "otherParams": [
+   40
+  ],
+  "effectRound": null
+ },
+ {
+  "id": 154,
+  "name": "天衍-锻躯之道",
+  "effect": "炼化含加[体魄]效果的牌时，自身加2[体魄]（不超过上限）",
+  "template": "炼化含加【KEYWORD_体魄】效果的牌时，自身加{otherParams[0]}【KEYWORD_体魄】（不超过上限）",
+  "countParam": null,
+  "otherParams": [
+   2
+  ],
+  "effectRound": null
+ },
+ {
+  "id": 156,
+  "name": "天衍-盛气凌人",
+  "effect": "修为减1，获得1张[盛气凌人]",
+  "template": "修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 1,
+  "otherParams": [
+   70
+  ],
+  "effectRound": null
+ },
+ {
+  "id": 157,
+  "name": "天衍-疯魔",
+  "effect": "到达第6轮后：修为减1，获得1张[疯魔]",
+  "template": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 1,
+  "otherParams": [
+   73
+  ],
+  "effectRound": 6
+ },
+ {
+  "id": 158,
+  "name": "天衍-冥夜",
+  "effect": "到达第10轮后：修为减1，获得1张[崩拳·冥夜]",
+  "template": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 1,
+  "otherParams": [
+   74
+  ],
+  "effectRound": 10
+ },
+ {
+  "id": 159,
+  "name": "天衍-冥月蟾光",
+  "effect": "到达第13轮后：修为减1，获得1张[冥月蟾光]",
+  "template": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 1,
+  "otherParams": [
+   75
+  ],
+  "effectRound": 13
+ },
+ {
+  "id": 161,
+  "name": "天衍-入冥",
+  "effect": "每场战斗开始时获得2层[冥]",
+  "template": "每场战斗开始时获得{otherParams[0]}层【KEYWORD_冥】",
+  "countParam": null,
+  "otherParams": [
+   2
+  ],
+  "effectRound": null
+ },
+ {
+  "id": 162,
+  "name": "天衍-万玄破魔掌",
+  "effect": "到达第13轮后：修为减1，获得1张[万玄破魔掌]",
+  "template": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 1,
+  "otherParams": [
+   82
+  ],
+  "effectRound": 13
+ },
+ {
+  "id": 165,
+  "name": "天衍-冥心入玄",
+  "effect": "到达第10轮后：修为减1，获得1张[冥心入玄]",
+  "template": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 1,
+  "otherParams": [
+   81
+  ],
+  "effectRound": 10
+ },
+ {
+  "id": 166,
+  "name": "天衍-禅心锻身",
+  "effect": "仙命[禅心锻身]在每场战斗开始时多加1[体魄]，且胜利时加[体魄]上限的效果取消次数限制",
+  "template": "仙命【TALENT_183】在每场战斗开始时多加1【KEYWORD_体魄】，且胜利时加【KEYWORD_体魄】上限的效果取消次数限制",
+  "countParam": null,
+  "otherParams": [],
+  "effectRound": null
+ },
+ {
+  "id": 167,
+  "name": "天衍-拆招",
+  "effect": "修为减1，获得1张[拆招]",
+  "template": "修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 1,
+  "otherParams": [
+   221
+  ],
+  "effectRound": null
+ },
+ {
+  "id": 168,
+  "name": "天衍-双节棍",
+  "effect": "修为减1，获得1张[双节棍]",
+  "template": "修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 1,
+  "otherParams": [
+   219
+  ],
+  "effectRound": null
+ },
+ {
+  "id": 169,
+  "name": "天衍-转势",
+  "effect": "到达第10轮后：修为减2，获得2张[转势]",
+  "template": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 2,
+  "otherParams": [
+   222
+  ],
+  "effectRound": 10
+ },
+ {
+  "id": 299,
+  "name": "天衍-风行天上",
+  "effect": "触发仙命[风行天上]抽牌时，优先抽取自身未获得过且不低于上个境界的牌",
+  "template": "触发仙命【TALENT_194】抽牌时，优先抽取自身未获得过且不低于上个境界的牌",
+  "countParam": null,
+  "otherParams": [],
+  "effectRound": null
+ },
+ {
+  "id": 300,
+  "name": "天衍-阴符玉简",
+  "effect": "修为减1，获得1张[阴符玉简]",
+  "template": "修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 1,
+  "otherParams": [
+   214
+  ],
+  "effectRound": null
+ },
+ {
+  "id": 302,
+  "name": "天衍-定风波",
+  "effect": "到达第6轮后：修为减1，获得1张[定风波]",
+  "template": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 1,
+  "otherParams": [
+   371
+  ],
+  "effectRound": 6
+ },
+ {
+  "id": 303,
+  "name": "天衍-五行刀斩",
+  "effect": "到达第12轮后：修为减1，选择并获得1张五行斩（[木灵斩]/[火灵斩]/[土灵斩]/[金灵斩]/[水灵斩]）",
+  "template": "到达第{effectRound}轮后：修为减1，选择并获得1张五行斩（【373】/【374】/【375】/【376】/【377】）",
+  "countParam": 1,
+  "otherParams": [],
+  "effectRound": 12
+ },
+ {
+  "id": 304,
+  "name": "天衍-灵羽",
+  "effect": "到达第7轮后：修为减2，获得2张[灵羽]",
+  "template": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 2,
+  "otherParams": [
+   381
+  ],
+  "effectRound": 7
+ },
+ {
+  "id": 305,
+  "name": "天衍-气旋掌",
+  "effect": "到达第9轮后：修为减1，获得1张[气旋掌]",
+  "template": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 1,
+  "otherParams": [
+   382
+  ],
+  "effectRound": 9
+ },
+ {
+  "id": 306,
+  "name": "天衍-御风飞闪",
+  "effect": "到达第10轮后：修为减1，获得1张[御风飞闪]",
+  "template": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 1,
+  "otherParams": [
+   383
+  ],
+  "effectRound": 10
+ },
+ {
+  "id": 307,
+  "name": "天衍-天降甘霖",
+  "effect": "到达第5轮后：修为减1，获得1张[天降甘霖]",
+  "template": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 1,
+  "otherParams": [
+   259
+  ],
+  "effectRound": 5
+ },
+ {
+  "id": 308,
+  "name": "天衍-忘忧",
+  "effect": "到达第12轮后：修为减1，获得1张[忘忧]",
+  "template": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】",
+  "countParam": 1,
+  "otherParams": [
+   218
+  ],
+  "effectRound": 12
+ },
+ {
+  "id": 309,
+  "name": "天衍-五行玉瓶",
+  "effect": "战斗开始时额外[激活]五行玉瓶中第2格牌的[五行]",
+  "template": "战斗开始时额外【KEYWORD_激活】五行玉瓶中第2格牌的【KEYWORD_五行】",
+  "countParam": null,
+  "otherParams": [],
+  "effectRound": null
+ },
+ {
+  "id": 310,
+  "name": "天衍-五行聚灵",
+  "effect": "战斗中每次[激活][五行]时，若该[五行]已[激活]过则加1[灵气]（每回合限1次）",
+  "template": "战斗中每次【KEYWORD_激活】【KEYWORD_五行】时，若该【KEYWORD_五行】已【KEYWORD_激活】过则加1【KEYWORD_灵气】（每回合限1次）",
+  "countParam": null,
+  "otherParams": [],
+  "effectRound": null
+ },
+ {
+  "id": 333,
+  "name": "天衍-金灵印记",
+  "effect": "战斗开始时[激活金灵]并加2[锋锐]",
+  "template": "战斗开始时【KEYWORD_激活金灵】并加{otherParams[0]}【KEYWORD_锋锐】",
+  "countParam": null,
+  "otherParams": [
+   2
+  ],
+  "effectRound": null
+ },
+ {
+  "id": 338,
+  "name": "天衍-孤虚金书",
+  "effect": "到达第13轮后：修为减1，获得1张[孤虚金书]；\n战斗开始时若[孤虚金书]前一格为空则放入[背孤]，若后一格为空则放入[击虚]，前后每有一格未能放入牌就改为让[孤虚金书]升1级（战斗结束还原）",
+  "template": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】；\n战斗开始时若【{otherParams[0]}】前一格为空则放入【216】，若后一格为空则放入【217】，前后每有一格未能放入牌就改为让【{otherParams[0]}】升1级（战斗结束还原）",
+  "countParam": 1,
+  "otherParams": [
+   215
+  ],
+  "effectRound": 13
+ },
+ {
+  "id": 339,
+  "name": "天衍-斩断俗尘",
+  "effect": "主动使用（限1次）：剩余换牌机会减半，删除当前牌池中所有筑基期牌",
+  "template": "主动使用（限{countParam}次）：剩余换牌机会减半，删除当前牌池中所有筑基期牌",
+  "countParam": 1,
+  "otherParams": [],
+  "effectRound": null
+ },
+ {
+  "id": 343,
+  "name": "天衍-五行润养",
+  "effect": "战斗开始时若卡组中含3种及以上[五行]，下轮多加1生命上限；若卡组中含5种及以上[五行]，下轮多加1换牌机会",
+  "template": "战斗开始时若卡组中含3种及以上【KEYWORD_五行】，下轮多加1生命上限；若卡组中含5种及以上【KEYWORD_五行】，下轮多加1换牌机会",
+  "countParam": null,
+  "otherParams": [],
+  "effectRound": null
+ },
+ {
+  "id": 346,
+  "name": "天衍-磨砺不止",
+  "effect": "触发仙命[磨砺不止]获得换牌机会时，额外加等量[体魄]上限",
+  "template": "触发仙命【TALENT_151】获得换牌机会时，额外加等量【KEYWORD_体魄】上限",
+  "countParam": null,
+  "otherParams": [],
+  "effectRound": null
+ },
+ {
+  "id": 353,
+  "name": "天衍-休养生息",
+  "effect": "命元+18；生命上限+2；换牌机会+2；",
+  "template": "命元+{otherParams[0]}；生命上限+{otherParams[1]}；换牌机会+{otherParams[2]}；",
+  "countParam": null,
+  "otherParams": [
+   18,
+   2,
+   2
+  ],
+  "effectRound": null
+ }
+]

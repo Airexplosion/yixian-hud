@@ -1,0 +1,578 @@
+{
+  "灵羽": {
+    "ids": [
+      381,
+      10381,
+      20381
+    ],
+    "phases": [
+      "{attack}攻×{attackCount}\\n[灵气]+{anima}\\n[体魄]+{physique}\\n[身法]+{otherParams[0]}",
+      "{attack}攻×{attackCount}\\n[灵气]+{anima}\\n[体魄]+{physique}\\n[身法]+{otherParams[0]}",
+      "{attack}攻×{attackCount}\\n[灵气]+{anima}\\n[体魄]+{physique}\\n[身法]+{otherParams[0]}"
+    ]
+  },
+  "气旋掌": {
+    "ids": [
+      382,
+      10382,
+      20382
+    ],
+    "phases": [
+      "每有{otherParams[0]}[体魄]加1[灵气]\\n{attack}攻×{attackCount}（每有1[灵气]多1攻）",
+      "每有{otherParams[0]}[体魄]加1[灵气]\\n{attack}攻×{attackCount}（每有1[灵气]多1攻）",
+      "每有{otherParams[0]}[体魄]加1[灵气]\\n{attack}攻×{attackCount}（每有1[灵气]多1攻）"
+    ]
+  },
+  "御风飞闪": {
+    "ids": [
+      383,
+      10383,
+      20383
+    ],
+    "phases": [
+      "[身法]+{otherParams[0]}\\n每有1[身法]向对方造成1[伤害]",
+      "[身法]+{otherParams[0]}\\n每有1[身法]向对方造成1[伤害]",
+      "[身法]+{otherParams[0]}\\n每有1[身法]向对方造成1[伤害]"
+    ]
+  },
+  "百鸟曳影诀": {
+    "ids": [
+      388,
+      10388,
+      20388
+    ],
+    "phases": [
+      "[灵气]+{anima}\\n[持续]：每失去1[灵气]时加1[剑气]",
+      "[灵气]+{anima}\\n[持续]：每失去1[灵气]时加1[剑气]",
+      "[灵气]+{anima}\\n[持续]：每失去1[灵气]时加1[剑气]"
+    ]
+  },
+  "星弈•治孤": {
+    "ids": [
+      389,
+      10389,
+      20389
+    ],
+    "phases": [
+      "[灵气]+{anima}\\n[星位]：施加{otherParams[0]}层[虚弱]和{otherParams[1]}层[破绽]\\n[开局]：[相邻]格[成为星位]，若为空格则放入\"星弈•飞\"",
+      "[灵气]+{anima}\\n[星位]：施加{otherParams[0]}层[虚弱]和{otherParams[1]}层[破绽]\\n[开局]：[相邻]格[成为星位]，若为空格则放入\"星弈•飞\"",
+      "[灵气]+{anima}\\n[星位]：施加{otherParams[0]}层[虚弱]和{otherParams[1]}层[破绽]\\n[开局]：[相邻]格[成为星位]，若为空格则放入\"星弈•飞\""
+    ]
+  },
+  "五行忘忧梦": {
+    "ids": [
+      390,
+      10390,
+      20390
+    ],
+    "phases": [
+      "生命及上限+{otherParams[0]}\\n使用五行玉瓶中第一格牌的效果",
+      "生命及上限+{otherParams[0]}\\n使用五行玉瓶中第一格牌的效果",
+      "生命及上限+{otherParams[0]}\\n使用五行玉瓶中第一格牌的效果"
+    ]
+  },
+  "闪转腾挪": {
+    "ids": [
+      391,
+      10391,
+      20391
+    ],
+    "phases": [
+      "[身法]+{otherParams[0]}\\n[被动]（不可叠加）：每加1[身法]时，额外加1[防]",
+      "[身法]+{otherParams[0]}\\n[被动]（不可叠加）：每加1[身法]时，额外加1[防]",
+      "[身法]+{otherParams[0]}\\n[被动]（不可叠加）：每加1[身法]时，额外加1[防]"
+    ]
+  },
+  "冯虚御风": {
+    "ids": [
+      392,
+      10392,
+      20392
+    ],
+    "phases": [
+      "生命+{otherParams[0]}\\n[身法]+{otherParams[1]}\\n[持续]：每加1[身法]时，向对方造成1[伤害]",
+      "生命+{otherParams[0]}\\n[身法]+{otherParams[1]}\\n[持续]：每加1[身法]时，向对方造成1[伤害]",
+      "生命+{otherParams[0]}\\n[身法]+{otherParams[1]}\\n[持续]：每加1[身法]时，向对方造成1[伤害]"
+    ]
+  },
+  "御灵心法": {
+    "ids": [
+      1000088,
+      1010088,
+      1020088
+    ],
+    "phases": [
+      "[持续]：每加1[灵气]时加{otherParams[0]}[防]，每失去1[灵气]时加{otherParams[1]}[防]",
+      "[持续]：每加1[灵气]时加{otherParams[0]}[防]，每失去1[灵气]时加{otherParams[1]}[防]",
+      "[持续]：每加1[灵气]时加{otherParams[0]}[防]，每失去1[灵气]时加{otherParams[1]}[防]"
+    ]
+  },
+  "丹雀灵剑": {
+    "ids": [
+      1000089,
+      1010089,
+      1020089
+    ],
+    "phases": [
+      "{attack}攻×{attackCount}\\n再耗1[灵气]：追加{otherParams[0]}攻",
+      "{attack}攻×{attackCount}\\n再耗1[灵气]：追加{otherParams[0]}攻",
+      "{attack}攻×{attackCount}\\n再耗1[灵气]：追加{otherParams[0]}攻"
+    ]
+  },
+  "飞豹灵剑": {
+    "ids": [
+      1000090,
+      1010090,
+      1020090
+    ],
+    "phases": [
+      "{attack}攻\\n[剑气]+{otherParams[0]}\\n每有1[灵气]或[剑气]加{otherParams[1]}[身法]（最多加{otherParams[2]}）",
+      "{attack}攻\\n[剑气]+{otherParams[0]}\\n每有1[灵气]或[剑气]加{otherParams[1]}[身法]（最多加{otherParams[2]}）",
+      "{attack}攻\\n[剑气]+{otherParams[0]}\\n每有1[灵气]或[剑气]加{otherParams[1]}[身法]（最多加{otherParams[2]}）"
+    ]
+  },
+  "云剑•裂空": {
+    "ids": [
+      1000091,
+      1010091,
+      1020091
+    ],
+    "phases": [
+      "{attack}攻×{attackCount}\\n此牌受双倍[加攻]和[剑意]加成\\n[连云]：此牌多{otherParams[0]}攻且获得[碎防]",
+      "{attack}攻×{attackCount}\\n此牌受双倍[加攻]和[剑意]加成\\n[连云]：此牌多{otherParams[0]}攻且获得[碎防]",
+      "{attack}攻×{attackCount}\\n此牌受双倍[加攻]和[剑意]加成\\n[连云]：此牌多{otherParams[0]}攻且获得[碎防]"
+    ]
+  },
+  "灵枢剑阵": {
+    "ids": [
+      1000092,
+      1010092,
+      1020092
+    ],
+    "phases": [
+      "[灵气]+{anima}\\n[防]+{def}\\n{attack}攻（每有{otherParams[0]}[灵气]多1攻）\\n{attack}攻（每有{otherParams[1]}[防]多1攻）",
+      "[灵气]+{anima}\\n[防]+{def}\\n{attack}攻（每有{otherParams[0]}[灵气]多1攻）\\n{attack}攻（每有{otherParams[1]}[防]多1攻）",
+      "[灵气]+{anima}\\n[防]+{def}\\n{attack}攻（每有{otherParams[0]}[灵气]多1攻）\\n{attack}攻（每有{otherParams[1]}[防]多1攻）"
+    ]
+  },
+  "迅影飞剑": {
+    "ids": [
+      1000094,
+      1010094,
+      1020094
+    ],
+    "phases": [
+      "{attack}攻（不触发[剑意]）\\n[先机]：[剑意]+{otherParams[0]}\\n[剑意]>0则[再次行动]",
+      "{attack}攻（不触发[剑意]）\\n[先机]：[剑意]+{otherParams[0]}\\n[剑意]>0则[再次行动]",
+      "{attack}攻（不触发[剑意]）\\n[先机]：[剑意]+{otherParams[0]}\\n[剑意]>0则[再次行动]"
+    ]
+  },
+  "剑影结界": {
+    "ids": [
+      1000095,
+      1010095,
+      1020095
+    ],
+    "phases": [
+      "{attack}攻×{attackCount}\\n[防]+{def}\\n本场战斗中自身每攻击过1次加{otherParams[0]}[防]",
+      "{attack}攻×{attackCount}\\n[防]+{def}\\n本场战斗中自身每攻击过1次加{otherParams[0]}[防]",
+      "{attack}攻×{attackCount}\\n[防]+{def}\\n本场战斗中自身每攻击过1次加{otherParams[0]}[防]"
+    ]
+  },
+  "极•云剑柔心": {
+    "ids": [
+      1000096,
+      1010096,
+      1020096
+    ],
+    "phases": [
+      "生命上限+{otherParams[0]}\\n[再次行动]\\n[持续]：每次使用“云剑”时加{otherParams[1]}生命",
+      "生命上限+{otherParams[0]}\\n[再次行动]\\n[持续]：每次使用“云剑”时加{otherParams[1]}生命",
+      "生命上限+{otherParams[0]}\\n[再次行动]\\n[持续]：每次使用“云剑”时加{otherParams[1]}生命"
+    ]
+  },
+  "极•暗鸦灵剑": {
+    "ids": [
+      1000097,
+      1010097,
+      1020097
+    ],
+    "phases": [
+      "{attack}攻\\n[灵气]+{anima}\\n每剩余1点灵气加{otherParams[0]}[防]",
+      "{attack}攻\\n[灵气]+{anima}\\n每剩余1点灵气加{otherParams[0]}[防]",
+      "{attack}攻\\n[灵气]+{anima}\\n每剩余1点灵气加{otherParams[0]}[防]"
+    ]
+  },
+  "云剑•追风": {
+    "ids": [
+      1000098,
+      1010098,
+      1020098
+    ],
+    "phases": [
+      "[防]+{def}\\n[云海]+{otherParams[0]}\\n此牌算作{otherParams[1]}次云剑\\n[再次行动]\\n[连云]：此牌不耗[灵气]",
+      "[防]+{def}\\n[云海]+{otherParams[0]}\\n此牌算作{otherParams[1]}次云剑\\n[再次行动]\\n[连云]：此牌不耗[灵气]",
+      "[防]+{def}\\n[云海]+{otherParams[0]}\\n此牌算作{otherParams[1]}次云剑\\n[再次行动]\\n[连云]：此牌不耗[灵气]"
+    ]
+  },
+  "望星诀": {
+    "ids": [
+      4000090,
+      4010090,
+      4020090
+    ],
+    "phases": [
+      "[灵气]+{anima}\\n[防]+{def}\\n后{otherParams[0]}格[成为星位]",
+      "[灵气]+{anima}\\n[防]+{def}\\n后{otherParams[0]}格[成为星位]",
+      "[灵气]+{anima}\\n[防]+{def}\\n后{otherParams[0]}格[成为星位]"
+    ]
+  },
+  "犀牛望月": {
+    "ids": [
+      4000091,
+      4010091,
+      4020091
+    ],
+    "phases": [
+      "{attack}～{randomAttack}攻\\n生命及上限+{otherParams[0]}～{otherParams[1]}\\n返还此牌触发的[卦象]",
+      "{attack}～{randomAttack}攻\\n生命及上限+{otherParams[0]}～{otherParams[1]}\\n返还此牌触发的[卦象]",
+      "{attack}～{randomAttack}攻\\n生命及上限+{otherParams[0]}～{otherParams[1]}\\n返还此牌触发的[卦象]"
+    ]
+  },
+  "伤魂咒阵": {
+    "ids": [
+      4000092,
+      4010092,
+      4020092
+    ],
+    "phases": [
+      "[灵气]+{anima}\\n[持续]{otherParams[0]}次：攻击或受到攻击时，向对方施加{otherParams[1]}层[内伤]",
+      "[灵气]+{anima}\\n[持续]{otherParams[0]}次：攻击或受到攻击时，向对方施加{otherParams[1]}层[内伤]",
+      "[灵气]+{anima}\\n[持续]{otherParams[0]}次：攻击或受到攻击时，向对方施加{otherParams[1]}层[内伤]"
+    ]
+  },
+  "星弈•长": {
+    "ids": [
+      4000093,
+      4010093,
+      4020093
+    ],
+    "phases": [
+      "{attack}攻\\n[星力]+{otherParams[0]}\\n[星位]：生命及上限+{otherParams[1]}（每有1[星力]多加{otherParams[2]}）",
+      "{attack}攻\\n[星力]+{otherParams[0]}\\n[星位]：生命及上限+{otherParams[1]}（每有1[星力]多加{otherParams[2]}）",
+      "{attack}攻\\n[星力]+{otherParams[0]}\\n[星位]：生命及上限+{otherParams[1]}（每有1[星力]多加{otherParams[2]}）"
+    ]
+  },
+  "星弈•劫争": {
+    "ids": [
+      4000094,
+      4010094,
+      4020094
+    ],
+    "phases": [
+      "{attack}攻\\n[灵气]+{anima}\\n自身[灵气]＞对方则施加{otherParams[0]}层[破绽]\\n[星位]：[再次行动]",
+      "{attack}攻\\n[灵气]+{anima}\\n自身[灵气]＞对方则施加{otherParams[0]}层[破绽]\\n[星位]：[再次行动]",
+      "{attack}攻\\n[灵气]+{anima}\\n自身[灵气]＞对方则施加{otherParams[0]}层[破绽]\\n[星位]：[再次行动]"
+    ]
+  },
+  "灵蛇绕柱": {
+    "ids": [
+      4000095,
+      4010095,
+      4020095
+    ],
+    "phases": [
+      "施加{otherParams[0]}层[内伤]\\n[防]+{def}（对方每有1层[负面状态]多{otherParams[1]}）\\n[防]≥{otherParams[2]}则[再次行动]",
+      "施加{otherParams[0]}层[内伤]\\n[防]+{def}（对方每有1层[负面状态]多{otherParams[1]}）\\n[防]≥{otherParams[2]}则[再次行动]",
+      "施加{otherParams[0]}层[内伤]\\n[防]+{def}（对方每有1层[负面状态]多{otherParams[1]}）\\n[防]≥{otherParams[2]}则[再次行动]"
+    ]
+  },
+  "折枝点穴": {
+    "ids": [
+      4000096,
+      4010096,
+      4020096
+    ],
+    "phases": [
+      "每次攻击时施加1[内伤]，持续{otherParams[0]}回合\\n{attack}攻×{attackCount}\\n10%概率追加{otherParams[1]}攻\\n10%概率施加{otherParams[2]}[减攻]",
+      "每次攻击时施加1[内伤]，持续{otherParams[0]}回合\\n{attack}攻×{attackCount}\\n10%概率追加{otherParams[1]}攻\\n10%概率施加{otherParams[2]}[减攻]",
+      "每次攻击时施加1[内伤]，持续{otherParams[0]}回合\\n{attack}攻×{attackCount}\\n10%概率追加{otherParams[1]}攻\\n10%概率施加{otherParams[2]}[减攻]"
+    ]
+  },
+  "弯弓射虎": {
+    "ids": [
+      4000097,
+      4010097,
+      4020097
+    ],
+    "phases": [
+      "[先机]：生命及上限+{otherParams[0]}\\n[后招]：{attack}攻（每加过{otherParams[1]}生命多1攻）\\n{otherParams[2]}%概率[再次行动]",
+      "[先机]：生命及上限+{otherParams[0]}\\n[后招]：{attack}攻（每加过{otherParams[1]}生命多1攻）\\n{otherParams[2]}%概率[再次行动]",
+      "[先机]：生命及上限+{otherParams[0]}\\n[后招]：{attack}攻（每加过{otherParams[1]}生命多1攻）\\n{otherParams[2]}%概率[再次行动]"
+    ]
+  },
+  "极•静气心法": {
+    "ids": [
+      4000098,
+      4010098,
+      4020098
+    ],
+    "phases": [
+      "生命上限+{otherParams[1]}\\n[再次行动]\\n[持续]：每加1点灵气时加{otherParams[0]}生命",
+      "生命上限+{otherParams[1]}\\n[再次行动]\\n[持续]：每加1点灵气时加{otherParams[0]}生命",
+      "生命上限+{otherParams[1]}\\n[再次行动]\\n[持续]：每加1点灵气时加{otherParams[0]}生命"
+    ]
+  },
+  "极•两仪阵": {
+    "ids": [
+      4000099,
+      4010099,
+      4020099
+    ],
+    "phases": [
+      "[灵气]+{anima}\\n卦象+{guaXiang}\\n每点[卦象]加{otherParams[0]}[防]和{otherParams[1]}生命",
+      "[灵气]+{anima}\\n卦象+{guaXiang}\\n每点[卦象]加{otherParams[0]}[防]和{otherParams[1]}生命",
+      "[灵气]+{anima}\\n卦象+{guaXiang}\\n每点[卦象]加{otherParams[0]}[防]和{otherParams[1]}生命"
+    ]
+  },
+  "镇印心法": {
+    "ids": [
+      7000094,
+      7010094,
+      7020094
+    ],
+    "phases": [
+      "造成{otherParams[0]}[伤害]\\n[持续]：每次[激活][五行]时，向对方造成{otherParams[1]}[伤害]",
+      "造成{otherParams[0]}[伤害]\\n[持续]：每次[激活][五行]时，向对方造成{otherParams[1]}[伤害]",
+      "造成{otherParams[0]}[伤害]\\n[持续]：每次[激活][五行]时，向对方造成{otherParams[1]}[伤害]"
+    ]
+  },
+  "五行灵击": {
+    "ids": [
+      7000095,
+      7010095,
+      7020095
+    ],
+    "phases": [
+      "{attack}攻（每剩余1[灵气]多1攻）\\n卡组中每有1种不同[五行]此牌少耗1[灵气]",
+      "{attack}攻（每剩余1[灵气]多1攻）\\n卡组中每有1种不同[五行]此牌少耗1[灵气]",
+      "{attack}攻（每剩余1[灵气]多1攻）\\n卡组中每有1种不同[五行]此牌少耗1[灵气]"
+    ]
+  },
+  "土灵•遁地": {
+    "ids": [
+      7000096,
+      7010096,
+      7020096
+    ],
+    "phases": [
+      "[防]+{def}\\n[土灵]：[再次行动]",
+      "[防]+{def}\\n[土灵]：[再次行动]",
+      "[防]+{def}\\n[土灵]：[再次行动]"
+    ]
+  },
+  "木灵•春风拂": {
+    "ids": [
+      7000097,
+      7010097,
+      7020097
+    ],
+    "phases": [
+      "[灵气]+{anima}\\n[木灵]：自身每次攻击时加{otherParams[0]}生命及上限，持续{otherParams[1]}回合\\n{attack}攻×{attackCount}",
+      "[灵气]+{anima}\\n[木灵]：自身每次攻击时加{otherParams[0]}生命及上限，持续{otherParams[1]}回合\\n{attack}攻×{attackCount}",
+      "[灵气]+{anima}\\n[木灵]：自身每次攻击时加{otherParams[0]}生命及上限，持续{otherParams[1]}回合\\n{attack}攻×{attackCount}"
+    ]
+  },
+  "火灵•焚脉诀": {
+    "ids": [
+      7000098,
+      7010098,
+      7020098
+    ],
+    "phases": [
+      "[灵气]+{anima}\\n加至{otherParams[0]}层[加攻]，每加1层减自身{otherParams[1]}生命上限\\n[火灵]：每有1层[加攻]，减对方{otherParams[2]}生命及上限",
+      "[灵气]+{anima}\\n加至{otherParams[0]}层[加攻]，每加1层减自身{otherParams[1]}生命上限\\n[火灵]：每有1层[加攻]，减对方{otherParams[2]}生命及上限",
+      "[灵气]+{anima}\\n加至{otherParams[0]}层[加攻]，每加1层减自身{otherParams[1]}生命上限\\n[火灵]：每有1层[加攻]，减对方{otherParams[2]}生命及上限"
+    ]
+  },
+  "金灵•回锋刃": {
+    "ids": [
+      7000099,
+      7010099,
+      7020099
+    ],
+    "phases": [
+      "{attack}攻×{attackCount}\\n[金灵]：此牌每次攻击消耗[锋锐]后，返还{otherParams[0]}%的[锋锐]（向上取整）",
+      "{attack}攻×{attackCount}\\n[金灵]：此牌每次攻击消耗[锋锐]后，返还{otherParams[0]}%的[锋锐]（向上取整）",
+      "{attack}攻×{attackCount}\\n[金灵]：此牌每次攻击消耗[锋锐]后，返还{otherParams[0]}%的[锋锐]（向上取整）"
+    ]
+  },
+  "水灵•乘风浪": {
+    "ids": [
+      7000100,
+      7010100,
+      7020100
+    ],
+    "phases": [
+      "[水势]+{otherParams[0]}\\n生命及上限+{otherParams[1]}\\n[水灵]：每有1[水势]或[灵气]加2[身法]（最多加{otherParams[2]}）",
+      "[水势]+{otherParams[0]}\\n生命及上限+{otherParams[1]}\\n[水灵]：每有1[水势]或[灵气]加2[身法]（最多加{otherParams[2]}）",
+      "[水势]+{otherParams[0]}\\n生命及上限+{otherParams[1]}\\n[水灵]：每有1[水势]或[灵气]加2[身法]（最多加{otherParams[2]}）"
+    ]
+  },
+  "混元化灵": {
+    "ids": [
+      7000101,
+      7010101,
+      7020101
+    ],
+    "phases": [
+      "[灵气]+{anima}（卡组中每有1种[五行]多1）\\n[激活][相邻]牌所属[五行]\\n[被动]：卡组中算作多{otherParams[0]}种[五行]",
+      "[灵气]+{anima}（卡组中每有1种[五行]多1）\\n[激活][相邻]牌所属[五行]\\n[被动]：卡组中算作多{otherParams[0]}种[五行]",
+      "[灵气]+{anima}（卡组中每有1种[五行]多1）\\n[激活][相邻]牌所属[五行]\\n[被动]：卡组中算作多{otherParams[0]}种[五行]"
+    ]
+  },
+  "极•水灵阵": {
+    "ids": [
+      7000104,
+      7010104,
+      7020104
+    ],
+    "phases": [
+      "[再次行动]\\n[持续]：每次使用“水灵”牌时加{otherParams[0]}[灵气]",
+      "[灵气]+{anima}\\n[再次行动]\\n[持续]：每次使用“水灵”牌时加{otherParams[0]}[灵气]",
+      "[灵气]+{anima}\\n[再次行动]\\n[持续]：每次使用“水灵”牌时加{otherParams[0]}[灵气]"
+    ]
+  },
+  "极•木灵巡林": {
+    "ids": [
+      7000105,
+      7010105,
+      7020105
+    ],
+    "phases": [
+      "[木刺]+{otherParams[0]}\\n{attack}攻×{attackCount}\\n[木灵]：若已加过生命则[再次行动]",
+      "[木刺]+{otherParams[0]}\\n{attack}攻×{attackCount}\\n[木灵]：若已加过生命则[再次行动]",
+      "[木刺]+{otherParams[0]}\\n{attack}攻×{attackCount}\\n[木灵]：若已加过生命则[再次行动]"
+    ]
+  },
+  "醉拳架势": {
+    "ids": [
+      10000090,
+      10010090,
+      10020090
+    ],
+    "phases": [
+      "[体魄]+{physique}\\n生命+{otherParams[0]}\\n获得{otherParams[1]}层[破绽]\\n[持续]：每失去1层[破绽]就获得{otherParams[2]}层[加攻]",
+      "[体魄]+{physique}\\n生命+{otherParams[0]}\\n获得{otherParams[1]}层[破绽]\\n[持续]：每失去1层[破绽]就获得{otherParams[2]}层[加攻]",
+      "[体魄]+{physique}\\n生命+{otherParams[0]}\\n获得{otherParams[1]}层[破绽]\\n[持续]：每失去1层[破绽]就获得{otherParams[2]}层[加攻]"
+    ]
+  },
+  "玄灵愈体": {
+    "ids": [
+      10000091,
+      10010091,
+      10020091
+    ],
+    "phases": [
+      "[灵气]+{anima}\\n获得{otherParams[0]}层[内伤]\\n自身每有1[灵气]或1层[负面状态]就加{otherParams[1]}生命及上限",
+      "[灵气]+{anima}\\n获得{otherParams[0]}层[内伤]\\n自身每有1[灵气]或1层[负面状态]就加{otherParams[1]}生命及上限",
+      "[灵气]+{anima}\\n获得{otherParams[0]}层[内伤]\\n自身每有1[灵气]或1层[负面状态]就加{otherParams[1]}生命及上限"
+    ]
+  },
+  "凌空飞扫": {
+    "ids": [
+      10000092,
+      10010092,
+      10020092
+    ],
+    "phases": [
+      "{attack}攻（每有1[灵气]多{otherParams[0]}攻）\\n最多耗{otherParams[1]}[灵气]：每耗1点加{otherParams[2]}[身法]并减{otherParams[3]}层[负面状态]",
+      "{attack}攻（每有1[灵气]多{otherParams[0]}攻）\\n最多耗{otherParams[1]}[灵气]：每耗1点加{otherParams[2]}[身法]并减{otherParams[3]}层[负面状态]",
+      "{attack}攻（每有1[灵气]多{otherParams[0]}攻）\\n最多耗{otherParams[1]}[灵气]：每耗1点加{otherParams[2]}[身法]并减{otherParams[3]}层[负面状态]"
+    ]
+  },
+  "崩拳•碎骨": {
+    "ids": [
+      10000093,
+      10010093,
+      10020093
+    ],
+    "phases": [
+      "此牌[耗生命]时向对方造成等量[伤害]（下一张[崩拳]也附加此效果）\\n{attack}攻×{attackCount}\\n[碎防]",
+      "此牌[耗生命]时向对方造成等量[伤害]（下一张[崩拳]也附加此效果）\\n{attack}攻×{attackCount}\\n[碎防]",
+      "此牌[耗生命]时向对方造成等量[伤害]（下一张[崩拳]也附加此效果）\\n{attack}攻×{attackCount}\\n[碎防]"
+    ]
+  },
+  "万魂破军": {
+    "ids": [
+      10000094,
+      10010094,
+      10020094
+    ],
+    "phases": [
+      "每用过1次[耗生命]的牌就加{otherParams[0]}[气势]\\n{attack}攻（每有1[气势]多1攻）",
+      "每用过1次[耗生命]的牌就加{otherParams[0]}[气势]\\n{attack}攻（每有1[气势]多1攻）",
+      "每用过1次[耗生命]的牌就加{otherParams[0]}[气势]\\n{attack}攻（每有1[气势]多1攻）"
+    ]
+  },
+  "血影遁术": {
+    "ids": [
+      10000095,
+      10010095,
+      10020095
+    ],
+    "phases": [
+      "生命+{otherParams[0]}\\n[身法]+{otherParams[1]}\\n下1次使用[耗生命]的牌时每耗1生命就加1[身法]",
+      "生命+{otherParams[0]}\\n[身法]+{otherParams[1]}\\n下1次使用[耗生命]的牌时每耗1生命就加1[身法]",
+      "生命+{otherParams[0]}\\n[身法]+{otherParams[1]}\\n下1次使用[耗生命]的牌时每耗1生命就加1[身法]"
+    ]
+  },
+  "锻灵指": {
+    "ids": [
+      10000096,
+      10010096,
+      10020096
+    ],
+    "phases": [
+      "{attack}攻×{attackCount}\\n[灵气]+{anima}\\n[体魄]+{physique}（每有{otherParams[0]}[灵气]多加1[体魄]）",
+      "{attack}攻×{attackCount}\\n[灵气]+{anima}\\n[体魄]+{physique}（每有{otherParams[0]}[灵气]多加1[体魄]）",
+      "{attack}攻×{attackCount}\\n[灵气]+{anima}\\n[体魄]+{physique}（每有{otherParams[0]}[灵气]多加1[体魄]）"
+    ]
+  },
+  "金刚捣碓": {
+    "ids": [
+      10000097,
+      10010097,
+      10020097
+    ],
+    "phases": [
+      "{attack}攻\\n[防]+{def}\\n最多耗{otherParams[0]}[灵气]：每耗1[灵气]此牌多{otherParams[1]}攻和{otherParams[2]}[防]",
+      "{attack}攻\\n[防]+{def}\\n最多耗{otherParams[0]}[灵气]：每耗1[灵气]此牌多{otherParams[1]}攻和{otherParams[2]}[防]",
+      "{attack}攻\\n[防]+{def}\\n最多耗{otherParams[0]}[灵气]：每耗1[灵气]此牌多{otherParams[1]}攻和{otherParams[2]}[防]"
+    ]
+  },
+  "极•崩天步": {
+    "ids": [
+      10000098,
+      10010098,
+      10020098
+    ],
+    "phases": [
+      "[身法]+{otherParams[0]}\\n[持续]：所有牌都可算作“崩拳”",
+      "[灵气]+{anima}\\n[身法]+{otherParams[0]}\\n[持续]：所有牌都可算作“崩拳”",
+      "[灵气]+{anima}\\n[身法]+{otherParams[0]}\\n[持续]：所有牌都可算作“崩拳”"
+    ]
+  },
+  "极•迎风掌": {
+    "ids": [
+      10000099,
+      10010099,
+      10020099
+    ],
+    "phases": [
+      "{attack}攻×{attackCount}\\n每有{otherParams[0]}[体魄]多1攻",
+      "[体魄]+{physique}\\n{attack}攻×{attackCount}\\n每有{otherParams[0]}[体魄]多1攻",
+      "[体魄]+{physique}\\n{attack}攻×{attackCount}\\n每有{otherParams[0]}[体魄]多1攻"
+    ]
+  }
+}

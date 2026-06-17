@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net40</TargetFramework>
+    <AssemblyName>YiXianBot8</AssemblyName>
+    <DebugType>none</DebugType>
+    <Deterministic>true</Deterministic>
+    <NoWarn>CS1701;CS1702;CS0436</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net40" Version="1.0.3" />
+    <Reference Include="DarkSun.HotUpdate">
+      <HintPath>..\DarkSun.HotUpdate.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UniTask">
+      <HintPath>..\_stubs\bin\Release\net40\UniTask.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+</Project>

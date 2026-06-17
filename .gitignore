@@ -1,0 +1,26 @@
+# ── 游戏官方材料 —— 绝不提交(弈仙牌 / Unity 版权) ──
+native_hud/_refs/*.dll
+# 反编译产物
+*.decompiled.cs
+
+# ── 构建产物 / 缓存 ──
+__pycache__/
+*.pyc
+build/
+dist/
+bin/
+obj/
+*.spec
+/YiXianHUD.exe
+
+# ── 运行时 / 个人信息 ──
+YiXianHUD_config.json
+*.log
+*.jsonl
+feed_*.json
+.DS_Store
+Thumbs.db
+
+# ── 大型第三方源(发布只用 web/yisim.bundle.js,不要整个引擎源) ──
+vendor/
+node_modules/

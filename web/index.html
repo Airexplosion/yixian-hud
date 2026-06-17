@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YiXian Counter</title>
+  <link rel="stylesheet" href="app.css" />
+</head>
+<body>
+  <!-- Drag handle: the only region marked as the OS window-drag area. -->
+  <header id="titlebar">
+    <span class="title">YiXian Counter</span>
+    <span id="status-dot" class="dot" title="proxy status"></span>
+    <span class="spacer"></span>
+    <button id="btn-auto" class="tbtn" title="自动打牌 开/关">自</button>
+    <button id="btn-rec" class="tbtn" title="推荐摆法 开/关">荐</button>
+    <button id="btn-mode" class="tbtn" title="Damage mode">matchup</button>
+    <button id="btn-pin" class="tbtn" title="Always on top">📌</button>
+    <button id="btn-min" class="tbtn" title="Minimize (Ctrl+H)">−</button>
+    <button id="btn-quit" class="tbtn" title="Quit">✕</button>
+  </header>
+
+  <main id="content">
+    <!-- Update banner — shown only when the updater discovers a newer
+         version on Gitee at startup. Click "更新" → download + SHA256-verify
+         + self-replace. Hidden by default. -->
+    <section id="update-banner" class="update-banner" style="display:none">
+      <span class="update-text">
+        <strong>有新版本</strong>
+        <span id="update-version" class="update-version"></span>
+      </span>
+      <button id="update-btn" class="update-btn">更新</button>
+      <button id="update-dismiss" class="update-dismiss" title="dismiss">×</button>
+    </section>
+
+    <!-- Round / phase -->
+    <section id="round-bar">
+      <span id="round-label">Round —</span>
+      <span id="phase-label" class="phase">waiting for game…</span>
+    </section>
+
+    <!-- Damage summary (the only data card in the main window — the
+         YOU / OPPONENT / HAND cards moved to the counter window so this
+         window can shrink to just the damage readout). -->
+    <section class="card" id="damage-card">
+      <h2>Damage <small id="damage-mode-note"></small></h2>
+      <div class="dmg-row">
+        <div class="dmg-col">
+          <div class="dmg-label">you deal (T1–8)</div>
+          <div class="dmg-headline">
+            <span id="result-pill" class="result-pill" style="display:none"></span>
+          </div>
+        </div>
+      </div>
+      <div id="damage-turns" class="turns"></div>
+    </section>
+
+    <!-- 推荐摆法 — two suggestions computed locally by recommend.js:
+         (1) 打赢对方上一轮牌面 (matchup win-rate), (2) 当前手牌伤害最大 (solo). -->
+    <section class="card" id="recommend-card">
+      <h2>推荐摆法 <small id="rec-status"></small></h2>
+      <div id="rec-body"></div>
+    </section>
+  </main>
+
+  <!-- Bottom-right drag handle. JS in ui.js wires it to a CSS-zoom resize
+       that keeps content proportional (no stretching). -->
+  <div id="resize-handle" title="Drag to resize"></div>
+
+  <script src="yisim.bundle.js"></script>
+  <script src="card_qi.js"></script>
+  <script src="strategy_data.js"></script>
+  <script src="recommend.js"></script>
+  <script src="ui.js"></script>
+</body>
+</html>

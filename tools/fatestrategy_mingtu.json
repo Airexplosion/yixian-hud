@@ -1,0 +1,1414 @@
+{
+ "1": {
+  "name": "生命底蕴",
+  "desc": "主动使用（限{countParam}次）：获得当前轮次数的生命上限"
+ },
+ "2": {
+  "name": "换牌底蕴",
+  "desc": "主动使用（限{countParam}次）：获得当前轮次数的换牌机会"
+ },
+ "3": {
+  "name": "命元底蕴",
+  "desc": "主动使用（限{countParam}次）：获得当前轮次数+{otherParams[0]}的命元"
+ },
+ "4": {
+  "name": "境界感悟",
+  "desc": "主动使用（限{countParam}次）：换牌机会+{otherParams[0]}，抽{otherParams[1]}张自身当前境界的门派牌"
+ },
+ "5": {
+  "name": "勤修",
+  "desc": "主动使用（冷却{countParam}轮）：修为+{otherParams[0]}，生命上限减{otherParams[1]}"
+ },
+ "6": {
+  "name": "记忆案卷",
+  "desc": "主动使用（限{countParam}次）：修为减1，选择自身当前牌池中1张门派牌获得"
+ },
+ "7": {
+  "name": "斩道之法",
+  "desc": "主动使用（限{countParam}次）：修为减{otherParams[0]}，抽{otherParams[1]}张牌"
+ },
+ "8": {
+  "name": "命途-副职兼修",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】"
+ },
+ "9": {
+  "name": "钻研副职",
+  "desc": "主动使用（限{countParam}次）：修为减1，选择自身当前牌池中1张副职牌获得"
+ },
+ "10": {
+  "name": "副职大师",
+  "desc": "主动使用（冷却{countParam}轮）：修为减1，抽1张副职牌（优先取元婴期以上）"
+ },
+ "11": {
+  "name": "另辟蹊径",
+  "desc": "主动使用（限{countParam}次）：将手牌中所有牌随机变为其他牌"
+ },
+ "12": {
+  "name": "我命由我",
+  "desc": "突破境界时可刷新全部仙命选项（累计限{countParam}次）"
+ },
+ "13": {
+  "name": "三思抉择",
+  "desc": "主动使用（冷却{countParam}轮）：修为减1，从随机3张牌中选择1张获得"
+ },
+ "14": {
+  "name": "根骨奇佳",
+  "desc": "突破境界所需的修为和体魄减{otherParams[0]}"
+ },
+ "15": {
+  "name": "稳定突破",
+  "desc": "换牌机会储存上限减{otherParams[0]}；到达第3/5/8/11轮后，可无视修为突破至筑基/金丹/元婴/化神期"
+ },
+ "16": {
+  "name": "记忆修炼",
+  "desc": "修为+{otherParams[0]}；换牌机会储存上限加{otherParams[1]}；手牌上限加{otherParams[2]}"
+ },
+ "17": {
+  "name": "道韵气息",
+  "desc": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "18": {
+  "name": "双重道韵",
+  "desc": "下1次通过道韵预感获得牌时，额外获得1张相同的牌"
+ },
+ "19": {
+  "name": "隐忍",
+  "desc": "每轮开始时，若上一轮自身未进行过换牌，则换牌机会+1"
+ },
+ "20": {
+  "name": "偷袭",
+  "desc": "主动使用（限{countParam}次）：下场战斗自身临时加{otherParams[0]}【KEYWORD_速度】"
+ },
+ "21": {
+  "name": "广结善缘",
+  "desc": "每次战斗胜利时，向对方造成的命元伤害减{otherParams[0]}（至少为1），自身加1次换牌机会"
+ },
+ "22": {
+  "name": "临阵顿悟",
+  "desc": "主动使用（限{countParam}次）：下次突破境界所需的修为和体魄减{otherParams[0]}"
+ },
+ "23": {
+  "name": "强身健体",
+  "desc": "主动使用（限{countParam}次）：将【KEYWORD_体魄】加至当前体魄上限-{otherParams[0]}"
+ },
+ "24": {
+  "name": "云剑修行",
+  "desc": "主动使用（限{countParam}次）：修为减1，换牌机会+1，抽1张云剑"
+ },
+ "25": {
+  "name": "云剑大师",
+  "desc": "主动使用（冷却{countParam}轮）：修为减1，抽1张云剑牌（优先取元婴期以上）"
+ },
+ "26": {
+  "name": "稳固防御",
+  "desc": "战斗中每次加防时多加{otherParams[0]}"
+ },
+ "27": {
+  "name": "徐如林",
+  "desc": "若手牌不为空，战斗开始时加{otherParams[0]}%生命及等量生命上限"
+ },
+ "28": {
+  "name": "静心悟道",
+  "desc": "主动使用（限{countParam}次）：升级卡组中第一张1级牌"
+ },
+ "29": {
+  "name": "疾如风",
+  "desc": "若手牌为空，【KEYWORD_速度】+{otherParams[0]}"
+ },
+ "30": {
+  "name": "副职转换",
+  "desc": "主动使用（限1次）：重新选择自身的副职业，移除牌池中剩余的旧副职业的牌以及低于自身上个境界的副职业牌"
+ },
+ "31": {
+  "name": "全能副职",
+  "desc": "向牌池中加入所有其他副职业的元婴期和化神期牌各4张"
+ },
+ "32": {
+  "name": "逍遥点穴手",
+  "desc": "每次使用普通攻击时，令对方失去{otherParams[0]}层【KEYWORD_加攻】和{otherParams[0]}层【KEYWORD_护体】"
+ },
+ "33": {
+  "name": "逍遥护身诀",
+  "desc": "每张普通攻击在首次使用时获得{otherParams[0]}层【KEYWORD_护体】"
+ },
+ "34": {
+  "name": "狂剑修行",
+  "desc": "主动使用（限{countParam}次）：修为减1，换牌机会+1，抽1张狂剑"
+ },
+ "35": {
+  "name": "剑阵大师",
+  "desc": "主动使用（冷却{countParam}轮）：修为减1，抽1张剑阵牌（优先取元婴期以上）"
+ },
+ "36": {
+  "name": "逍遥神力掌",
+  "desc": "每次使用普通攻击时获得{otherParams[0]}层【KEYWORD_加攻】"
+ },
+ "37": {
+  "name": "天衍-触类旁通",
+  "desc": "主动使用（冷却{countParam}轮）：修为减1，从随机{otherParams[0]}张其他副职业牌（金丹期以上）中选择1张获得"
+ },
+ "38": {
+  "name": "偷师学艺",
+  "desc": "主动使用（限{countParam}次）：修为减1，从上轮对手的卡组中选择1张[常规牌]获得"
+ },
+ "39": {
+  "name": "承载之躯",
+  "desc": "生命上限+{otherParams[0]}；卡组中可额外放置{otherParams[1]}张【KEYWORD_持续】或【KEYWORD_消耗】牌"
+ },
+ "40": {
+  "name": "境界专精",
+  "desc": "主动使用（限{countParam}次）：牌池中当前境界的所有牌数量加{otherParams[0]}"
+ },
+ "41": {
+  "name": "梦境追忆",
+  "desc": "主动使用（限{countParam}次）：修为减1，从随机{otherParams[0]}张梦境牌中选择1张获得；每次突破境界时，自动提升梦境牌的境界"
+ },
+ "42": {
+  "name": "剑阵修行",
+  "desc": "主动使用（限{countParam}次）：修为减1，换牌机会+1，抽1张剑阵牌"
+ },
+ "43": {
+  "name": "剑意修行",
+  "desc": "主动使用（限{countParam}次）：修为减1，换牌机会+1，抽1张描述中含【KEYWORD_剑意】相关效果的门派牌"
+ },
+ "44": {
+  "name": "连击修行",
+  "desc": "主动使用（限{countParam}次）：修为减1，换牌机会+1，抽1张默认攻击次数≥2的门派牌"
+ },
+ "45": {
+  "name": "星弈修行",
+  "desc": "主动使用（限{countParam}次）：修为减1，换牌机会+1，抽1张星弈牌"
+ },
+ "46": {
+  "name": "卦象修行",
+  "desc": "主动使用（限{countParam}次）：修为减1，换牌机会+1，抽1张描述中含【KEYWORD_卦象】相关效果的门派牌"
+ },
+ "47": {
+  "name": "雷法修行",
+  "desc": "主动使用（限{countParam}次）：修为减1，换牌机会+1，抽1张雷牌"
+ },
+ "48": {
+  "name": "后招修行",
+  "desc": "主动使用（限{countParam}次）：修为减1，换牌机会+1，抽1张描述中含【KEYWORD_后招】相关效果的门派牌"
+ },
+ "49": {
+  "name": "生命修行",
+  "desc": "主动使用（限{countParam}次）：修为减1，换牌机会+1，抽1张描述中含生命相关效果的门派牌"
+ },
+ "50": {
+  "name": "木灵修行",
+  "desc": "主动使用（限{countParam}次）：修为减1，换牌机会+1，抽1张木灵牌"
+ },
+ "51": {
+  "name": "火灵修行",
+  "desc": "主动使用（限{countParam}次）：修为减1，换牌机会+1，抽1张火灵牌"
+ },
+ "52": {
+  "name": "土灵修行",
+  "desc": "主动使用（限{countParam}次）：修为减1，换牌机会+1，抽1张土灵牌"
+ },
+ "53": {
+  "name": "金灵修行",
+  "desc": "主动使用（限{countParam}次）：修为减1，换牌机会+1，抽1张金灵牌"
+ },
+ "54": {
+  "name": "水灵修行",
+  "desc": "主动使用（限{countParam}次）：修为减1，换牌机会+1，抽1张水灵牌"
+ },
+ "55": {
+  "name": "五行大师",
+  "desc": "主动使用（冷却{countParam}轮）：修为减1，抽1张【KEYWORD_五行】牌（优先取元婴期以上，且和卡组第一格所属五行相同的牌）"
+ },
+ "56": {
+  "name": "崩拳修行",
+  "desc": "主动使用（限{countParam}次）：修为减1，换牌机会+1，抽1张崩拳牌"
+ },
+ "57": {
+  "name": "气势修行",
+  "desc": "主动使用（限{countParam}次）：修为减1，换牌机会+1，抽1张描述中含【KEYWORD_气势】相关效果的门派牌"
+ },
+ "58": {
+  "name": "体魄修行",
+  "desc": "主动使用（限{countParam}次）：修为减1，换牌机会+1，抽1张描述中含【KEYWORD_体魄】相关效果的门派牌"
+ },
+ "59": {
+  "name": "身法修行",
+  "desc": "主动使用（限{countParam}次）：修为减1，换牌机会+1，抽1张描述中含【KEYWORD_身法】相关效果的门派牌"
+ },
+ "60": {
+  "name": "灵气修行",
+  "desc": "主动使用（限{countParam}次）：修为减1，换牌机会+1，抽1张描述中含【KEYWORD_灵气】相关效果的门派牌"
+ },
+ "61": {
+  "name": "防御修行",
+  "desc": "主动使用（限{countParam}次）：修为减1，换牌机会+1，抽1张描述中含【KEYWORD_防】相关效果的门派牌"
+ },
+ "62": {
+  "name": "元婴修行",
+  "desc": "主动使用（限{countParam}次）：修为减1，换牌机会+1，抽1张门派牌（优先取元婴期）"
+ },
+ "63": {
+  "name": "命途-机缘造化",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】；[炼化]机缘牌时额外加{otherParams[1]}换牌机会"
+ },
+ "64": {
+  "name": "命途-陨星淬体",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】；【TALENT_{otherParams[0]}】扣减的命元减半"
+ },
+ "65": {
+  "name": "命途-云巅雷劫",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】"
+ },
+ "66": {
+  "name": "命途-变换之道",
+  "desc": "每轮多加1次换牌机会但换牌机会储存上限变为1；每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】"
+ },
+ "67": {
+  "name": "命途-储纳灵气",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】"
+ },
+ "68": {
+  "name": "命途-狂之执念",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】"
+ },
+ "69": {
+  "name": "命途-云之道",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】；选择【TALENT_{otherParams[0]}】时减1修为，抽1张当前境界的云剑牌"
+ },
+ "70": {
+  "name": "命途-剑韵修炼",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】；选择【TALENT_{otherParams[0]}】时减1修为，抽1张描述中含【KEYWORD_剑意】相关效果的牌"
+ },
+ "71": {
+  "name": "命途-剑阵守护",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】"
+ },
+ "72": {
+  "name": "命途-卜卦",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】"
+ },
+ "73": {
+  "name": "命途-观星",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】"
+ },
+ "74": {
+  "name": "命途-星蚀",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】"
+ },
+ "75": {
+  "name": "命途-妙手回春",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】；选择【TALENT_{otherParams[0]}】时修为减1，抽1张描述中含生命相关效果的门派牌"
+ },
+ "76": {
+  "name": "命途-五行循环",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】"
+ },
+ "77": {
+  "name": "命途-五行专一",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】"
+ },
+ "78": {
+  "name": "命途-体修入道",
+  "desc": "体魄上限+{otherParams[1]}；每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】"
+ },
+ "79": {
+  "name": "命途-气势充沛",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】；选择【TALENT_{otherParams[0]}】时减1修为，抽1张描述中含【KEYWORD_气势】相关效果的牌"
+ },
+ "80": {
+  "name": "命途-冥心烙印",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】；选择【TALENT_{otherParams[0]}】时减1修为，抽1张描述中含[负面状态]相关效果的门派牌"
+ },
+ "81": {
+  "name": "命途-再生之躯",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】"
+ },
+ "82": {
+  "name": "以茶会友",
+  "desc": "主动使用（限{countParam}次）：自身获得2张【1】，其他角色在下轮开始时各获得1张【1】"
+ },
+ "83": {
+  "name": "天衍-云泉道茶",
+  "desc": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "84": {
+  "name": "天衍-剑不出鞘",
+  "desc": "自身回合若未攻击，回合结束时加{otherParams[0]}【KEYWORD_剑意】"
+ },
+ "85": {
+  "name": "天衍-云雾变幻",
+  "desc": "换牌机会储存无上限；\n每轮开始时，若上一轮未使用【TALENT_18】的效果换牌，额外加{otherParams[0]}换牌机会"
+ },
+ "86": {
+  "name": "天衍-炎舞",
+  "desc": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "87": {
+  "name": "天衍-崩雪",
+  "desc": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "88": {
+  "name": "天衍-血脉潜能",
+  "desc": "主动使用（限{countParam}次）：命元+{otherParams[0]}，换牌机会+{otherParams[1]}；\n每次触发【TALENT_19】抽牌后，本天衍仙命的剩余可使用次数+1"
+ },
+ "89": {
+  "name": "流风回雪",
+  "desc": "战斗开始时算作已用过{otherParams[0]}次云剑并加{otherParams[1]}【KEYWORD_云海】"
+ },
+ "90": {
+  "name": "天衍-九霄玲珑镯",
+  "desc": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "91": {
+  "name": "天衍-唤雨",
+  "desc": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "92": {
+  "name": "天衍-潜龙",
+  "desc": "修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "93": {
+  "name": "天衍-玲珑剑阵",
+  "desc": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "94": {
+  "name": "天衍-猫爪",
+  "desc": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "95": {
+  "name": "天衍-好奇心",
+  "desc": "每次战斗失败后，【TALENT_129】增加1次触发机会"
+ },
+ "96": {
+  "name": "天衍-灵猫乱剑",
+  "desc": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "97": {
+  "name": "天衍-灵猫踏云",
+  "desc": "每次使用云剑时获得1层【KEYWORD_云海】"
+ },
+ "98": {
+  "name": "天衍-飞砂",
+  "desc": "修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "99": {
+  "name": "剑心演武",
+  "desc": "战斗开始时若【19】与云剑相邻，则下轮开始抽牌时优先抽1张云剑；若【19】与狂剑相邻，则下轮开始抽牌时优先抽1张狂剑"
+ },
+ "100": {
+  "name": "淬剑-灵气",
+  "desc": "使用【19】时加{otherParams[0]}【KEYWORD_灵气】"
+ },
+ "101": {
+  "name": "淬剑-剑气",
+  "desc": "使用【19】时加{otherParams[0]}【KEYWORD_剑气】"
+ },
+ "102": {
+  "name": "淬剑-清心",
+  "desc": "使用【19】时自身所有【KEYWORD_负面状态】减{otherParams[0]}层"
+ },
+ "103": {
+  "name": "淬剑-水月",
+  "desc": "使用【19】时获得{otherParams[0]}层【KEYWORD_水月】效果"
+ },
+ "104": {
+  "name": "天衍-铸剑师",
+  "desc": "无视仙命【TALENT_92】的次数上限，且【19】每轮多加{otherParams[0]}攻"
+ },
+ "105": {
+  "name": "剑招修行",
+  "desc": "主动使用（限{countParam}次）：修为减4，随机获得“云剑”“狂剑”“灵剑”“剑阵”牌各一张"
+ },
+ "106": {
+  "name": "剑影互通",
+  "desc": "可在手牌中将2级“剑”牌拖动到同境界的1级“剑”牌上合成，令1级“剑”牌升级"
+ },
+ "107": {
+  "name": "天衍-悟剑天赋",
+  "desc": "主动使用（限{countParam}次）：修为减1，从随机{otherParams[0]}张自身当前境界或上个境界的“剑”牌中选择1张获得并加入仙命【TALENT_189】领悟的牌中"
+ },
+ "108": {
+  "name": "天衍-曳影剑阵",
+  "desc": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】；【{otherParams[0]}】将同时视作“云剑”“狂剑”“灵剑”和“剑阵”"
+ },
+ "109": {
+  "name": "护体剑阵",
+  "desc": "每场战斗首次使用剑阵时加{otherParams[1]}【KEYWORD_防】和{otherParams[2]}层【KEYWORD_护体】"
+ },
+ "110": {
+  "name": "天衍-勤学苦练",
+  "desc": "合成卡牌时也会增加【TALENT_29】1次计数"
+ },
+ "111": {
+  "name": "天衍-飞鸿踏雪",
+  "desc": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "112": {
+  "name": "天衍-瓮中捉鳖",
+  "desc": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "113": {
+  "name": "天衍-血脉威能",
+  "desc": "主动使用（限{countParam}次）：修为减1，从随机{otherParams[0]}张自身当前境界或上个境界的牌中选择1张获得；\n每次触发【TALENT_114】抽牌后，重置本天衍仙命的使用次数"
+ },
+ "114": {
+  "name": "天衍-无极卦盘",
+  "desc": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "115": {
+  "name": "天衍-狂雷电闪",
+  "desc": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "116": {
+  "name": "天衍-先天灵躯",
+  "desc": "突破境界时【TALENT_37】抽牌的效果改为从随机{otherParams[0]}张同境界的牌中选择1张获得"
+ },
+ "117": {
+  "name": "天衍-灯焰飞舞",
+  "desc": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "118": {
+  "name": "天衍-旋灯占卦",
+  "desc": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "119": {
+  "name": "天衍-运筹帷幄",
+  "desc": "手牌上限+{otherParams[0]}；每轮少加1修为，多抽1张牌"
+ },
+ "120": {
+  "name": "天衍-七星定魂",
+  "desc": "若卡组第8格空着，则战斗开始时放入【11】，若已有【11】则改为将其升级"
+ },
+ "121": {
+  "name": "七星伤魂",
+  "desc": "每次使用卡组第8格的牌时，向对方施加{otherParams[0]}层【KEYWORD_内伤】"
+ },
+ "122": {
+  "name": "天衍-星爆术",
+  "desc": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "123": {
+  "name": "天衍-星月折扇",
+  "desc": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "124": {
+  "name": "天衍-计出万全",
+  "desc": "使用最后1次换牌机会进行换牌时优先换到自身当前境界的牌"
+ },
+ "125": {
+  "name": "天衍-算无遗策",
+  "desc": "修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "126": {
+  "name": "天衍-卜卦",
+  "desc": "战斗结束时，保存剩余【KEYWORD_卦象】（最多{otherParams[0]}），下场战斗开始时获得保存的【KEYWORD_卦象】"
+ },
+ "127": {
+  "name": "水灵•悠然",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "128": {
+  "name": "抽刀断水",
+  "desc": "每次使用金灵牌时加1【KEYWORD_灵气】"
+ },
+ "129": {
+  "name": "天衍-悠然葫芦",
+  "desc": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "130": {
+  "name": "天衍-五行传承",
+  "desc": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "131": {
+  "name": "天衍-先天印记",
+  "desc": "战斗开始时，【KEYWORD_激活】先天五行[相生]的【KEYWORD_五行】和[克制]的【KEYWORD_五行】"
+ },
+ "132": {
+  "name": "天衍-先天五行",
+  "desc": "主动使用（限{countParam}次）：从随机5张不同【KEYWORD_五行】的牌中选择1张获得，并将自身的【TALENT_109】改为该【KEYWORD_五行】"
+ },
+ "133": {
+  "name": "相生灵阵",
+  "desc": "五行（木/火/土/金/水）灵阵的[持续]效果除了相同五行，还可以被其相生五行（火/土/金/水/木）的牌触发"
+ },
+ "134": {
+  "name": "天衍-双鸳逆克",
+  "desc": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "135": {
+  "name": "灵阵回响",
+  "desc": "每场战斗中首次使用名字含“灵阵”的牌后重复一次其效果，但自身下1回合无法行动"
+ },
+ "136": {
+  "name": "天衍-桃花印",
+  "desc": "修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "137": {
+  "name": "凝水化刃",
+  "desc": "【KEYWORD_水势】造成[伤害]的效果改为一次攻击，且【KEYWORD_击伤】对方时扣减的生命多50%"
+ },
+ "138": {
+  "name": "天衍-木灵印记",
+  "desc": "战斗开始时【KEYWORD_激活木灵】并加{otherParams[0]}【KEYWORD_灵气】"
+ },
+ "139": {
+  "name": "天衍-春雨",
+  "desc": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "140": {
+  "name": "天衍-猛虎之躯",
+  "desc": "战斗开始时，自身每有{otherParams[0]}生命，就额外加1生命及上限"
+ },
+ "141": {
+  "name": "天衍-山崩",
+  "desc": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "142": {
+  "name": "天衍-锟铻金环",
+  "desc": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "143": {
+  "name": "天衍-土灵印记",
+  "desc": "战斗开始时【KEYWORD_激活土灵】并加{otherParams[0]}【KEYWORD_防】"
+ },
+ "144": {
+  "name": "天衍-刚劲",
+  "desc": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "145": {
+  "name": "天衍-秘印亲和",
+  "desc": "突破至金丹期和元婴期时，【TALENT_136】也可自选“秘印”"
+ },
+ "146": {
+  "name": "天衍-火灵印记",
+  "desc": "战斗开始时【KEYWORD_激活火灵】并减对方{otherParams[0]}生命上限"
+ },
+ "147": {
+  "name": "混元异火",
+  "desc": "计算卡组中不同[五行]数量时，[火灵]算作2种[五行]"
+ },
+ "148": {
+  "name": "荆棘伴生",
+  "desc": "每当获得【KEYWORD_加攻】时，其中1层转为【KEYWORD_木刺】"
+ },
+ "149": {
+  "name": "魂体不竭",
+  "desc": "战斗中每次自身【KEYWORD_耗生命】时，加1【KEYWORD_体魄】"
+ },
+ "150": {
+  "name": "天衍-锻体不息",
+  "desc": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "151": {
+  "name": "灵香缭绕",
+  "desc": "每场战斗开始时获得{otherParams[0]}层【KEYWORD_辟邪】"
+ },
+ "152": {
+  "name": "灵烟化爪",
+  "desc": "描述中含“灵气”的牌多{otherParams[0]}攻"
+ },
+ "153": {
+  "name": "天衍-崩裂之拳",
+  "desc": "使用【KEYWORD_耗生命】的牌时，向对方造成所需【KEYWORD_耗生命】{otherParams[0]}%的[伤害]"
+ },
+ "154": {
+  "name": "天衍-锻躯之道",
+  "desc": "炼化含加【KEYWORD_体魄】效果的牌时，自身加{otherParams[0]}【KEYWORD_体魄】（不超过上限）"
+ },
+ "155": {
+  "name": "掌法感悟",
+  "desc": "每次战斗后，将卡组中名字含“掌”的1级牌升至2级"
+ },
+ "156": {
+  "name": "天衍-盛气凌人",
+  "desc": "修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "157": {
+  "name": "天衍-疯魔",
+  "desc": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "158": {
+  "name": "天衍-冥夜",
+  "desc": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "159": {
+  "name": "天衍-冥月蟾光",
+  "desc": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "160": {
+  "name": "以冥化灵",
+  "desc": "使用卡牌时若【KEYWORD_灵气】不足，可消耗自身的【KEYWORD_冥】代替【KEYWORD_灵气】"
+ },
+ "161": {
+  "name": "天衍-入冥",
+  "desc": "每场战斗开始时获得{otherParams[0]}层【KEYWORD_冥】"
+ },
+ "162": {
+  "name": "天衍-万玄破魔掌",
+  "desc": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "163": {
+  "name": "禅心聚灵",
+  "desc": "加【KEYWORD_体魄】时，额外加1【KEYWORD_灵气】（每回合限1次）"
+ },
+ "164": {
+  "name": "枯荣往复",
+  "desc": "双方在各自回合开始时触发的每层【KEYWORD_恢复】/【KEYWORD_内伤】效果从加/减1生命改为2生命。"
+ },
+ "165": {
+  "name": "天衍-冥心入玄",
+  "desc": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "166": {
+  "name": "天衍-禅心锻身",
+  "desc": "仙命【TALENT_183】在每场战斗开始时多加1【KEYWORD_体魄】，且胜利时加【KEYWORD_体魄】上限的效果取消次数限制"
+ },
+ "167": {
+  "name": "天衍-拆招",
+  "desc": "修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "168": {
+  "name": "天衍-双节棍",
+  "desc": "修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "169": {
+  "name": "天衍-转势",
+  "desc": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "170": {
+  "name": "云剑·龙泉",
+  "desc": "可在手牌中根据公式合成卡牌：\n【{otherParams[0]}】+【{otherParams[1]}】=【{otherParams[2]}】"
+ },
+ "171": {
+  "name": "云剑·雪影飞",
+  "desc": "可在手牌中根据公式合成卡牌：\n【{otherParams[0]}】+【{otherParams[1]}】=【{otherParams[2]}】"
+ },
+ "172": {
+  "name": "百鸟玲珑镯",
+  "desc": "可在手牌中根据公式合成卡牌：\n【{otherParams[0]}】+【{otherParams[1]}】=【{otherParams[2]}】"
+ },
+ "173": {
+  "name": "狂剑·猫爪",
+  "desc": "可在手牌中根据公式合成卡牌：\n【{otherParams[0]}】+【{otherParams[1]}】=【{otherParams[2]}】"
+ },
+ "174": {
+  "name": "澄心剑阵",
+  "desc": "可在手牌中根据公式合成卡牌：\n【{otherParams[0]}】+【{otherParams[1]}】=【{otherParams[2]}】"
+ },
+ "175": {
+  "name": "百鸟曳影诀",
+  "desc": "可在手牌中根据公式合成卡牌：\n【{otherParams[0]}】+【{otherParams[1]}】=【{otherParams[2]}】"
+ },
+ "176": {
+  "name": "瑞雪迎春",
+  "desc": "可在手牌中根据公式合成卡牌：\n【{otherParams[0]}】+【{otherParams[1]}】=【{otherParams[2]}】"
+ },
+ "177": {
+  "name": "天元无极盘",
+  "desc": "可在手牌中根据公式合成卡牌：\n【{otherParams[0]}】+【{otherParams[1]}】=【{otherParams[2]}】"
+ },
+ "178": {
+  "name": "灯影蚀焰",
+  "desc": "可在手牌中根据公式合成卡牌：\n【{otherParams[0]}】+【{otherParams[1]}】=【{otherParams[2]}】"
+ },
+ "179": {
+  "name": "千星天爆",
+  "desc": "可在手牌中根据公式合成卡牌：\n【{otherParams[0]}】+【{otherParams[1]}】=【{otherParams[2]}】"
+ },
+ "180": {
+  "name": "星月六爻扇",
+  "desc": "可在手牌中根据公式合成卡牌：\n【{otherParams[0]}】+【{otherParams[1]}】=【{otherParams[2]}】"
+ },
+ "181": {
+  "name": "星弈·治孤",
+  "desc": "可在手牌中根据公式合成卡牌：\n【{otherParams[0]}】+【{otherParams[1]}】=【{otherParams[2]}】"
+ },
+ "182": {
+  "name": "天髓葫芦",
+  "desc": "可在手牌中根据公式合成卡牌：\n【{otherParams[0]}】+【{otherParams[1]}】=【{otherParams[2]}】"
+ },
+ "183": {
+  "name": "混元逆克阵",
+  "desc": "可在手牌中根据公式合成卡牌：\n【{otherParams[0]}】+【{otherParams[1]}】=【{otherParams[2]}】"
+ },
+ "184": {
+  "name": "木灵·万物生",
+  "desc": "可在手牌中根据公式合成卡牌：\n【{otherParams[0]}】+【{otherParams[1]}】=【{otherParams[2]}】"
+ },
+ "185": {
+  "name": "锟铻熔火环",
+  "desc": "可在手牌中根据公式合成卡牌：\n【{otherParams[0]}】+【{otherParams[1]}】=【{otherParams[2]}】"
+ },
+ "186": {
+  "name": "水火交融",
+  "desc": "可在手牌中根据公式合成卡牌：\n【{otherParams[0]}】+【{otherParams[1]}】=【{otherParams[2]}】"
+ },
+ "187": {
+  "name": "五行忘忧梦",
+  "desc": "可在手牌中根据公式合成卡牌：\n【{otherParams[0]}】+【{otherParams[1]}】=【{otherParams[2]}】"
+ },
+ "188": {
+  "name": "浩荡不息",
+  "desc": "可在手牌中根据公式合成卡牌：\n【{otherParams[0]}】+【{otherParams[1]}】=【{otherParams[2]}】"
+ },
+ "189": {
+  "name": "玄心盛气掌",
+  "desc": "可在手牌中根据公式合成卡牌：\n【{otherParams[0]}】+【{otherParams[1]}】=【{otherParams[2]}】"
+ },
+ "190": {
+  "name": "冥夜迷踪步",
+  "desc": "可在手牌中根据公式合成卡牌：\n【{otherParams[0]}】+【{otherParams[1]}】=【{otherParams[2]}】"
+ },
+ "191": {
+  "name": "崩拳·返玄",
+  "desc": "可在手牌中根据公式合成卡牌：\n【{otherParams[0]}】+【{otherParams[1]}】=【{otherParams[2]}】"
+ },
+ "192": {
+  "name": "闪转腾挪",
+  "desc": "可在手牌中根据公式合成卡牌：\n【{otherParams[0]}】+【{otherParams[1]}】=【{otherParams[2]}】"
+ },
+ "193": {
+  "name": "冯虚御风",
+  "desc": "可在手牌中根据公式合成卡牌：\n【{otherParams[0]}】+【{otherParams[1]}】=【{otherParams[2]}】"
+ },
+ "194": {
+  "name": "幻•暗鸦灵剑",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "195": {
+  "name": "幻•轻剑",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "196": {
+  "name": "幻•引气剑",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "197": {
+  "name": "幻•云剑探云",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "198": {
+  "name": "幻•斩草除根",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "199": {
+  "name": "幻•流水无情",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "200": {
+  "name": "幻•斗转星移",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "201": {
+  "name": "幻•火灵聚炎",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "202": {
+  "name": "幻•水灵波澜",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "203": {
+  "name": "幻•木灵复苏",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "204": {
+  "name": "幻•金灵针",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "205": {
+  "name": "幻•血气方刚",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "206": {
+  "name": "幻•锻骨",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "207": {
+  "name": "幻•气沉丹田",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "208": {
+  "name": "幻•云剑无锋",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "209": {
+  "name": "幻•飞星刺",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "210": {
+  "name": "幻•五行流转",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "211": {
+  "name": "幻•双鬼拍门",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "212": {
+  "name": "幻•罗刹扑",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "213": {
+  "name": "幻•藕断丝连",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "214": {
+  "name": "幻•土灵群山",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "215": {
+  "name": "幻•坤卦",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "216": {
+  "name": "幻•崩拳戳",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "217": {
+  "name": "幻•飞牙剑",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "218": {
+  "name": "幻•星罗棋布",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "219": {
+  "name": "幻•浑天印",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "220": {
+  "name": "幻•岿然不动",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "221": {
+  "name": "幻•落花有意",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "222": {
+  "name": "幻•云舞诀",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "223": {
+  "name": "幻•浩然正气",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "224": {
+  "name": "幻•狂剑盘龙",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "225": {
+  "name": "幻•金灵印",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "226": {
+  "name": "幻•土灵阵",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "227": {
+  "name": "幻•崩拳缠",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "228": {
+  "name": "幻•两仪阵",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "229": {
+  "name": "幻•灵犀剑阵",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "230": {
+  "name": "幻•火灵印",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "231": {
+  "name": "幻•死缠烂打",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "232": {
+  "name": "幻•勤拙剑",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "233": {
+  "name": "幻•生机绽放",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "234": {
+  "name": "云剑·晚霞",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "235": {
+  "name": "青龙剑阵",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "236": {
+  "name": "百兽灵剑阵",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "237": {
+  "name": "狂龙吞云",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "238": {
+  "name": "灵卦术",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "239": {
+  "name": "摘花飞叶",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "240": {
+  "name": "星弈·双飞燕",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "241": {
+  "name": "滴水穿石",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "242": {
+  "name": "野渡之印",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "243": {
+  "name": "熔岩之印",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "244": {
+  "name": "滚石之印",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "245": {
+  "name": "斩浪之印",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "246": {
+  "name": "玄灵附身",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "247": {
+  "name": "崩拳•伏虎",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "248": {
+  "name": "瞬影击",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "249": {
+  "name": "逍遥无影拳",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "250": {
+  "name": "悟道丹",
+  "desc": "牌池中额外加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "251": {
+  "name": "冰灵护体丹",
+  "desc": "牌池中额外加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "252": {
+  "name": "万邪入体咒",
+  "desc": "牌池中额外加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "253": {
+  "name": "千里神行符",
+  "desc": "牌池中额外加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "254": {
+  "name": "转弦合调",
+  "desc": "牌池中额外加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "255": {
+  "name": "天音困仙曲",
+  "desc": "牌池中额外加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "256": {
+  "name": "画龙点睛",
+  "desc": "牌池中额外加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "257": {
+  "name": "运笔如飞",
+  "desc": "牌池中额外加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "258": {
+  "name": "须弥阵纹",
+  "desc": "牌池中额外加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "259": {
+  "name": "阵纹雕琢",
+  "desc": "主动使用（限{countParam}次）：升级卡组中第1张【KEYWORD_持续】牌"
+ },
+ "260": {
+  "name": "变异浇灌",
+  "desc": "主动使用（限{countParam}次）：令手牌中随机1张可[变异]的灵植牌[变异]"
+ },
+ "261": {
+  "name": "空间灵田",
+  "desc": "牌池中额外加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "262": {
+  "name": "厄劫缠身",
+  "desc": "牌池中额外加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "263": {
+  "name": "命运轮回",
+  "desc": "牌池中额外加入{countParam}张【{otherParams[0]}】；第{effectRound}轮后若自身符合境界且没有【{otherParams[0]}】，则该轮抽牌时优先抽取1张"
+ },
+ "264": {
+  "name": "灵剑大师",
+  "desc": "主动使用（冷却{countParam}轮）：修为减1，抽1张灵剑牌（优先取元婴期以上）"
+ },
+ "265": {
+  "name": "剑意大师",
+  "desc": "主动使用（冷却{countParam}轮）：修为减1，抽1张描述中含【KEYWORD_剑意】相关效果的门派牌（优先取元婴期以上）"
+ },
+ "266": {
+  "name": "混元大师",
+  "desc": "主动使用（冷却{countParam}轮）：修为减1，抽1张名字中含“混元”的门派牌"
+ },
+ "267": {
+  "name": "星弈大师",
+  "desc": "主动使用（冷却{countParam}轮）：修为减1，抽1张星弈牌（优先取元婴期以上）"
+ },
+ "268": {
+  "name": "卦象大师",
+  "desc": "主动使用（冷却{countParam}轮）：修为减1，抽1张描述中含【KEYWORD_卦象】相关效果的门派牌（优先取元婴期以上）"
+ },
+ "269": {
+  "name": "崩拳大师",
+  "desc": "主动使用（冷却{countParam}轮）：修为减1，抽1张崩拳牌（优先取元婴期以上）"
+ },
+ "270": {
+  "name": "体魄大师",
+  "desc": "主动使用（冷却{countParam}轮）：修为减1，抽1张描述中含【KEYWORD_体魄】相关效果的门派牌（优先取元婴期以上）"
+ },
+ "271": {
+  "name": "修玄大师",
+  "desc": "主动使用（冷却{countParam}轮）：修为减1，抽1张描述中含【KEYWORD_负面状态】相关效果的门派牌（优先取元婴期以上）"
+ },
+ "272": {
+  "name": "再动大师",
+  "desc": "主动使用（冷却{countParam}轮）：修为减1，抽1张描述中含【KEYWORD_再次行动】或【KEYWORD_身法】相关效果的门派牌（优先取元婴期以上）"
+ },
+ "273": {
+  "name": "随心悟道",
+  "desc": "主动使用（限{countParam}次）：随机升级手牌或卡组中的1张元婴期或化神期牌"
+ },
+ "274": {
+  "name": "炼气强化",
+  "desc": "主动使用（限{countParam}次）：随机升级手牌或卡组中1张炼气期【KEYWORD_常规牌】"
+ },
+ "275": {
+  "name": "狂剑道韵",
+  "desc": "道韵预感必然包含【{otherParams[0]}】和【{otherParams[1]}】"
+ },
+ "276": {
+  "name": "云剑道韵",
+  "desc": "道韵预感必然包含【{otherParams[0]}】和【{otherParams[1]}】"
+ },
+ "277": {
+  "name": "灵剑道韵",
+  "desc": "道韵预感必然包含【{otherParams[0]}】和【{otherParams[1]}】"
+ },
+ "278": {
+  "name": "剑意道韵",
+  "desc": "道韵预感必然包含【{otherParams[0]}】和【{otherParams[1]}】"
+ },
+ "279": {
+  "name": "剑阵道韵",
+  "desc": "道韵预感必然包含【{otherParams[0]}】和【{otherParams[1]}】"
+ },
+ "280": {
+  "name": "木灵道韵",
+  "desc": "道韵预感必然包含【{otherParams[0]}】和【{otherParams[1]}】"
+ },
+ "281": {
+  "name": "火灵道韵",
+  "desc": "道韵预感必然包含【{otherParams[0]}】和【{otherParams[1]}】"
+ },
+ "282": {
+  "name": "土灵道韵",
+  "desc": "道韵预感必然包含【{otherParams[0]}】和【{otherParams[1]}】"
+ },
+ "283": {
+  "name": "金灵道韵",
+  "desc": "道韵预感必然包含【{otherParams[0]}】和【{otherParams[1]}】"
+ },
+ "284": {
+  "name": "水灵道韵",
+  "desc": "道韵预感必然包含【{otherParams[0]}】和【{otherParams[1]}】"
+ },
+ "285": {
+  "name": "混元道韵",
+  "desc": "道韵预感必然包含【{otherParams[0]}】和【{otherParams[1]}】"
+ },
+ "286": {
+  "name": "星弈道韵",
+  "desc": "道韵预感必然包含【{otherParams[0]}】和【{otherParams[1]}】"
+ },
+ "287": {
+  "name": "卦象道韵",
+  "desc": "道韵预感必然包含【{otherParams[0]}】和【{otherParams[1]}】"
+ },
+ "288": {
+  "name": "生机道韵",
+  "desc": "道韵预感必然包含【{otherParams[0]}】和【{otherParams[1]}】"
+ },
+ "289": {
+  "name": "后招道韵",
+  "desc": "道韵预感必然包含【{otherParams[0]}】和【{otherParams[1]}】"
+ },
+ "290": {
+  "name": "内伤道韵",
+  "desc": "道韵预感必然包含【{otherParams[0]}】和【{otherParams[1]}】"
+ },
+ "291": {
+  "name": "锻体道韵",
+  "desc": "道韵预感必然包含【{otherParams[0]}】和【{otherParams[1]}】"
+ },
+ "292": {
+  "name": "崩拳道韵",
+  "desc": "道韵预感必然包含【{otherParams[0]}】和【{otherParams[1]}】"
+ },
+ "293": {
+  "name": "气势道韵",
+  "desc": "道韵预感必然包含【{otherParams[0]}】和【{otherParams[1]}】"
+ },
+ "294": {
+  "name": "冥玄道韵",
+  "desc": "道韵预感必然包含【{otherParams[0]}】和【{otherParams[1]}】"
+ },
+ "295": {
+  "name": "身法道韵",
+  "desc": "道韵预感必然包含【{otherParams[0]}】和【{otherParams[1]}】"
+ },
+ "296": {
+  "name": "影枭兔",
+  "desc": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "297": {
+  "name": "龙",
+  "desc": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "298": {
+  "name": "护身法宝",
+  "desc": "主动使用（冷却{countParam}轮）：下场战斗开始时，获得{otherParams[0]}层【KEYWORD_护体】"
+ },
+ "299": {
+  "name": "天衍-风行天上",
+  "desc": "触发仙命【TALENT_194】抽牌时，优先抽取自身未获得过且不低于上个境界的牌"
+ },
+ "300": {
+  "name": "天衍-阴符玉简",
+  "desc": "修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "301": {
+  "name": "背孤击虚",
+  "desc": "到达第{effectRound}轮后：修为减1，获得1张【{otherParams[0]}】；\n主动使用（第{effectRound}轮解锁）：将【{otherParams[0]}】变为【{otherParams[1]}】，或反向变回"
+ },
+ "302": {
+  "name": "天衍-定风波",
+  "desc": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "303": {
+  "name": "天衍-五行刀斩",
+  "desc": "到达第{effectRound}轮后：修为减1，选择并获得1张五行斩（【373】/【374】/【375】/【376】/【377】）"
+ },
+ "304": {
+  "name": "天衍-灵羽",
+  "desc": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "305": {
+  "name": "天衍-气旋掌",
+  "desc": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "306": {
+  "name": "天衍-御风飞闪",
+  "desc": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "307": {
+  "name": "天衍-天降甘霖",
+  "desc": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "308": {
+  "name": "天衍-忘忧",
+  "desc": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】"
+ },
+ "309": {
+  "name": "天衍-五行玉瓶",
+  "desc": "战斗开始时额外【KEYWORD_激活】五行玉瓶中第2格牌的【KEYWORD_五行】"
+ },
+ "310": {
+  "name": "天衍-五行聚灵",
+  "desc": "战斗中每次【KEYWORD_激活】【KEYWORD_五行】时，若该【KEYWORD_五行】已【KEYWORD_激活】过则加1【KEYWORD_灵气】（每回合限1次）"
+ },
+ "311": {
+  "name": "极·云剑柔心",
+  "desc": "选择时减1修为，获得1张【{otherParams[0]}】\n主动使用（第{effectRound}轮解锁）：将手牌中的【{otherParams[0]}】变为【{otherParams[1]}】，或反向变回"
+ },
+ "312": {
+  "name": "极·暗鸦灵剑",
+  "desc": "选择时减1修为，获得1张【{otherParams[0]}】\n主动使用（第{effectRound}轮解锁）：将手牌中的【{otherParams[0]}】变为【{otherParams[1]}】，或反向变回"
+ },
+ "313": {
+  "name": "极·静气心法",
+  "desc": "选择时减1修为，获得1张【{otherParams[0]}】\n主动使用（第{effectRound}轮解锁）：将手牌中的【{otherParams[0]}】变为【{otherParams[1]}】，或反向变回"
+ },
+ "314": {
+  "name": "极·两仪阵",
+  "desc": "选择时减1修为，获得1张【{otherParams[0]}】\n主动使用（第{effectRound}轮解锁）：将手牌中的【{otherParams[0]}】变为【{otherParams[1]}】，或反向变回"
+ },
+ "315": {
+  "name": "极·水灵阵",
+  "desc": "选择时减1修为，获得1张【{otherParams[0]}】\n主动使用（第{effectRound}轮解锁）：将手牌中的【{otherParams[0]}】变为【{otherParams[1]}】，或反向变回"
+ },
+ "316": {
+  "name": "极·木灵巡林",
+  "desc": "选择时减1修为，获得1张【{otherParams[0]}】\n主动使用（第{effectRound}轮解锁）：将手牌中的【{otherParams[0]}】变为【{otherParams[1]}】，或反向变回"
+ },
+ "317": {
+  "name": "极·崩天步",
+  "desc": "选择时减1修为，获得1张【{otherParams[0]}】\n主动使用（第{effectRound}轮解锁）：将手牌中的【{otherParams[0]}】变为【{otherParams[1]}】，或反向变回"
+ },
+ "318": {
+  "name": "极·迎风掌",
+  "desc": "选择时减1修为，获得1张【{otherParams[0]}】\n主动使用（第{effectRound}轮解锁）：将手牌中的【{otherParams[0]}】变为【{otherParams[1]}】，或反向变回"
+ },
+ "319": {
+  "name": "琴心剑胆",
+  "desc": "将自身副职业切换为琴师；所有琴师牌也视作狂剑"
+ },
+ "320": {
+  "name": "霜寒水月",
+  "desc": "每次使用云剑时，获得1层【KEYWORD_水月】"
+ },
+ "321": {
+  "name": "玲珑游",
+  "desc": "描述中含“再次行动”的牌【KEYWORD_灵气】消耗减1"
+ },
+ "322": {
+  "name": "猫之狂念",
+  "desc": "名字含“猫”的牌也视作狂剑；\n主动使用（冷却{countParam}轮）：将手牌中1张名字含猫的牌变为随机狂剑（继承等级）"
+ },
+ "323": {
+  "name": "地火锻心",
+  "desc": "主动使用（冷却{countParam}轮）：选择一个自身已有的【19】相关仙命，重新选择其选项"
+ },
+ "324": {
+  "name": "淬剑-云海",
+  "desc": "使用【19】时加{otherParams[0]}【KEYWORD_云海】"
+ },
+ "325": {
+  "name": "狂剑聚灵",
+  "desc": "每次使用狂剑时加1【KEYWORD_灵气】"
+ },
+ "326": {
+  "name": "雁栖",
+  "desc": "每场战斗首次加生命或生命上限后，额外加当时生命上限{otherParams[0]}%的生命"
+ },
+ "327": {
+  "name": "恃风雷",
+  "desc": "战斗开始时，升级卡组中第1张描述含“再次行动”或名字含“雷”的牌，战斗结束后还原"
+ },
+ "328": {
+  "name": "金仓纳福",
+  "desc": "每轮开始时抽到的牌中随机1张升至2级"
+ },
+ "329": {
+  "name": "谋定后动",
+  "desc": "战斗开始时若自身为后手行动，则下1次的【KEYWORD_后招】效果可直接触发"
+ },
+ "330": {
+  "name": "料敌机先",
+  "desc": "使用【22】时，获得{otherParams[0]}层临时【KEYWORD_护体】，自身下个回合开始失去临时【KEYWORD_护体】"
+ },
+ "331": {
+  "name": "七星连珠",
+  "desc": "每场战斗前{otherParams[0]}次使用星弈牌时，令后一格【KEYWORD_成为星位】"
+ },
+ "332": {
+  "name": "引虚",
+  "desc": "含“后招”效果的牌在首次使用时向对方施加1层【KEYWORD_虚弱】"
+ },
+ "333": {
+  "name": "天衍-金灵印记",
+  "desc": "战斗开始时【KEYWORD_激活金灵】并加{otherParams[0]}【KEYWORD_锋锐】"
+ },
+ "334": {
+  "name": "百草织霞",
+  "desc": "战斗开始时，升级卡组中第1张木灵牌，战斗结束后还原"
+ },
+ "335": {
+  "name": "无尽棍势",
+  "desc": "锁定自身【KEYWORD_架势】为【KEYWORD_棍】；[切换架势]的效果改为【KEYWORD_气势】上限+1"
+ },
+ "336": {
+  "name": "风灵展翼",
+  "desc": "战斗中首次加【KEYWORD_灵气】时，额外加{otherParams[0]}【KEYWORD_身法】"
+ },
+ "337": {
+  "name": "灵之羽",
+  "desc": "每次使用【381】时额外加1【KEYWORD_灵气】"
+ },
+ "338": {
+  "name": "天衍-孤虚金书",
+  "desc": "到达第{effectRound}轮后：修为减{countParam}，获得{countParam}张【{otherParams[0]}】；\n战斗开始时若【{otherParams[0]}】前一格为空则放入【216】，若后一格为空则放入【217】，前后每有一格未能放入牌就改为让【{otherParams[0]}】升1级（战斗结束还原）"
+ },
+ "339": {
+  "name": "天衍-斩断俗尘",
+  "desc": "主动使用（限{countParam}次）：剩余换牌机会减半，删除当前牌池中所有筑基期牌"
+ },
+ "340": {
+  "name": "乘雁而行",
+  "desc": "战斗开始时生命上限+{otherParams[0]}；每次触发【KEYWORD_再次行动】后生命+{otherParams[1]}"
+ },
+ "341": {
+  "name": "逆转乾坤",
+  "desc": "主动使用（限{countParam}次）：将手牌中1张【4000002】变为1级【4000026】并送入未来，到第{effectRound}轮返回手牌（已到第{effectRound}轮后改为下1轮返回手牌）"
+ },
+ "342": {
+  "name": "灯焰催心",
+  "desc": "战斗开始时，令对方下{otherParams[0]}次获得【KEYWORD_内伤】时多加1层"
+ },
+ "343": {
+  "name": "天衍-五行润养",
+  "desc": "战斗开始时若卡组中含3种及以上【KEYWORD_五行】，下轮多加1生命上限；若卡组中含5种及以上【KEYWORD_五行】，下轮多加1换牌机会"
+ },
+ "344": {
+  "name": "朱雀之泪",
+  "desc": "自身回合开始时，若生命≤{otherParams[0]}，获得1层【KEYWORD_护体】（每场战斗限1次）"
+ },
+ "345": {
+  "name": "灵气引燃",
+  "desc": "每次使用【7000069】时，每有1【KEYWORD_灵气】额外减对方{otherParams[0]}生命及上限"
+ },
+ "346": {
+  "name": "天衍-磨砺不止",
+  "desc": "触发仙命【TALENT_151】获得换牌机会时，额外加等量【KEYWORD_体魄】上限"
+ },
+ "347": {
+  "name": "热血化气",
+  "desc": "使用【KEYWORD_耗生命】的牌时加1【KEYWORD_灵气】（每回合限1次）"
+ },
+ "348": {
+  "name": "盈月飞影",
+  "desc": "仅需{otherParams[0]}【KEYWORD_身法】即可触发【KEYWORD_再次行动】"
+ },
+ "349": {
+  "name": "拳风破空",
+  "desc": "锁定自身【KEYWORD_架势】为【KEYWORD_拳】；[切换架势]的效果改为向对方造成{otherParams[0]}【KEYWORD_伤害】"
+ },
+ "350": {
+  "name": "铜镜（能品）",
+  "desc": "主动使用（冷却{countParam}轮）：修为减1，命元减{otherParams[0]}（最低减至1），选择手牌或卡组中一张金丹期或以下境界的【KEYWORD_常规牌】，获得其1级复制"
+ },
+ "351": {
+  "name": "铜镜（妙品）",
+  "desc": "主动使用（冷却{countParam}轮）：修为减1，命元减{otherParams[0]}（最低减至1），选择手牌或卡组中一张元婴期或以下境界的【KEYWORD_常规牌】，获得其1级复制"
+ },
+ "352": {
+  "name": "铜镜（神品）",
+  "desc": "主动使用（冷却{countParam}轮）：修为减1，命元减{otherParams[0]}（最低减至1），选择手牌或卡组中一张化神期或以下境界的【KEYWORD_常规牌】，获得其1级复制"
+ },
+ "353": {
+  "name": "天衍-休养生息",
+  "desc": "命元+{otherParams[0]}；生命上限+{otherParams[1]}；换牌机会+{otherParams[2]}；"
+ }
+}

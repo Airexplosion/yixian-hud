@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YiXian Counter — Cards Left</title>
+  <link rel="stylesheet" href="counter.css" />
+</head>
+<body>
+  <header id="titlebar">
+    <span class="title">Cards Left</span>
+    <span id="status-dot" class="dot" title="proxy status"></span>
+    <span id="round-pill" class="round-pill">R—</span>
+    <span class="spacer"></span>
+    <button id="btn-hand-only" class="tbtn" title="只看手牌 / 显示全部">手</button>
+    <button id="btn-quit" class="tbtn" title="Quit">✕</button>
+  </header>
+
+  <main id="content">
+    <section class="card" id="counter-card">
+      <div id="counter-list" class="counter">
+        <span class="empty-note">waiting for game…</span>
+      </div>
+    </section>
+  </main>
+
+  <!-- Bottom-right drag handle for proportional resizing. -->
+  <div id="resize-handle" title="Drag to resize"></div>
+
+  <script src="counter.js"></script>
+</body>
+</html>

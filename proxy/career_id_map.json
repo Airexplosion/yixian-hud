@@ -1,0 +1,30 @@
+{
+ "1": {
+  "enum": "LianDanShi",
+  "nameCn": "炼丹师"
+ },
+ "2": {
+  "enum": "FuZhouShi",
+  "nameCn": "符咒师"
+ },
+ "3": {
+  "enum": "QinShi",
+  "nameCn": "琴师"
+ },
+ "4": {
+  "enum": "HuaShi",
+  "nameCn": "画师"
+ },
+ "5": {
+  "enum": "ZhenFaShi",
+  "nameCn": "阵法师"
+ },
+ "6": {
+  "enum": "LingZhiShi",
+  "nameCn": "灵植师"
+ },
+ "7": {
+  "enum": "MingLiShi",
+  "nameCn": "命理师"
+ }
+}

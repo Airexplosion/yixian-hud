@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net40</TargetFramework>
+    <AssemblyName>YiXianHud32</AssemblyName>
+    <DebugType>none</DebugType>
+    <Deterministic>true</Deterministic>
+    <NoWarn>CS1701;CS1702;CS0436</NoWarn>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Hud.cs" />
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net40" Version="1.0.3" />
+    <Reference Include="DarkSun.HotUpdate"><HintPath>..\_refs\DarkSun.HotUpdate.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="DarkSun.Utility"><HintPath>..\_refs\DarkSun.Utility.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.CoreModule"><HintPath>..\_refs\UnityEngine.CoreModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.UIModule"><HintPath>..\_refs\UnityEngine.UIModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.UI"><HintPath>..\_refs\UnityEngine.UI.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.TextRenderingModule"><HintPath>..\_refs\UnityEngine.TextRenderingModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.TextCoreModule"><HintPath>..\_refs\UnityEngine.TextCoreModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Unity.TextMeshPro"><HintPath>..\_refs\Unity.TextMeshPro.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UniRx"><HintPath>..\_refs\UniRx.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UniTask"><HintPath>..\_refs\UniTask.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.InputLegacyModule"><HintPath>..\_refs\UnityEngine.InputLegacyModule.dll</HintPath><Private>false</Private></Reference>
+  </ItemGroup>
+</Project>

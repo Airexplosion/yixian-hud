@@ -1,0 +1,156 @@
+:root {
+  --bg: #11141a;
+  --panel: #1a1f29;
+  --panel-2: #232a36;
+  --text: #e6e8ee;
+  --muted: #8a93a6;
+  --accent: #6fb1ff;
+  --warn: #f5a142;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-size: 13px;
+  user-select: none;
+  overflow: hidden;
+}
+
+#titlebar {
+  -webkit-app-region: drag;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  padding: 0 6px;
+  background: #0d1016;
+  border-bottom: 1px solid #2a3140;
+  gap: 6px;
+}
+
+#titlebar .title {
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.3px;
+}
+
+#titlebar .spacer { flex: 1; }
+
+.tbtn {
+  -webkit-app-region: no-drag;
+  background: transparent;
+  color: var(--muted);
+  border: none;
+  font-size: 13px;
+  padding: 2px 7px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+.tbtn:hover { background: var(--panel-2); color: var(--text); }
+
+.dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--muted);
+}
+.dot.live { background: #4ade80; box-shadow: 0 0 4px #4ade80; }
+
+.round-pill {
+  background: var(--panel-2);
+  color: var(--text);
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+#content {
+  padding: 6px;
+}
+
+.card {
+  background: var(--panel);
+  border-radius: 4px;
+  padding: 6px;
+}
+
+.counter {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.counter-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 6px;
+  background: var(--panel-2);
+  border-radius: 3px;
+  font-size: 12px;
+}
+.counter-row.zero { opacity: 0.4; }
+.counter-row.low { border-left: 2px solid var(--warn); }
+
+/* Cards currently in your hand — pinned to the top and highlighted so you can
+   see at a glance how many copies of each are left in the deck. */
+.counter-row.in-hand {
+  background: #243247;
+  box-shadow: inset 0 0 0 1px var(--accent);
+}
+.counter-row.in-hand.low { border-left: 2px solid var(--warn); }
+.counter-row.in-hand .counter-name { color: #cfe2ff; font-weight: 600; }
+
+/* Separator between the pinned hand group and the rest of the deck. */
+.counter-divider {
+  height: 1px;
+  background: #2a3140;
+  margin: 3px 2px;
+}
+
+/* Active state for the "hand only" toggle. */
+.tbtn.active { background: var(--accent); color: #0d1016; }
+.tbtn.active:hover { background: var(--accent); color: #0d1016; }
+
+.counter-name { color: var(--text); }
+.counter-count {
+  font-weight: 600;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.counter-row.zero .counter-count { color: var(--muted); }
+
+.empty-note {
+  color: var(--muted);
+  font-style: italic;
+  padding: 8px;
+  text-align: center;
+}
+
+
+/* ── Bottom-right resize handle (same pattern as the main window) ───── */
+#resize-handle {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 14px;
+  height: 14px;
+  cursor: nwse-resize;
+  z-index: 1000;
+  background:
+    linear-gradient(135deg,
+      transparent 0%,
+      transparent 50%,
+      var(--muted) 50%,
+      var(--muted) 60%,
+      transparent 60%,
+      transparent 75%,
+      var(--muted) 75%,
+      var(--muted) 85%,
+      transparent 85%);
+  opacity: .55;
+  -webkit-app-region: no-drag;
+}
+#resize-handle:hover { opacity: 1; }

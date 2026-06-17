@@ -1,0 +1,490 @@
+{
+ "1": {
+  "name": "我命由我",
+  "desc": "每次突破境界时可以刷新1次仙命选项，若不刷新则加{countParam}换牌机会"
+ },
+ "2": {
+  "name": "机缘加身",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】。增加每轮获得机缘牌的概率。"
+ },
+ "3": {
+  "name": "御兽秘传",
+  "desc": "牌池中加入灵宠牌各{countParam}张"
+ },
+ "4": {
+  "name": "淬体之命",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】（选择{countParam}次后失效）；选择【TALENT_{otherParams[0]}】时不再扣减命元"
+ },
+ "5": {
+  "name": "雷劫之命",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】"
+ },
+ "6": {
+  "name": "兼修之命",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】（选择{countParam}次后失效）"
+ },
+ "7": {
+  "name": "专注之心",
+  "desc": "常规换牌时优先换出门派牌（每轮抽牌不受影响）"
+ },
+ "8": {
+  "name": "天赋异禀",
+  "desc": "突破境界所需的修为减{countParam}"
+ },
+ "9": {
+  "name": "变换之命",
+  "desc": "每轮多加1次换牌机会，但换牌机会储存上限变为1。每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】。"
+ },
+ "10": {
+  "name": "元婴专精",
+  "desc": "牌池中所有元婴期牌各加{countParam}张"
+ },
+ "11": {
+  "name": "化神专精",
+  "desc": "牌池中所有化神期牌各加{countParam}张"
+ },
+ "12": {
+  "name": "突破感悟",
+  "desc": "每次突破境界后，新境界的前2次常规换牌优先换出该境界的牌"
+ },
+ "13": {
+  "name": "道韵专精",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】"
+ },
+ "14": {
+  "name": "斩道之命",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】（选择{countParam}次后失效）；选择【TALENT_{otherParams[0]}】后至少抽到1张自身境界的牌"
+ },
+ "15": {
+  "name": "稳固之命",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】（选择{countParam}次后失效）"
+ },
+ "16": {
+  "name": "影枭试炼",
+  "desc": "若战斗中触发过3次以上再次行动，则下轮首次换出化神牌时，那张牌变为【{otherParams[0]}】（最多生效1次）"
+ },
+ "17": {
+  "name": "炼丹天赋",
+  "desc": "第2轮自动选择炼丹师；牌池中【{otherParams[0]}】和【{otherParams[1]}】各加{countParam}张"
+ },
+ "18": {
+  "name": "符咒天赋",
+  "desc": "第2轮自动选择符咒师；牌池中【{otherParams[0]}】和【{otherParams[1]}】各加{countParam}张"
+ },
+ "19": {
+  "name": "画师天赋",
+  "desc": "第2轮自动选择画师；牌池中【{otherParams[0]}】和【{otherParams[1]}】各加{countParam}张"
+ },
+ "20": {
+  "name": "琴师天赋",
+  "desc": "第2轮自动选择琴师；牌池中【{otherParams[0]}】和【{otherParams[1]}】各加{countParam}张"
+ },
+ "21": {
+  "name": "阵法天赋",
+  "desc": "第2轮自动选择阵法师；牌池中【{otherParams[0]}】和【{otherParams[1]}】各加{countParam}张"
+ },
+ "22": {
+  "name": "灵植天赋",
+  "desc": "第2轮自动选择灵植师；牌池中【{otherParams[0]}】和【{otherParams[1]}】各加{countParam}张"
+ },
+ "23": {
+  "name": "命理天赋",
+  "desc": "第2轮自动选择命理师；牌池中【{otherParams[0]}】和【{otherParams[1]}】各加{countParam}张"
+ },
+ "24": {
+  "name": "势在必得",
+  "desc": "每轮首次常规换牌优先换出本局游戏中未曾获得过的牌。\n\n<color=#909090><size=15><i>设计者：剑气纵横三千里</i></size></color>"
+ },
+ "101": {
+  "name": "狂剑之命",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】（选择{countParam}次后失效）"
+ },
+ "102": {
+  "name": "狂剑专精",
+  "desc": "自身门派牌池中的狂剑各加{countParam}张"
+ },
+ "103": {
+  "name": "狂剑道统",
+  "desc": "道韵预感必然包含【{otherParams[0]}】和【{otherParams[1]}】"
+ },
+ "104": {
+  "name": "狂剑秘传",
+  "desc": "牌池中加入【{otherParams[0]}】、【{otherParams[1]}】、【{otherParams[2]}】各{countParam}张"
+ },
+ "105": {
+  "name": "云剑之命",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】（选择{countParam}次后失效）；选择【TALENT_{otherParams[0]}】时减1修为，获得1张云剑（筑基期以上）"
+ },
+ "106": {
+  "name": "云剑专精",
+  "desc": "牌池中元婴期以上的云剑牌各加{countParam}张"
+ },
+ "107": {
+  "name": "云剑秘传",
+  "desc": "牌池中加入【{otherParams[0]}】、【{otherParams[1]}】、【{otherParams[2]}】各{countParam}张"
+ },
+ "108": {
+  "name": "云剑道统",
+  "desc": "道韵预感必然包含1张元婴期云剑和1张化神期云剑"
+ },
+ "109": {
+  "name": "灵剑之命",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】和【TALENT_{otherParams[1]}】（选择{countParam}次后失效）；选择【TALENT_{otherParams[0]}】或【TALENT_{otherParams[1]}】时减1修为，获得1张灵剑（筑基期以上）"
+ },
+ "110": {
+  "name": "灵剑专精",
+  "desc": "自身门派牌池中金丹期以上的灵剑牌和加灵气的牌各加{countParam}张"
+ },
+ "111": {
+  "name": "灵剑道统",
+  "desc": "道韵预感必然包含【{otherParams[0]}】和【{otherParams[1]}】"
+ },
+ "112": {
+  "name": "剑意之命",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】（选择{countParam}次后失效）；选择【TALENT_{otherParams[0]}】时减1修为，获得1张加剑意的牌"
+ },
+ "113": {
+  "name": "剑意专精",
+  "desc": "自身门派牌池中加剑意的牌和3段攻击以上的牌各加{countParam}张"
+ },
+ "114": {
+  "name": "剑意道统",
+  "desc": "道韵预感必然包含【{otherParams[0]}】和【{otherParams[1]}】"
+ },
+ "115": {
+  "name": "剑意秘传",
+  "desc": "牌池中加入【{otherParams[0]}】、【{otherParams[1]}】、【{otherParams[2]}】各{countParam}张"
+ },
+ "116": {
+  "name": "剑阵之命",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】（选择{countParam}次后失效）"
+ },
+ "117": {
+  "name": "剑阵专精",
+  "desc": "自身门派牌池中金丹期以上的剑阵牌各加{countParam}张"
+ },
+ "118": {
+  "name": "剑阵秘传",
+  "desc": "牌池中加入【{otherParams[0]}】、【{otherParams[1]}】各{countParam}张"
+ },
+ "119": {
+  "name": "剑池之命",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】（选择{countParam}次后失效）；选择【TALENT_{otherParams[0]}】不再扣减命元"
+ },
+ "120": {
+  "name": "灵剑秘传",
+  "desc": "牌池中加入【{otherParams[0]}】和【{otherParams[1]}】各{countParam}张"
+ },
+ "121": {
+  "name": "剑阵道统",
+  "desc": "道韵预感必然包含【{otherParams[0]}】和【{otherParams[1]}】"
+ },
+ "122": {
+  "name": "百鸟试炼",
+  "desc": "若战斗时卡组包含2张以上“灵剑”牌，则下轮首次换出元婴牌时，必定为【{otherParams[0]}】（最多生效{countParam}次）"
+ },
+ "123": {
+  "name": "飞灵试炼",
+  "desc": "若战斗中自身灵气达到过5点以上，则下轮首次换出化神牌时，必定为【{otherParams[0]}】（最多生效{countParam}次）"
+ },
+ "124": {
+  "name": "青龙融汇",
+  "desc": "【{otherParams[0]}】+【{otherParams[1]}】可在手牌中合成1级【{otherParams[2]}】（最多合成{countParam}次）"
+ },
+ "201": {
+  "name": "卜卦之命",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】（选择{countParam}次后失效）"
+ },
+ "202": {
+  "name": "六爻专精",
+  "desc": "牌池中【{otherParams[0]}】增加{countParam}张"
+ },
+ "203": {
+  "name": "六爻道统",
+  "desc": "道韵预感必然包含【{otherParams[0]}】"
+ },
+ "204": {
+  "name": "卦象道统",
+  "desc": "道韵预感必然包含【{otherParams[0]}】"
+ },
+ "205": {
+  "name": "雷法秘传",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】，且其他名字含“雷”的牌各加{countParam}张"
+ },
+ "206": {
+  "name": "星弈之命",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】和【TALENT_{otherParams[1]}】（选择{countParam}次后失效）"
+ },
+ "207": {
+  "name": "星弈专精",
+  "desc": "牌池中的星弈牌和【{otherParams[0]}】各加{countParam}张"
+ },
+ "208": {
+  "name": "星弈道统",
+  "desc": "道韵预感必然包含【{otherParams[0]}】和【{otherParams[1]}】"
+ },
+ "209": {
+  "name": "星弈秘传",
+  "desc": "牌池中加入【{otherParams[0]}】、【{otherParams[1]}】、【{otherParams[2]}】各{countParam}张"
+ },
+ "210": {
+  "name": "蛇影专精",
+  "desc": "牌池中【{otherParams[0]}】增加{countParam}张"
+ },
+ "211": {
+  "name": "星蚀之命",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】（选择{countParam}次后失效）"
+ },
+ "212": {
+  "name": "生机之命",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】和【TALENT_{otherParams[1]}】（选择{countParam}次后失效）；选择【TALENT_{otherParams[0]}】或【TALENT_{otherParams[1]}】时额外加4生命上限。"
+ },
+ "213": {
+  "name": "生机专精",
+  "desc": "牌池中【{otherParams[0]}】、【{otherParams[1]}】、【{otherParams[2]}】各加{countParam}张"
+ },
+ "214": {
+  "name": "生机道统",
+  "desc": "道韵预感必然包含【{otherParams[0]}】和【{otherParams[1]}】"
+ },
+ "215": {
+  "name": "生机秘传",
+  "desc": "牌池中加入【{otherParams[0]}】、【{otherParams[1]}】、【{otherParams[2]}】和【{otherParams[3]}】各{countParam}张"
+ },
+ "216": {
+  "name": "后招秘传",
+  "desc": "牌池中加入【{otherParams[0]}】和【{otherParams[1]}】各{countParam}张"
+ },
+ "217": {
+  "name": "后招专精",
+  "desc": "牌池中【{otherParams[0]}】、【{otherParams[1]}】、【{otherParams[2]}】和【{otherParams[3]}】各加{countParam}张"
+ },
+ "218": {
+  "name": "后招道统",
+  "desc": "道韵预感必然包含【{otherParams[0]}】和【{otherParams[1]}】"
+ },
+ "219": {
+  "name": "灵卦秘传",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】"
+ },
+ "220": {
+  "name": "化劫之命",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】（选择{countParam}次后失效）；选择【TALENT_{otherParams[0]}】时若自身命元≤30，则加9命元"
+ },
+ "221": {
+  "name": "内伤秘传",
+  "desc": "牌池中加入【{otherParams[0]}】和【{otherParams[1]}】各{countParam}张"
+ },
+ "222": {
+  "name": "雷霆之命",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】（选择{countParam}次后失效）"
+ },
+ "223": {
+  "name": "离卦试炼",
+  "desc": "若战斗中自身卦象达到过3点以上，则下轮首次换出元婴牌时，必定为【{otherParams[0]}】（最多生效{countParam}次）"
+ },
+ "224": {
+  "name": "五雷试炼",
+  "desc": "若战斗时卡组包含4张以上名字含“雷”的牌，则下轮首次换出化神牌时，必定为【{otherParams[0]}】（最多生效{countParam}次）"
+ },
+ "225": {
+  "name": "摘花融汇",
+  "desc": "【{otherParams[0]}】+【{otherParams[1]}】可在手牌中合成1级【{otherParams[2]}】（最多合成{countParam}次）"
+ },
+ "301": {
+  "name": "木灵专精",
+  "desc": "自身门派牌池中金丹期以上的木灵牌各加{countParam}张"
+ },
+ "302": {
+  "name": "木灵道统",
+  "desc": "道韵预感必然包含【{otherParams[0]}】和【{otherParams[1]}】"
+ },
+ "303": {
+  "name": "火灵专精",
+  "desc": "自身门派牌池中金丹期以上的火灵牌各加{countParam}张"
+ },
+ "304": {
+  "name": "火灵道统",
+  "desc": "道韵预感必然包含【{otherParams[0]}】和【{otherParams[1]}】"
+ },
+ "305": {
+  "name": "土灵专精",
+  "desc": "自身门派牌池中【{otherParams[0]}】和元婴期以上的土灵牌各加{countParam}张"
+ },
+ "306": {
+  "name": "土灵道统",
+  "desc": "道韵预感必然包含【{otherParams[0]}】和【{otherParams[1]}】"
+ },
+ "307": {
+  "name": "金灵专精",
+  "desc": "自身门派牌池中【{otherParams[0]}】和元婴期以上的金灵牌各加{countParam}张"
+ },
+ "308": {
+  "name": "金灵道统",
+  "desc": "道韵预感必然包含【{otherParams[0]}】和【{otherParams[1]}】"
+ },
+ "309": {
+  "name": "水灵专精",
+  "desc": "自身门派牌池中金丹期以上的水灵牌各加{countParam}张"
+ },
+ "310": {
+  "name": "水灵道统",
+  "desc": "道韵预感必然包含【{otherParams[0]}】和【{otherParams[1]}】"
+ },
+ "311": {
+  "name": "相生之命",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】和【TALENT_{otherParams[1]}】（选择{countParam}次后失效）"
+ },
+ "312": {
+  "name": "无极道统",
+  "desc": "道韵预感必然包含【{otherParams[0]}】"
+ },
+ "313": {
+  "name": "碎击道统",
+  "desc": "道韵预感必然包含【{otherParams[0]}】；第15轮的道韵预感变为2级【{otherParams[0]}】"
+ },
+ "314": {
+  "name": "混元专精",
+  "desc": "牌池中【{otherParams[0]}】和【{otherParams[1]}】各加{countParam}张"
+ },
+ "315": {
+  "name": "相生专精",
+  "desc": "牌池中加入【7000067】和化神期的五行牌各{countParam}张"
+ },
+ "316": {
+  "name": "专一之命",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】以及和卡组首张牌相同五行的传承仙命"
+ },
+ "317": {
+  "name": "天髓道统",
+  "desc": "道韵预感必然包含【{otherParams[0]}】"
+ },
+ "318": {
+  "name": "斩浪秘传",
+  "desc": "牌池中加入【{otherParams[0]}】和【{otherParams[1]}】各{countParam}张"
+ },
+ "319": {
+  "name": "滚石秘传",
+  "desc": "牌池中加入【{otherParams[0]}】和【{otherParams[1]}】各{countParam}张"
+ },
+ "320": {
+  "name": "熔岩秘传",
+  "desc": "牌池中加入【{otherParams[0]}】和【{otherParams[1]}】各{countParam}张"
+ },
+ "321": {
+  "name": "天髓专精",
+  "desc": "牌池中【{otherParams[0]}】增加{countParam}张；若自身上轮卡组中仅有一种五行，置换【{otherParams[0]}】时将必定获得该五行的牌。"
+ },
+ "322": {
+  "name": "灼心试炼",
+  "desc": "若战斗中至少扣减过对方16点生命上限，则下轮首次换出元婴牌时，必定为【{otherParams[0]}】（最多生效{countParam}次）"
+ },
+ "323": {
+  "name": "玫刺试炼",
+  "desc": "若战斗中至少加过自身12点生命，则下轮首次换出元婴牌时，必定为【{otherParams[0]}】（最多生效{countParam}次）"
+ },
+ "324": {
+  "name": "焚天融汇",
+  "desc": "【{otherParams[0]}】+【{otherParams[1]}】可在手牌中合成1级【{otherParams[2]}】（最多合成{countParam}次）"
+ },
+ "401": {
+  "name": "体修之命",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】和【TALENT_{otherParams[1]}】"
+ },
+ "402": {
+  "name": "掌法专精",
+  "desc": "自身门派牌池中名字含“掌”的牌各加{countParam}张"
+ },
+ "403": {
+  "name": "百杀道统",
+  "desc": "道韵预感必然包含【{otherParams[0]}】"
+ },
+ "404": {
+  "name": "锻体秘传",
+  "desc": "牌池中加入【{otherParams[0]}】和【{otherParams[1]}】各{countParam}张"
+ },
+ "405": {
+  "name": "锻体专精",
+  "desc": "牌池中【{otherParams[0]}】、【{otherParams[1]}】、【{otherParams[2]}】、【{otherParams[3]}】和【{otherParams[4]}】各加{countParam}张"
+ },
+ "406": {
+  "name": "气势之命",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】（选择{countParam}次后失效）"
+ },
+ "407": {
+  "name": "气势专精",
+  "desc": "自身门派牌池中金丹期以上所有加气势的牌各加{countParam}张"
+ },
+ "408": {
+  "name": "气势道统",
+  "desc": "道韵预感必然包含【{otherParams[0]}】和【{otherParams[1]}】"
+ },
+ "409": {
+  "name": "崩拳之命",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】（选择{countParam}次后失效）；选择【TALENT_{otherParams[0]}】时减1修为，获得1张崩拳（筑基期以上）"
+ },
+ "410": {
+  "name": "崩拳专精",
+  "desc": "自身门派牌池中金丹期以上所有崩拳牌各加{countParam}张"
+ },
+ "411": {
+  "name": "崩拳道统",
+  "desc": "道韵预感必然包含【{otherParams[0]}】、【{otherParams[1]}】和【{otherParams[2]}】"
+ },
+ "412": {
+  "name": "崩拳秘传",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】"
+ },
+ "413": {
+  "name": "冥心之命",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】（选择{countParam}次后失效）；选择【TALENT_{otherParams[0]}】时减8体魄，加2修为（体魄不足则无效）。"
+ },
+ "414": {
+  "name": "冥玄专精",
+  "desc": "牌池中【{otherParams[0]}】、【{otherParams[1]}】、【{otherParams[2]}】和【{otherParams[3]}】各加{countParam}张"
+ },
+ "415": {
+  "name": "冥玄道统",
+  "desc": "道韵预感必然包含【{otherParams[0]}】和【{otherParams[1]}】"
+ },
+ "416": {
+  "name": "身法道统",
+  "desc": "道韵预感必然包含【{otherParams[0]}】和【{otherParams[1]}】"
+ },
+ "417": {
+  "name": "冥魂秘传",
+  "desc": "牌池中加入【{otherParams[0]}】和【{otherParams[1]}】各{countParam}张"
+ },
+ "418": {
+  "name": "健体之命",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】和【TALENT_{otherParams[1]}】（选择{countParam}次后失效）"
+ },
+ "419": {
+  "name": "药浴秘传",
+  "desc": "牌池中加入{countParam}张【{otherParams[0]}】"
+ },
+ "420": {
+  "name": "逍遥秘传",
+  "desc": "牌池中加入【{otherParams[0]}】和【{otherParams[1]}】各{countParam}张"
+ },
+ "421": {
+  "name": "冲霄专精",
+  "desc": "牌池中【{otherParams[0]}】和【{otherParams[1]}】各加{countParam}张"
+ },
+ "422": {
+  "name": "不屈之命",
+  "desc": "每次突破时仙命选项必然包含【TALENT_{otherParams[0]}】"
+ },
+ "423": {
+  "name": "迷踪试炼",
+  "desc": "若战斗中自身身法达到过10点以上，则下轮首次换出元婴牌时，必定为【{otherParams[0]}】（最多生效{countParam}次）"
+ },
+ "424": {
+  "name": "修罗试炼",
+  "desc": "若战斗中自身负面状态达到过8层以上，则下轮首次换出化神牌时，必定为【{otherParams[0]}】（最多生效{countParam}次）"
+ },
+ "425": {
+  "name": "破釜融汇",
+  "desc": "【{otherParams[0]}】+【{otherParams[1]}】可在手牌中合成1级【{otherParams[2]}】（最多合成{countParam}次）"
+ }
+}

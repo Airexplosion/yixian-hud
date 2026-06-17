@@ -1,0 +1,961 @@
+{
+  "梦·万法归灵剑": {
+    "phases": [
+      "{attack}攻\\n[剑气]+{otherParams[0]}\\n[被动]：所有剑牌均可触发[剑气]",
+      "{attack}攻\\n[剑气]+{otherParams[0]}\\n[被动]：所有剑牌均可触发[剑气]",
+      "{attack}攻\\n[剑气]+{otherParams[0]}\\n[被动]：所有剑牌均可触发[剑气]",
+      "{attack}攻\\n[剑气]+{otherParams[0]}\\n将全部[灵气]转为[剑气]\\n[被动]：所有剑牌均可触发[剑气]",
+      "{attack}攻\\n[剑气]+{otherParams[0]}\\n将全部[灵气]转为[剑气]\\n[被动]：所有剑牌均可触发[剑气]"
+    ],
+    "phase_count": 5
+  },
+  "梦·不动金刚阵": {
+    "phases": [
+      "生命及上限+{otherParams[0]}\\n自身下回合[无法行动]，直至下回合结束前自身生命及上限的损失变为1("
+    ],
+    "phase_count": 1
+  },
+  "梦·两仪阵": {
+    "phases": [
+      "[防]+{def}\\n[持续]：每加1[灵气]或[卦象]时加{otherParams[0]}[防]",
+      "[持续]：每加1[灵气]或[卦象]时加{otherParams[0]}[防]",
+      "[持续]：每加1[灵气]或[卦象]时加{otherParams[0]}[防]和{otherParams[1]}生命",
+      "[持续]：每加1[灵气]或[卦象]时加{otherParams[0]}[防]和{otherParams[1]}生命",
+      "[持续]：每加1[灵气]或[卦象]时加{otherParams[0]}[防]和{otherParams[1]}生命"
+    ],
+    "phase_count": 5
+  },
+  "梦·九煞破灵曲": {
+    "phases": [
+      "双方减{otherParams[1]}[灵气]\\n[被动]：双方各自首个回合的加[灵气]效果减半("
+    ],
+    "phase_count": 1
+  },
+  "梦·乾卦": {
+    "phases": [
+      "[卦象]+{guaXiang}\\n[消耗]",
+      "[卦象]+{guaXiang}\\n[消耗]",
+      "[卦象]+{guaXiang}\\n[消耗]",
+      "[卦象]+{guaXiang}\\n[再次行动]\\n[消耗]",
+      "[卦象]+{guaXiang}\\n[再次行动]\\n[消耗]"
+    ],
+    "phase_count": 5
+  },
+  "梦·云剑厚土": {
+    "phases": [
+      "[防]+{def}\\n[云海]+{otherParams[2]}\\n[连云]：每连续用过一次云剑加{otherParams[0]}[防]",
+      "[防]+{def}\\n[云海]+{otherParams[2]}\\n[连云]：每连续用过一次云剑加{otherParams[0]}[防]",
+      "[防]+{def}\\n[云海]+{otherParams[2]}\\n[连云]：每连续用过一次云剑加{otherParams[0]}[防]",
+      "[防]+{def}\\n[云海]+{otherParams[2]}\\n[水月]{otherParams[1]}\\n[连云]：每连续用过一次云剑加{otherParams[0]}[防]",
+      "[防]+{def}\\n[云海]+{otherParams[2]}\\n[水月]{otherParams[1]}\\n每用过一次云剑加{otherParams[0]}[防]"
+    ],
+    "phase_count": 5
+  },
+  "梦·云剑极意": {
+    "phases": [
+      "{attack}攻\\n[云海]+{otherParams[0]}\\n[连云]：[剑意]+{otherParams[1]}",
+      "{attack}攻\\n[云海]+{otherParams[0]}\\n[连云]：[剑意]+{otherParams[1]}",
+      "{attack}攻\\n[云海]+{otherParams[0]}\\n[连云]：每连续用过一次云剑加{otherParams[1]}[剑意]",
+      "{attack}攻\\n[云海]+{otherParams[0]}\\n[连云]：每连续用过一次云剑加{otherParams[1]}[剑意]",
+      "{attack}攻\\n[云海]+{otherParams[0]}\\n[剑意]+{otherParams[1]}\\n每用过一次云剑加{otherParams[1]}[剑意]"
+    ],
+    "phase_count": 5
+  },
+  "梦·云剑柔心": {
+    "phases": [
+      "[防]+{def}\\n[持续]：每回合开始时加{otherParams[0]}[防]",
+      "[防]+{def}\\n[持续]：每回合开始时加{otherParams[0]}[防]",
+      "[防]+{def}\\n[持续]：每回合开始时加{otherParams[0]}[防]",
+      "[防]+{def}\\n[持续]：每回合开始时加{otherParams[0]}[防]，每次使用剑阵时加1[云海]",
+      "[防]+{def}\\n[水月]{otherParams[1]}\\n[持续]：每回合开始时加{otherParams[0]}[防]，每次使用剑阵时加1[云海]"
+    ],
+    "phase_count": 5
+  },
+  "梦·云剑汇灵": {
+    "phases": [
+      "{attack}攻\\n[灵气]>0则追加一次攻击",
+      "{attack}攻\\n[灵气]>0则追加一次攻击",
+      "{attack}攻\\n[灵气]>0则追加一次攻击",
+      "{attack}攻\\n每有{otherParams[0]}点[灵气]就追加一次攻击\\n[连云]：改为每有{otherParams[2]}点[灵气]就追加一次攻击\\n[开局]：[云海]+{otherParams[1]}",
+      "{attack}攻\\n每有{otherParams[0]}点[灵气]就追加一次攻击\\n[连云]：改为每有{otherParams[2]}点[灵气]就追加一次攻击\\n[开局]：[云海]+{otherParams[1]}"
+    ],
+    "phase_count": 5
+  },
+  "梦·云剑点星": {
+    "phases": [
+      "[灵气]+{anima}\\n[被动]：[相邻]牌使用后造成{otherParams[0]}点伤害",
+      "[灵气]+{anima}\\n[被动]：[相邻]牌使用后造成{otherParams[0]}点伤害",
+      "[灵气]+{anima}\\n[被动]：[相邻]牌使用后造成{otherParams[0]}点伤害",
+      "[灵气]+{anima}\\n[被动]：[相邻]牌使用后追加{otherParams[0]}攻（每点[灵气]多1攻）",
+      "[灵气]+{anima}\\n[被动]：[相邻]牌使用后追加{otherParams[0]}攻（每点[灵气]多1攻）"
+    ],
+    "phase_count": 5
+  },
+  "梦·云舞诀": {
+    "phases": [
+      "[灵气]+{anima}\\n[剑意]+{jianYi}",
+      "[灵气]+{anima}\\n[剑意]+{jianYi}",
+      "[灵气]+{anima}\\n[剑意]+{jianYi}",
+      "[灵气]+{anima}\\n[剑意]+{jianYi}\\n每有{otherParams[0]}点[剑意]就算用过一次狂剑",
+      "[灵气]+{anima}\\n[剑意]+{jianYi}\\n算作用过1次狂剑\\n每有{otherParams[0]}点[剑意]就算用过一次狂剑"
+    ],
+    "phase_count": 5
+  },
+  "梦·五行刺": {
+    "phases": [
+      "{attack}攻\\n卡组中每有1种[五行]加{otherParams[0]}[防]",
+      "{attack}攻\\n卡组中每有1种[五行]加{otherParams[0]}[防]",
+      "{attack}攻\\n卡组中每有1种[五行]加{otherParams[0]}[防]",
+      "[再次行动]\\n每用过1张任意[五行]的牌就加{otherParams[0]}[防]\\n[被动]：[五行]效果可无条件触发",
+      "[再次行动]\\n每用过1张任意[五行]的牌就加{otherParams[0]}[防]\\n[被动]：[五行]效果可无条件触发"
+    ],
+    "phase_count": 5
+  },
+  "梦·五行天髓诀": {
+    "phases": [
+      "生命及上限+{otherParams[0]}\\n[持续]{otherParams[1]}[次]：使用[灵印]或[灵阵]后加10[身法]",
+      "生命及上限+{otherParams[0]}\\n[持续]{otherParams[1]}[次]：使用[灵印]或[灵阵]后加10[身法]",
+      "[持续]{otherParams[1]}[次]：使用[灵印]或[灵阵]后加10[身法]",
+      "[持续]{otherParams[1]}[次]：使用[灵印]或[灵阵]后加10[身法]\\n[被动]：战斗结束时减1[修为]获得1张[五行灵印]",
+      "[持续]：使用[灵印]或[灵阵]后加10[身法]\\n[被动]：战斗结束时减1[修为]获得1张[五行灵印]"
+    ],
+    "phase_count": 5
+  },
+  "梦·修罗吼": {
+    "phases": [
+      "[体魄]+{physique}\\n[生命]+{otherParams[0]}\\n双方加{otherParams[1]}层[内伤]",
+      "[体魄]+{physique}\\n[生命]+{otherParams[0]}\\n双方加{otherParams[1]}层[内伤]",
+      "[体魄]+{physique}\\n[生命]+{otherParams[0]}\\n双方加{otherParams[1]}层[内伤]",
+      "[体魄]+{physique}\\n[生命]+{otherParams[0]}\\n每有{otherParams[1]}[体魄]，双方就加1层[内伤]",
+      "[体魄]+{physique}\\n[生命]+{otherParams[0]}\\n每有{otherParams[1]}[体魄]，双方就加1层[内伤]"
+    ],
+    "phase_count": 5
+  },
+  "梦·冥影身法": {
+    "phases": [
+      "{attack}攻×{attackCount}\\n自身有[负面状态]则多1攻",
+      "{attack}攻×{attackCount}\\n自身有[负面状态]则多1攻",
+      "{attack}攻×{attackCount}\\n自身有[负面状态]则多1攻",
+      "{attack}攻×{attackCount}\\n[身法]+{otherParams[1]}\\n[被动]：前一格牌攻击时，每有{otherParams[0]}层[负面状态]就多1攻",
+      "{attack}攻×{attackCount}\\n[身法]+{otherParams[1]}\\n[被动]：前一格牌攻击时，每有{otherParams[0]}层[负面状态]就多1攻"
+    ],
+    "phase_count": 5
+  },
+  "梦·冰封雪莲": {
+    "phases": [
+      "[防]+{def}\\n获得{otherParams[0]}层[护体](",
+      "[防]+{def}\\n获得{otherParams[0]}层[护体]\\n[先机]：多加1层[护体]("
+    ],
+    "phase_count": 2
+  },
+  "梦·冲霄破浪": {
+    "phases": [
+      "[灵气]+{anima}\\n生命+{otherParams[0]}\\n[身法]+{otherParams[1]}\\n[消耗]",
+      "[灵气]+{anima}\\n生命+{otherParams[0]}\\n[身法]+{otherParams[1]}\\n[消耗]",
+      "[灵气]+{anima}\\n生命+{otherParams[0]}\\n[身法]+{otherParams[1]}\\n[消耗]",
+      "[灵气]+{anima}\\n生命+{otherParams[0]}\\n[身法]+{otherParams[1]}（每点[灵气]多加1）\\n[消耗]",
+      "[灵气]+{anima}\\n生命+{otherParams[0]}\\n[身法]+{otherParams[1]}（每点[灵气]多加1）\\n[消耗]"
+    ],
+    "phase_count": 5
+  },
+  "梦·凝意诀": {
+    "phases": [
+      "[剑意]+{jianYi}",
+      "[剑意]+{jianYi}",
+      "[剑意]+{jianYi}",
+      "下1次攻击受双倍[剑意]和[加攻]加成\\n[剑意]或[加攻]≥{otherParams[0]}则[再次行动]",
+      "{[剑意]+{jianYi}\\n下1次攻击受双倍[剑意]和[加攻]加成\\n[剑意]或[加攻]≥{otherParams[0]}则[再次行动]"
+    ],
+    "phase_count": 5
+  },
+  "梦·劈山掌": {
+    "phases": [
+      "{attack}攻（每加过{otherParams[1]}[体魄]就多1攻）",
+      "{attack}攻（每加过{otherParams[1]}[体魄]就多1攻）",
+      "{attack}攻（每加过{otherParams[1]}[体魄]就多1攻）",
+      "每有{otherParams[0]}[体魄]就加1[气势]\\n{attack}攻（每加过{otherParams[1]}[体魄]就多1攻）",
+      "每有{otherParams[0]}[体魄]就加1[气势]\\n{attack}攻（每加过{otherParams[1]}[体魄]就多1攻）"
+    ],
+    "phase_count": 5
+  },
+  "梦·厄劫缠身": {
+    "phases": [
+      "施加{otherParams[0]}层[内伤]\\n[开局]：对方同格牌[降级]，若无法[降级]则令对方下次使用同格牌时改为[跳过](",
+      "施加{otherParams[0]}层[内伤]\\n[开局]：对方同格牌[降级]，若无法[降级]则令对方下次使用同格牌时改为[跳过]("
+    ],
+    "phase_count": 2
+  },
+  "梦·反身剑": {
+    "phases": [
+      "{attack}攻\\n[防]+{def}",
+      "{attack}攻\\n[防]+{def}",
+      "{attack}攻\\n[防]+{def}\\n每用过一张剑牌多{otherParams[0]}攻和{otherParams[1]}[防]",
+      "{attack}攻\\n[防]+{def}\\n每用过一张剑牌多{otherParams[0]}攻和{otherParams[1]}[防]",
+      "{attack}攻\\n[防]+{def}\\n每用过一张剑牌多{otherParams[0]}攻和{otherParams[1]}[防]"
+    ],
+    "phase_count": 5
+  },
+  "梦·反震心法": {
+    "phases": [
+      "生命及上限+{otherParams[0]}\\n受到攻击和[伤害]时减少{otherParams[2]}%，每减1点对方失去1生命，持续{otherParams[1]}回合",
+      "生命及上限+{otherParams[0]}\\n受到攻击和[伤害]时减少{otherParams[2]}%，每减1点对方失去1生命，持续{otherParams[1]}回合",
+      "生命及上限+{otherParams[0]}\\n受到攻击和[伤害]时减少{otherParams[2]}%，每减1点对方失去1生命，持续{otherParams[1]}回合",
+      "生命及上限+{otherParams[0]}\\n受到攻击和[伤害]时减少{otherParams[2]}%，每减1点对方失去1生命，持续{otherParams[1]}回合",
+      "生命及上限+{otherParams[0]}\\n受到攻击和[伤害]时减少{otherParams[2]}%，每减1点对方失去1生命，持续{otherParams[1]}回合"
+    ],
+    "phase_count": 5
+  },
+  "梦·回响阵纹": {
+    "phases": [
+      "重复手牌中的一张[消耗]牌或[持续]牌的效果(",
+      "生命及上限+{otherParams[0]}\\n重复手牌中的一张[消耗]牌或[持续]牌的效果("
+    ],
+    "phase_count": 2
+  },
+  "梦·土灵断崖": {
+    "phases": [
+      "[防]+{def}\\n自身[防]减半，每减1点造成1[伤害]",
+      "[防]+{def}\\n自身[防]减半，每减1点造成1[伤害]",
+      "[防]+{def}\\n自身[防]减半，每减1点造成1[伤害]",
+      "[防]+{def}\\n自身[防]减半，每减1点造成1[伤害]并加1生命及上限",
+      "[防]+{def}\\n自身[防]减半，每减1点造成1[伤害]并加1生命及上限"
+    ],
+    "phase_count": 5
+  },
+  "梦·土灵绝壁": {
+    "phases": [
+      "[防]+{def}\\n下回合开始时加{otherParams[0]}[防]",
+      "[防]+{def}\\n下回合开始时加{otherParams[0]}[防]",
+      "[防]+{def}\\n下回合开始时加{otherParams[0]}[防]",
+      "[防]+{def}\\n直到自身下回合开始前，每失去{otherParams[0]}[防]或{otherParams[1]}生命下回合就加1[防]",
+      "[防]+{def}\\n直到自身下回合开始前，每失去{otherParams[0]}[防]或{otherParams[1]}生命下回合就加1[防]"
+    ],
+    "phase_count": 5
+  },
+  "梦·地煞剑": {
+    "phases": [
+      "{attack}攻\\n每[击伤]{otherParams[1]}生命就施加1层[内伤]（最多{otherParams[0]}）",
+      "{attack}攻\\n每[击伤]{otherParams[1]}生命就施加1层[内伤]（最多{otherParams[0]}）",
+      "{attack}攻\\n每[击伤]{otherParams[1]}生命就施加1层[内伤]（最多{otherParams[0]}）",
+      "{attack}攻×{attackCount}\\n每[击伤]{otherParams[1]}生命就施加1层[内伤]（最多{otherParams[0]}）",
+      "{attack}攻×{attackCount}\\n每[击伤]{otherParams[1]}生命就施加1层[内伤]"
+    ],
+    "phase_count": 5
+  },
+  "梦·大还丹": {
+    "phases": [
+      "生命及上限+{otherParams[1]}\\n[持续]：自身回合开始时，若生命上限/生命小于对方则加{otherParams[0]}生命上限/{otherParams[0]}生命(",
+      "生命及上限+{otherParams[1]}\\n[持续]：自身回合开始时，若生命上限/生命小于对方则加{otherParams[0]}生命上限/{otherParams[0]}生命("
+    ],
+    "phase_count": 2
+  },
+  "梦·天命重现": {
+    "phases": [
+      "自身减{otherParams[0]}生命\\n对方已用过牌则[再次行动]\\n[先机]：令对方[跳至]上1张牌("
+    ],
+    "phase_count": 1
+  },
+  "梦·天音困仙曲": {
+    "phases": [
+      "自身减{otherParams[1]}生命\\n[被动]：阻止双方各自前[{otherParams[0]}]个回合的[再次行动]的效果("
+    ],
+    "phase_count": 1
+  },
+  "梦·天马行空": {
+    "phases": [
+      "随机使用{otherParams[0]}张化神期梦境牌0"
+    ],
+    "phase_count": 1
+  },
+  "梦·妙笔生花": {
+    "phases": [
+      "[炼化]：[修为]-{otherParams[0]}，随机获得{otherParams[0]}张其他门派的元婴期牌(",
+      "[炼化]：[修为]-{otherParams[0]}，随机获得{otherParams[0]}张其他门派的化神期牌("
+    ],
+    "phase_count": 2
+  },
+  "梦·威震四方": {
+    "phases": [
+      "生命+{otherParams[1]}\\n[气势]+{otherParams[0]}\\n[被动]：[气势]效果由每点多10%攻改为每点多1攻",
+      "生命+{otherParams[1]}\\n[气势]+{otherParams[0]}\\n[被动]：[气势]效果由每点多10%攻改为每点多1攻",
+      "生命+{otherParams[1]}\\n[气势]+{otherParams[0]}\\n[被动]：[气势]效果由每点多10%攻改为每点多1攻",
+      "[气势上限]+{otherParams[1]}\\n[气势]+{otherParams[0]}\\n[被动]：[气势]效果由每点多10%攻改为每点多1攻",
+      "[气势上限]+{otherParams[1]}\\n[气势]+{otherParams[0]}\\n[被动]：[气势]效果由每点多10%攻改为每点多1攻"
+    ],
+    "phase_count": 5
+  },
+  "梦·寒冰咒": {
+    "phases": [
+      "重复{otherParams[1]}次：对方减{otherParams[0]}[生命]\\n令对方下回合无法加[防]和生命(",
+      "重复{otherParams[1]}次：对方减{otherParams[0]}[生命]\\n令对方下回合无法加[防]和生命("
+    ],
+    "phase_count": 2
+  },
+  "梦·岿然不动": {
+    "phases": [
+      "[防]+{def}\\n[持续]：每次加[防]时造成{otherParams[1]}点[伤害]",
+      "[防]+{def}\\n[持续]：每次加[防]时造成{otherParams[1]}点[伤害]",
+      "[防]+{def}\\n[持续]：每次加[防]时造成{otherParams[1]}点[伤害]",
+      "[防]+{def}\\n[持续]：每次加[防]或[生命]时，造成{otherParams[1]}%[伤害]",
+      "[防]+{def}\\n[持续]：每次加[防]或[生命]时，造成{otherParams[1]}%[伤害]"
+    ],
+    "phase_count": 5
+  },
+  "梦·崩天步": {
+    "phases": [
+      "[防]+{def}\\n[身法]+{otherParams[0]}\\n[被动]：此牌和后一格的牌算作崩拳",
+      "[防]+{def}\\n[身法]+{otherParams[0]}\\n[被动]：此牌和后一格的牌算作崩拳",
+      "[防]+{def}\\n[身法]+{otherParams[0]}\\n[被动]：此牌和后一格的牌算作崩拳",
+      "[防]+{def}\\n[身法]+{otherParams[0]}\\n[被动]：此牌和[相邻]牌算作崩拳",
+      "[防]+{def}\\n[身法]+{otherParams[0]}\\n[被动]：此牌和[相邻]牌算作崩拳"
+    ],
+    "phase_count": 5
+  },
+  "梦·崩拳封": {
+    "phases": [
+      "[防]+{def}\\n下张崩拳多{otherParams[0]}[攻]",
+      "[防]+{def}\\n下张崩拳多{otherParams[0]}[攻]",
+      "[防]+{def}\\n每加过{otherParams[0]}[防]，下张崩拳就多1[攻]",
+      "[防]+{def}\\n每加过{otherParams[0]}[防]，下张崩拳就多1[攻]",
+      "[防]+{def}\\n每加过{otherParams[0]}[防]，下张崩拳就多1[攻]"
+    ],
+    "phase_count": 5
+  },
+  "梦·崩拳弹": {
+    "phases": [
+      "[防]+{def}\\n[持续]{otherParams[0]}次：使用耗生命的牌后，加所耗生命值的[防]",
+      "[防]+{def}\\n[持续]{otherParams[0]}次：使用耗生命的牌后，加所耗生命值的[防]",
+      "[防]+{def}\\n[持续]{otherParams[0]}次：使用耗生命的牌后，加所耗生命值的[防]",
+      "[防]+{def}\\n[持续]{otherParams[0]}次：使用耗生命的牌后，加所耗生命值的[防]",
+      "[防]+{def}\\n[持续]：每次使用耗生命的牌后，加所耗生命值的[防]"
+    ],
+    "phase_count": 5
+  },
+  "梦·崩拳突": {
+    "phases": [
+      "若有[身法]或[气势]，此牌和下张崩拳多{otherParams[0]}[攻]\\n{attack}攻",
+      "若有[身法]或[气势]，此牌和下张崩拳多{otherParams[0]}[攻]\\n{attack}攻",
+      "若有[身法]或[气势]，此牌和下张崩拳多{otherParams[0]}[攻]\\n{attack}攻",
+      "若有[身法]或[气势]，此牌和下张崩拳多{otherParams[0]}[攻]\\n{attack}攻",
+      "每有{otherParams[0]}点[身法]，此牌和下张崩拳就多1[攻]\\n{attack}攻"
+    ],
+    "phase_count": 5
+  },
+  "梦·崩拳连崩": {
+    "phases": [
+      "{attack}攻×{attackCount}\\n使用下张崩拳后追加{otherParams[0]}攻×2",
+      "{attack}攻×{attackCount}\\n使用下张崩拳后追加{otherParams[0]}攻×2",
+      "{attack}攻×{attackCount}\\n使用下张崩拳后追加{otherParams[0]}攻×2",
+      "{attack}攻×{attackCount}\\n此牌触发的崩拳效果保留至下一张崩拳",
+      "{attack}攻×{attackCount}\\n此牌触发的崩拳效果保留至下一张崩拳",
+      "{attack}攻×{attackCount}\\n使用下张崩拳后追加2攻×{otherParams[0]}",
+      "{attack}攻×{attackCount}\\n使用下张崩拳后追加2攻×{otherParams[0]}",
+      "{attack}攻×{attackCount}\\n使用下张崩拳后追加2攻×{otherParams[0]}",
+      "{attack}攻×{attackCount}\\n使用下张崩拳后追加2攻×{otherParams[0]}（手牌每留1张崩拳多追加1次，最多{otherParams[1]}次）",
+      "{attack}攻×{attackCount}\\n使用下张崩拳后追加2攻×{otherParams[0]}（手牌每留1张崩拳多追加1次，最多{otherParams[1]}次）"
+    ],
+    "phase_count": 10
+  },
+  "梦·巨鹏灵剑": {
+    "phases": [
+      "{attack}攻\\n[灵气]+{anima}",
+      "{attack}攻\\n[灵气]+{anima}",
+      "{attack}攻\\n[灵气]+{anima}",
+      "{attack}攻\\n[灵气]+{anima}\\n[灵气]>{anima}则加10[身法]",
+      "{attack}攻\\n[灵气]+{anima}\\n[灵气]>{anima}则加10[身法]"
+    ],
+    "phase_count": 5
+  },
+  "梦·引气剑": {
+    "phases": [
+      "[灵气]+{anima}\\n[剑气]+{otherParams[0]}\\n[消耗]",
+      "[灵气]+{anima}\\n[剑气]+{otherParams[0]}\\n[消耗]",
+      "[灵气]+{anima}\\n[剑气]+{otherParams[0]}\\n[消耗]",
+      "[灵气]+{anima}\\n[持续]：每次使用剑牌时加1[剑气]",
+      "[灵气]+{anima}\\n[持续]：每次使用剑牌时加1[剑气]"
+    ],
+    "phase_count": 5
+  },
+  "梦·弱体符": {
+    "phases": [
+      "施加{otherParams[0]}层[虚弱]\\n[再次行动]\\n[消耗]("
+    ],
+    "phase_count": 1
+  },
+  "梦·御空剑阵": {
+    "phases": [
+      "造成{otherParams[0]}点[伤害]\\n卡组每有一张剑阵多{otherParams[1]}[伤害]",
+      "造成{otherParams[0]}点[伤害]\\n卡组每有一张剑阵多{otherParams[1]}[伤害]",
+      "造成{otherParams[0]}点[伤害]\\n卡组每有一张剑阵多{otherParams[1]}[伤害]",
+      "造成{otherParams[0]}点[伤害]\\n每用过一张剑阵多{otherParams[1]}[伤害]\\n卡组剑阵数量≥{otherParams[2]}则[再次行动]",
+      "造成{otherParams[0]}点[伤害]\\n每用过一张剑阵多{otherParams[1]}[伤害]\\n卡组剑阵数量≥{otherParams[2]}则[再次行动]"
+    ],
+    "phase_count": 5
+  },
+  "梦·御雷卦诀": {
+    "phases": [
+      "{attack}～{randomAttack}攻\\n加回本场战斗失去的[卦象]\\n[消耗]",
+      "{attack}～{randomAttack}攻\\n加回本场战斗失去的[卦象]\\n[消耗]",
+      "{attack}～{randomAttack}攻\\n加回本场战斗失去的[卦象]\\n[消耗]",
+      "{attack}～{randomAttack}攻\\n加回本场战斗失去的[卦象]\\n[消耗]",
+      "{attack}～{randomAttack}攻\\n[持续]：每回合首次失去[卦象]时，加回失去的[卦象]"
+    ],
+    "phase_count": 5
+  },
+  "梦·斗转星移": {
+    "phases": [
+      "[灵气]+{anima}\\n[星力]+{otherParams[0]}\\n[被动]：[相邻]格是[星位]",
+      "[灵气]+{anima}\\n[星力]+{otherParams[0]}\\n[被动]：[相邻]格是[星位]",
+      "[灵气]+{anima}\\n[星力]+{otherParams[0]}\\n[被动]：[相邻]格是[星位]",
+      "[灵气]+{anima}\\n[被动]：[相邻]格是[星位]，使用[相邻]牌时加1[星力]",
+      "[灵气]+{anima}\\n[星力]+{otherParams[0]}\\n[被动]：[相邻]格是[星位]，使用[相邻]牌时加1[星力]（若为星弈牌则多加1）"
+    ],
+    "phase_count": 5
+  },
+  "梦·星弈挡": {
+    "phases": [
+      "{attack}攻\\n[防]+{def}\\n[星位]：每有1[星力]加{otherParams[0]}[防]",
+      "{attack}攻\\n[防]+{def}\\n[星位]：每有1[星力]加{otherParams[0]}[防]",
+      "{attack}攻\\n[防]+{def}\\n[星位]：每有1[星力]加{otherParams[0]}[防]",
+      "[{attack}攻×{attackCount}\\n[防]+{def}\\n[星位]：每有1[星力]加{otherParams[0]}[防]",
+      "[{attack}攻×{attackCount}\\n[防]+{def}\\n[星位]：每有1[星力]加{otherParams[0]}[防]"
+    ],
+    "phase_count": 5
+  },
+  "梦·星弈点": {
+    "phases": [
+      "{attack}攻\\n[星位]：施加{otherParams[0]}层[内伤]",
+      "{attack}攻\\n[星位]：施加{otherParams[0]}层[内伤]",
+      "{attack}攻\\n[星位]：施加{otherParams[0]}层[内伤]",
+      "{attack}攻\\n[星力]+{otherParams[1]}\\n[被动]：每次使用[星位]上的牌后施加{otherParams[0]}层[内伤]（不可叠加）",
+      "{attack}攻\\n[星力]+{otherParams[1]}\\n[被动]：每次使用[星位]上的牌后施加{otherParams[0]}层[内伤]（不可叠加）"
+    ],
+    "phase_count": 5
+  },
+  "梦·星罗棋布": {
+    "phases": [
+      "[持续]{otherParams[0]}次：使用[非星位]上的牌后加1[灵气]和1[星力]",
+      "[灵气]+{anima}\\n[持续]{otherParams[0]}次：使用[非星位]上的牌后加1[灵气]和1[星力]",
+      "[持续]{otherParams[0]}次：使用[非星位]上的牌后加1[灵气]和1[星力]",
+      "[持续]{otherParams[0]}次：使用[非星位]上的牌后加1[灵气]和1[星力]",
+      "[持续]：每回合首次使用[非星位]上的牌后加1[灵气]和1[星力]"
+    ],
+    "phase_count": 5
+  },
+  "梦·星轨推衍": {
+    "phases": [
+      "[灵气]+{anima}\\n生命及上限+{otherParams[0]}\\n耗尽[卦象]，每点加1[星力]",
+      "[灵气]+{anima}\\n生命及上限+{otherParams[0]}\\n耗尽[卦象]，每点加1[星力]",
+      "[灵气]+{anima}\\n生命及上限+{otherParams[0]}\\n耗尽[卦象]，每点加1[星力]",
+      "[灵气]+{anima}\\n耗尽[卦象]，每点使后面1格[成为星位]并加1[星力]",
+      "[灵气]+{anima}\\n[卦象]+{otherParams[0]}\\n耗尽[卦象]，每点使后面1格[成为星位]并加1[星力]"
+    ],
+    "phase_count": 5
+  },
+  "梦·朝气蓬勃": {
+    "phases": [
+      "{attack}攻（每加过1层[气势]多1攻）",
+      "{attack}攻（每加过1层[气势]多1攻）",
+      "{attack}攻（每加过1层[气势]多1攻）",
+      "若有[负面状态]则加{otherParams[0]}[气势]\\n{attack}攻（每加过1层[气势]多1攻）",
+      "若有[负面状态]则加{otherParams[0]}[气势]\\n{attack}攻×{attackCount}（每加过1层[气势]多1攻）"
+    ],
+    "phase_count": 5
+  },
+  "梦·木灵柳纷飞": {
+    "phases": [
+      "生命+{otherParams[0]}\\n每有1层[水势]，下次攻击就多1攻",
+      "生命+{otherParams[0]}\\n每有1层[水势]，下次攻击就多1攻",
+      "生命+{otherParams[0]}\\n每有1层[水势]，下次攻击就多1攻",
+      "生命+{otherParams[0]}\\n每有{otherParams[1]}层[水势]就获得1层[加攻]（最多{otherParams[2]}）\\n有[水势]或[加攻]则[再次行动]",
+      "生命+{otherParams[0]}\\n每有{otherParams[1]}层[水势]就获得1层[加攻]（最多{otherParams[2]}）\\n有[水势]或[加攻]则[再次行动]"
+    ],
+    "phase_count": 5
+  },
+  "梦·木灵芽": {
+    "phases": [
+      "{attack}攻×{attackCount}\\n加过生命则多1攻",
+      "{attack}攻×{attackCount}\\n加过生命则多1攻",
+      "{attack}攻×{attackCount}\\n每加过{otherParams[0]}生命多1攻",
+      "{attack}攻×{attackCount}\\n每加过{otherParams[0]}生命多1攻",
+      "{attack}攻×{attackCount}\\n每加过{otherParams[0]}生命多1攻"
+    ],
+    "phase_count": 5
+  },
+  "梦·木灵阵": {
+    "phases": [
+      "[激活木灵]\\n[灵气]+{anima}\\n[持续]{otherParams[0]}次：攻击时吸取对方1生命",
+      "[激活木灵]\\n[灵气]+{anima}\\n[持续]{otherParams[0]}次：攻击时吸取对方1生命",
+      "[激活木灵]\\n[灵气]+{anima}\\n[持续]{otherParams[0]}次：攻击时吸取对方1生命",
+      "[激活木灵]\\n[灵气]+{anima}\\n[木刺]+{otherParams[1]}\\n[持续]{otherParams[0]}次：攻击时吸取对方1生命",
+      "[激活木灵]\\n[灵气]+{anima}\\n[木刺]+{otherParams[1]}\\n生命上限+{otherParams[2]}\\n[持续]：每次获得[加攻]时将最多{otherParams[0]}层转为[木刺]"
+    ],
+    "phase_count": 5
+  },
+  "梦·杯弓蛇影": {
+    "phases": [
+      "生命及上限+{otherParams[1]}\\n施加{otherParams[0]}层[内伤]",
+      "生命及上限+{otherParams[1]}\\n施加{otherParams[0]}层[内伤]",
+      "生命及上限+{otherParams[1]}\\n施加{otherParams[0]}层[内伤]和{otherParams[0]}层[虚弱]",
+      "生命及上限+{otherParams[1]}\\n对方加{otherParams[0]}层[蛇影]\\n已用过名字含",
+      "生命及上限+{otherParams[1]}\\n对方加{otherParams[0]}层[蛇影]\\n已用过名字含"
+    ],
+    "phase_count": 5
+  },
+  "梦·枯木逢春": {
+    "phases": [
+      "若用过[梦",
+      "，此牌攻翻倍\\n{attack}攻",
+      "若用过[梦",
+      "，此牌攻翻倍\\n{attack}攻",
+      "若用过[梦",
+      "，此牌攻翻倍\\n{attack}攻",
+      "若用过[梦",
+      "，此牌攻翻倍\\n{attack}攻",
+      "每用过一次[梦",
+      "，攻就翻倍一次\\n{attack}攻"
+    ],
+    "phase_count": 10
+  },
+  "梦·气疗术": {
+    "phases": [
+      "[灵气]+{anima}\\n生命上限+{otherParams[0]}\\n生命+{otherParams[1]}",
+      "[灵气]+{anima}\\n生命上限+{otherParams[0]}\\n生命+{otherParams[1]}",
+      "[灵气]+{anima}\\n生命上限+{otherParams[0]}\\n生命+{otherParams[1]}",
+      "[灵气]+{anima}\\n生命上限+{otherParams[0]}\\n每点[灵气]/[星力]加{otherParams[1]}/{otherParams[2]}生命",
+      "[灵气]+{anima}\\n生命上限+{otherParams[0]}\\n每点[灵气]/[星力]加{otherParams[1]}/{otherParams[2]}生命"
+    ],
+    "phase_count": 5
+  },
+  "梦·气若悬河": {
+    "phases": [
+      "[灵气]+{anima}\\n[气势]+{otherParams[1]}\\n[持续]{otherParams[0]}次：攻击时先加1[气势]",
+      "[灵气]+{anima}\\n[气势]+{otherParams[1]}\\n[持续]{otherParams[0]}次：攻击时先加1[气势]",
+      "[灵气]+{anima}\\n[气势]+{otherParams[1]}\\n[持续]{otherParams[0]}次：攻击时先加1[气势]",
+      "[灵气]+{anima}\\n[气势]+{otherParams[1]}\\n[持续]{otherParams[0]}次：攻击时先加1[气势]",
+      "[灵气]+{anima}\\n[气势]+{otherParams[1]}\\n[持续]：每次攻击时先加1[气势]"
+    ],
+    "phase_count": 5
+  },
+  "梦·水灵汹涌": {
+    "phases": [
+      "{attack}攻（每有1[灵气]或[水势]此牌多1攻）",
+      "{attack}攻（每有1[灵气]或[水势]此牌多1攻）",
+      "{attack}攻（每有1[灵气]或[水势]此牌多1攻）",
+      "{attack}攻（每有1[灵气]或[水势]此牌多1攻）\\n每[击伤]{otherParams[0]}生命就加1生命及上限",
+      "{attack}攻（每有1[灵气]或[水势]此牌多1攻）\\n每[击伤]{otherParams[0]}生命就加1生命及上限"
+    ],
+    "phase_count": 5
+  },
+  "梦·水灵泉涌": {
+    "phases": [
+      "本场战斗每[击伤]过对方{otherParams[0]}生命就获得1层[水势]\\n[开局]：[灵气]+{otherParams[1]}",
+      "本场战斗每[击伤]过对方{otherParams[0]}生命就获得1层[水势]\\n[开局]：[灵气]+{otherParams[1]}",
+      "本场战斗每[击伤]过对方{otherParams[0]}生命就获得1层[水势]\\n[开局]：[灵气]+{otherParams[1]}",
+      "本场战斗每[击伤]过对方{otherParams[0]}生命就获得1层[水势]\\n[开局]：[灵气]+{otherParams[1]}",
+      "[灵气]+{anima}\\n本场战斗每[击伤]过对方{otherParams[0]}生命就获得1层[水势]\\n[开局]：[灵气]+{otherParams[1]}"
+    ],
+    "phase_count": 5
+  },
+  "梦·水灵波澜": {
+    "phases": [
+      "[灵气]+{anima}\\n获得{otherParams[0]}层[水势]",
+      "[灵气]+{anima}\\n生命及上限+{otherParams[1]}\\n获得{otherParams[0]}层[水势]",
+      "[灵气]+{anima}\\n生命及上限+{otherParams[1]}\\n获得{otherParams[0]}层[水势]",
+      "[灵气]+{anima}\\n获得{otherParams[0]}层[水势]\\n下回合开始时，[灵气]和[水势]临时加倍，直到下回合结束",
+      "[灵气]+{anima}\\n获得{otherParams[0]}层[水势]\\n下回合开始时，[灵气]和[水势]临时加倍，直到下回合结束"
+    ],
+    "phase_count": 5
+  },
+  "梦·浑天印": {
+    "phases": [
+      "[灵气]+{anima}\\n造成{otherParams[0]}点[伤害]\\n[被动]：[相邻]牌使用时先[激活]其所属[五行]",
+      "[灵气]+{anima}\\n造成{otherParams[0]}点[伤害]\\n[被动]：[相邻]牌使用时先[激活]其所属[五行]",
+      "[灵气]+{anima}\\n造成{otherParams[0]}点[伤害]\\n[被动]：[相邻]牌使用时先[激活]其所属[五行]",
+      "[灵气]+{anima}\\n造成{otherParams[0]}点[伤害]\\n[被动]：[相邻]牌使用时先[激活]其所属[五行]",
+      "使用1张与前一格牌相同[五行]和等级的化神期[常规牌]\\n[被动]：[相邻]牌使用时先[激活]其所属[五行]"
+    ],
+    "phase_count": 5
+  },
+  "梦·海底捞月": {
+    "phases": [
+      "[后招]：{otherParams[0]}攻×{otherParams[1]}",
+      "[后招]：{otherParams[0]}攻×{otherParams[1]}",
+      "[后招]：{otherParams[0]}攻×{otherParams[1]}",
+      "[再次行动]\\n[后招]：{otherParams[0]}攻×{otherParams[1]}\\n若在卡组后{otherParams[2]}格则多{otherParams[3]}攻",
+      "[再次行动]\\n[后招]：{otherParams[0]}攻×{otherParams[1]}\\n若在卡组后{otherParams[2]}格则多{otherParams[3]}攻"
+    ],
+    "phase_count": 5
+  },
+  "梦·混元无极阵": {
+    "phases": [
+      "使用后一格牌对应的{otherParams[0]}级[五行灵印]",
+      "使用后一格牌对应的{otherParams[0]}级[五行灵印]",
+      "使用后一格牌对应的{otherParams[0]}级[五行灵印]",
+      "[激活]后一格牌的所属[五行]并使用其{otherParams[0]}级[五行灵阵]",
+      "[激活]后一格牌的所属[五行]并使用其{otherParams[0]}级[五行灵阵]"
+    ],
+    "phase_count": 5
+  },
+  "梦·混元碎击": {
+    "phases": [
+      "[灵气]+{anima}\\n{attack}攻\\n卡组中每有1种[五行]就追加1次{otherParams[0]}攻（最多{otherParams[1]}次）",
+      "[灵气]+{anima}\\n{attack}攻\\n卡组中每有1种[五行]就追加1次{otherParams[0]}攻（最多{otherParams[1]}次）",
+      "[灵气]+{anima}\\n{attack}攻\\n卡组中每有1种[五行]就追加1次{otherParams[0]}攻（最多{otherParams[1]}次）",
+      "[灵气]+{anima}\\n{attack}攻\\n卡组中每有1种[五行]就追加1次{otherParams[0]}攻（最多{otherParams[1]}次）",
+      "[灵气]+{anima}\\n{attack}攻（每用过1张任意[五行]的牌多{otherParams[0]}攻）\\n卡组中每有1种[五行]就追加1次攻击"
+    ],
+    "phase_count": 5
+  },
+  "梦·清心咒": {
+    "phases": [
+      "[灵气]+{anima}\\n自身所有[负面状态]减{otherParams[0]}层，获得{otherParams[1]}层[辟邪]("
+    ],
+    "phase_count": 1
+  },
+  "梦·火灵灼心": {
+    "phases": [
+      "{attack}攻\\n对方每减少过一次生命上限就多{otherParams[0]}攻",
+      "{attack}攻\\n对方每减少过一次生命上限就多{otherParams[0]}攻",
+      "{attack}攻\\n对方每减少过一次生命上限就多{otherParams[0]}攻",
+      "{attack}攻\\n对方每减少过一次生命上限就多{otherParams[0]}攻",
+      "{attack}攻\\n对方每减少过一次生命上限就多{otherParams[0]}攻"
+    ],
+    "phase_count": 5
+  },
+  "梦·火灵瞬燃": {
+    "phases": [
+      "对方减{otherParams[0]}生命及上限（每有{otherParams[1]}[防]多减1点）",
+      "对方减{otherParams[0]}生命及上限（每有{otherParams[1]}[防]多减1点）",
+      "对方减{otherParams[0]}生命及上限（每有{otherParams[1]}[防]多减1点）",
+      "对方减{otherParams[0]}生命及上限（每有{otherParams[1]}[防]多减1点）\\n已加过[防]则[再次行动]",
+      "对方减{otherParams[0]}生命及上限（每有{otherParams[1]}[防]多减1点）\\n已加过[防]则[再次行动]"
+    ],
+    "phase_count": 5
+  },
+  "梦·火灵聚炎": {
+    "phases": [
+      "[灵气]+{anima}\\n减对方{otherParams[0]}生命及上限\\n[先机]：双方使用下张牌时将其[消耗]",
+      "[灵气]+{anima}\\n减对方{otherParams[0]}生命及上限\\n[先机]：双方使用下张牌时将其[消耗]",
+      "[灵气]+{anima}\\n减对方{otherParams[0]}生命及上限（每点[灵气]多{otherParams[1]}）\\n[先机]：双方使用下张牌时将其[消耗]",
+      "[灵气]+{anima}\\n减对方{otherParams[0]}生命及上限（每点[灵气]多{otherParams[1]}）\\n[先机]：双方使用下张牌时将其[消耗]",
+      "[灵气]+{anima}\\n减对方{otherParams[0]}生命及上限（每点[灵气]多{otherParams[1]}）\\n[先机]：双方使用下张牌时将其[消耗]"
+    ],
+    "phase_count": 5
+  },
+  "梦·火灵阵": {
+    "phases": [
+      "[激活火灵]\\n[防]+{def}\\n减对方{otherParams[0]}生命及上限",
+      "[激活火灵]\\n[防]+{def}\\n减对方{otherParams[0]}生命及上限",
+      "[激活火灵]\\n[防]+{def}\\n减对方{otherParams[0]}生命及上限",
+      "[激活火灵]\\n[防]+{def}\\n减对方{otherParams[0]}生命及上限\\n[持续]：每当[再次行动]时加{otherParams[1]}[防]并减对方{otherParams[1]}生命及上限",
+      "[激活火灵]\\n[防]+{def}\\n减对方{otherParams[0]}生命及上限\\n[持续]：每当[再次行动]时加{otherParams[1]}[防]并减对方{otherParams[1]}生命及上限"
+    ],
+    "phase_count": 5
+  },
+  "梦·灵气灌注": {
+    "phases": [
+      "[灵气]+{anima}\\n下一次攻击多{otherParams[0]}攻",
+      "[灵气]+{anima}\\n下一次攻击多{otherParams[0]}攻",
+      "[灵气]+{anima}\\n下一次攻击多{otherParams[0]}攻\\n[被动]：[相邻]牌的[击伤]效果必定触发",
+      "[灵气]+{anima}\\n获得{otherParams[0]}层[加攻]\\n[被动]：[相邻]牌的[击伤]效果必定触发",
+      "[灵气]+{anima}\\n获得{otherParams[0]}层[加攻]\\n[被动]：[相邻]牌的[击伤]效果必定触发"
+    ],
+    "phase_count": 5
+  },
+  "梦·灵犀剑阵": {
+    "phases": [
+      "[防]+{def}\\n[持续]：每加1[灵气]时加{otherParams[0]}[防]",
+      "[防]+{def}\\n[持续]：每加1[灵气]时加{otherParams[0]}[防]",
+      "[防]+{def}\\n[持续]：每加1[灵气]/[剑意]时加{otherParams[0]}/{otherParams[1]}[防]",
+      "[防]+{def}\\n[持续]：每加1[灵气]/[剑意]时加{otherParams[0]}/{otherParams[1]}[防]",
+      "[防]+{def}\\n[持续]：每加1[灵气]/[剑意]时加{otherParams[0]}/{otherParams[1]}[防]"
+    ],
+    "phase_count": 5
+  },
+  "梦·灵玄迷踪步": {
+    "phases": [
+      "[灵气]+{anima}\\n[生命]+{otherParams[0]}\\n[持续]：自身回合内首次获得[负面状态]后令对方也获得1层",
+      "[灵气]+{anima}\\n[生命]+{otherParams[0]}\\n[持续]：自身回合内首次获得[负面状态]后令对方也获得1层",
+      "[灵气]+{anima}\\n[生命]+{otherParams[0]}\\n[持续]：自身回合内首次获得[负面状态]后令对方也获得1层",
+      "{[灵气]+{anima}\\n[生命]+{otherParams[0]}\\n[持续]：自身回合内前2次获得[负面状态]后令对方也获得1层",
+      "[灵气]+{anima}\\n[生命]+{otherParams[0]}\\n[持续]：自身回合内前2次获得[负面状态]后令对方也获得（最多2层）"
+    ],
+    "phase_count": 5
+  },
+  "梦·狂剑一式": {
+    "phases": [
+      "{attack}攻\\n生命上限+{otherParams[0]}\\n每用过一次狂剑就吸取对方{otherParams[1]}生命",
+      "{attack}攻\\n生命上限+{otherParams[0]}\\n每用过一次狂剑就吸取对方{otherParams[1]}生命",
+      "{attack}攻\\n生命上限+{otherParams[0]}\\n每用过一次狂剑就吸取对方{otherParams[1]}生命",
+      "{attack}攻\\n生命上限+{otherParams[0]}\\n每用过一次狂剑就吸取对方{otherParams[1]}生命",
+      "{attack}攻\\n生命上限+{otherParams[0]}\\n每用过一次狂剑就吸取对方{otherParams[1]}生命"
+    ],
+    "phase_count": 5
+  },
+  "梦·狂剑二式": {
+    "phases": [
+      "{attack}攻\\n生命+{otherParams[0]}\\n算作用过{otherParams[1]}次狂剑",
+      "{attack}攻\\n生命+{otherParams[0]}\\n算作用过{otherParams[1]}次狂剑",
+      "{attack}攻\\n生命+{otherParams[0]}\\n算作用过{otherParams[1]}次狂剑",
+      "{attack}攻\\n[持续]：每回合结束时，若回合内加过至少{otherParams[2]}生命则耗{otherParams[2]}生命算作用过{otherParams[1]}次狂剑",
+      "{attack}攻\\n[持续]：每回合结束时，若回合内加过至少{otherParams[2]}生命则耗{otherParams[2]}生命算作用过{otherParams[1]}次狂剑"
+    ],
+    "phase_count": 5
+  },
+  "梦·狂剑零式": {
+    "phases": [
+      "生命+{otherParams[0]}\\n每用过一次狂剑加{otherParams[1]}生命",
+      "生命+{otherParams[0]}\\n每用过一次狂剑加{otherParams[1]}生命",
+      "生命+{otherParams[0]}\\n每用过一次狂剑加{otherParams[1]}生命",
+      "生命+{otherParams[0]}\\n每用过一次狂剑加{otherParams[1]}生命和1[剑意]\\n[被动]：战斗中首次使用1级狂剑时耗{otherParams[2]}生命将其[升级]",
+      "生命+{otherParams[0]}\\n每用过一次狂剑加{otherParams[1]}生命和1[剑意]\\n[被动]：战斗中首次使用1级狂剑时耗{otherParams[2]}生命将其[升级]"
+    ],
+    "phase_count": 5
+  },
+  "梦·狂舞曲": {
+    "phases": [
+      "双方各自下{otherParams[0]}次使用牌后[再次行动]("
+    ],
+    "phase_count": 1
+  },
+  "梦·画龙点睛": {
+    "phases": [
+      "[炼化]：升级[卡组]中的1张副职牌（不限等级）("
+    ],
+    "phase_count": 1
+  },
+  "梦·白蛇吐信": {
+    "phases": [
+      "{attack}攻\\n重复{otherParams[0]}次：从[内伤]、[虚弱]、[外伤]中随机1层施加给对手\\n[后招]：多重复{otherParams[1]}次",
+      "{attack}攻\\n重复{otherParams[0]}次：从[内伤]、[虚弱]、[外伤]中随机1层施加给对手\\n[后招]：多重复{otherParams[1]}次",
+      "{attack}攻\\n重复{otherParams[0]}次：从[内伤]、[虚弱]、[外伤]中随机1层施加给对手\\n[后招]：多重复{otherParams[1]}次",
+      "{attack}攻\\n重复{otherParams[0]}次：从[内伤]、[虚弱]、[外伤]和[减攻]中随机1层施加给对手\\n[后招]：多重复{otherParams[1]}次",
+      "{attack}攻\\n重复{otherParams[0]}次：从[内伤]、[虚弱]、[外伤]和[减攻]中随机1层施加给对手\\n[后招]：多重复{otherParams[1]}次"
+    ],
+    "phase_count": 5
+  },
+  "梦·百鸟灵剑诀": {
+    "phases": [
+      "[灵气]+{anima}\\n[剑气]+{otherParams[0]}",
+      "[灵气]+{anima}\\n[剑气]+{otherParams[0]}",
+      "[灵气]+{anima}\\n[剑气]+{otherParams[0]}",
+      "[灵气]+{anima}\\n本场战斗每加过{otherParams[0]}点[灵气]就加1[剑气]",
+      "[灵气]+{anima}\\n本场战斗每加过{otherParams[0]}点[灵气]就加1[剑气]"
+    ],
+    "phase_count": 5
+  },
+  "梦·磅礴之势": {
+    "phases": [
+      "若有[灵气]或[气势]：\\n[体魄]+{otherParams[0]}\\n生命+{otherParams[1]}",
+      "若有[灵气]或[气势]：\\n[体魄]+{otherParams[0]}\\n生命+{otherParams[1]}",
+      "若有[灵气]或[气势]：\\n[体魄]+{otherParams[0]}\\n生命+{otherParams[1]}",
+      "[身法]+{otherParams[3]}\\n耗尽[气势]，每点加{otherParams[1]}[体魄]和{otherParams[2]}[生命]",
+      "[身法]+{otherParams[3]}\\n耗尽[气势]，每点加{otherParams[1]}[体魄]和{otherParams[2]}[生命]"
+    ],
+    "phase_count": 5
+  },
+  "梦·神来之笔": {
+    "phases": [
+      "[防]+{def}\\n随机使用一张元婴期及以上的灵宠、法宝或秘术牌的效果(",
+      "[防]+{def}\\n随机使用一张元婴期及以上的灵宠、法宝或秘术牌的效果("
+    ],
+    "phase_count": 2
+  },
+  "梦·离卦": {
+    "phases": [
+      "对方减{otherParams[0]}生命\\n耗尽[卦象]，每点多减{otherParams[1]}",
+      "对方减{otherParams[0]}生命\\n耗尽[卦象]，每点多减{otherParams[1]}",
+      "对方减{otherParams[0]}生命\\n耗尽[卦象]，每点多减{otherParams[1]}",
+      "对方减{otherParams[0]}生命\\n耗尽[卦象]，每点多减{otherParams[1]}",
+      "对方减{otherParams[0]}生命\\n耗尽[卦象]，每点多减{otherParams[1]}"
+    ],
+    "phase_count": 5
+  },
+  "梦·空间灵田": {
+    "phases": [
+      "若在后2格，首次使用改为[跳过]此牌\\n[被动]：战斗结束时减1修为获得卡组中1张1级[常规牌]的复制("
+    ],
+    "phase_count": 1
+  },
+  "梦·缚仙古藤": {
+    "phases": [
+      "施加{otherParams[0]}层[外伤]\\n下{otherParams[1]}次攻击[碎防]\\n[先机]：施加{otherParams[2]}层[困缚](",
+      "施加{otherParams[0]}层[外伤]\\n下{otherParams[1]}次攻击[碎防]\\n[先机]：施加{otherParams[2]}层[困缚]("
+    ],
+    "phase_count": 2
+  },
+  "梦·自在随心": {
+    "phases": [
+      "[炼化]：织梦珊瑚+10"
+    ],
+    "phase_count": 1
+  },
+  "梦·荷重前行": {
+    "phases": [
+      "[防]+{def}（每有1层[负面状态]多加{otherParams[0]}防）",
+      "[防]+{def}（每有1层[负面状态]多加{otherParams[0]}防）",
+      "[防]+{def}（每有1层[负面状态]多加{otherParams[0]}防）",
+      "[防]+{def}（每有1层[负面状态]多加{otherParams[0]}防）\\n[被动]：回合开始时，自然减半的[防]转为生命",
+      "[防]+{def}（每有1层[负面状态]多加{otherParams[0]}防）\\n[被动]：回合开始时，自然减半的[防]转为生命"
+    ],
+    "phase_count": 5
+  },
+  "梦·落花有意": {
+    "phases": [
+      "施加{otherParams[0]}层[内伤]\\n[后招]：生命+{otherParams[1]}",
+      "施加{otherParams[0]}层[内伤]\\n[后招]：生命+{otherParams[1]}",
+      "施加{otherParams[0]}层[内伤]\\n[后招]：生命+{otherParams[1]}",
+      "{施加{otherParams[0]}层[内伤]\\n生命+{otherParams[1]}\\n[后招]：每加过{otherParams[2]}生命就施加1层[内伤]",
+      "{施加{otherParams[0]}层[内伤]\\n生命+{otherParams[1]}\\n[后招]：每加过{otherParams[2]}生命就施加1层[内伤]"
+    ],
+    "phase_count": 5
+  },
+  "梦·落雷术": {
+    "phases": [
+      "{attack}攻（卡组中每有一张雷牌或卦牌就多{otherParams[0]}攻）",
+      "{attack}攻（卡组中每有一张雷牌或卦牌就多{otherParams[0]}攻）",
+      "{attack}攻（卡组中每有一张雷牌或卦牌就多{otherParams[0]}攻）",
+      "{attack}攻（卡组中每有一张雷牌或卦牌就多{otherParams[0]}攻）\\n10%概率追加一次攻击",
+      "{attack}攻（卡组中每有一张雷牌或卦牌就多{otherParams[0]}攻）\\n10%概率追加一次攻击"
+    ],
+    "phase_count": 5
+  },
+  "梦·蜻蜓点水": {
+    "phases": [
+      "{attack}攻\\n[卦象]+{guaXiang}",
+      "{attack}攻\\n[卦象]+{guaXiang}",
+      "{attack}攻\\n[卦象]+{guaXiang}",
+      "{attack}攻\\n[卦象]+{guaXiang}\\n[卦象]>{otherParams[0]}则[再次行动]",
+      "{attack}攻\\n[卦象]+{guaXiang}\\n[卦象]>{otherParams[0]}则[再次行动]"
+    ],
+    "phase_count": 5
+  },
+  "梦·转弦合调": {
+    "phases": [
+      "[灵气]+{anima}\\n自身下次[再次行动]时不会被其他效果阻止\\n已用过其他牌则[再次行动](",
+      "[灵气]+{anima}\\n自身下次[再次行动]时不会被其他效果阻止\\n已用过其他牌则[再次行动]("
+    ],
+    "phase_count": 2
+  },
+  "梦·轰雷掣电": {
+    "phases": [
+      "{attack}攻\\n每有1点[卦象]多1攻",
+      "{attack}攻\\n每有1点[卦象]多1攻",
+      "{attack}攻×{attackCount}\\n每有1点[卦象]多1攻",
+      "{attack}攻×{attackCount}\\n每有1点[卦象]多1攻",
+      "{attack}攻×{attackCount}\\n每有1点[卦象]多1攻"
+    ],
+    "phase_count": 5
+  },
+  "梦·迎风掌": {
+    "phases": [
+      "{attack}攻×{attackCount}\\n已加过[防]则追加{otherParams[0]}攻",
+      "{attack}攻×{attackCount}\\n已加过[防]则追加{otherParams[0]}攻",
+      "{attack}攻×{attackCount}\\n已加过[防]则追加{otherParams[0]}攻",
+      "{attack}攻×{attackCount}\\n已加过[防]则追加{otherParams[0]}攻×{otherParams[1]}",
+      "{attack}攻×{attackCount}\\n每有{otherParams[0]}[防]就追加一次攻击"
+    ],
+    "phase_count": 5
+  },
+  "梦·金灵铁骨": {
+    "phases": [
+      "[防]+{def}（每加过{otherParams[0]}[锋锐]或{otherParams[1]}[水势]多加1[防]）",
+      "[防]+{def}（每加过{otherParams[0]}[锋锐]或{otherParams[1]}[水势]多加1[防]）",
+      "[防]+{def}（每加过{otherParams[0]}[锋锐]或{otherParams[1]}[水势]多加1[防]）",
+      "[防]+{def}（每加过{otherParams[0]}[锋锐]或{otherParams[1]}[水势]多加1[防]），下回合加等量[防]",
+      "[防]+{def}（每加过{otherParams[0]}[锋锐]或{otherParams[1]}[水势]多加1[防]），下回合加等量[防]"
+    ],
+    "phase_count": 5
+  },
+  "梦·金灵锋芒": {
+    "phases": [
+      "{attack}攻\\n[灵气]+{anima}\\n[击伤]：获得{otherParams[0]}层[水势]",
+      "{attack}攻\\n[灵气]+{anima}\\n[击伤]：获得{otherParams[0]}层[水势]",
+      "{attack}攻\\n[灵气]+{anima}\\n[击伤]：获得{otherParams[0]}层[水势]",
+      "{attack}攻\\n[灵气]+{anima}\\n每[击伤]{otherParams[0]}生命就获得1层[水势]",
+      "{attack}攻\\n[灵气]+{anima}\\n每[击伤]{otherParams[0]}生命就获得1层[水势]"
+    ],
+    "phase_count": 5
+  },
+  "梦·金灵阵": {
+    "phases": [
+      "[激活金灵]\\n[锋锐]+{otherParams[0]}",
+      "[激活金灵]\\n[锋锐]+{otherParams[0]}",
+      "[激活金灵]\\n[锋锐]+{otherParams[0]}",
+      "[激活金灵]\\n[锋锐]+{otherParams[0]}\\n[持续]：每当[再次行动]时加{otherParams[1]}[锋锐]",
+      "[激活金灵]\\n[锋锐]+{otherParams[0]}\\n[持续]：每当[再次行动]时加{otherParams[1]}[锋锐]"
+    ],
+    "phase_count": 5
+  },
+  "梦·锐金符": {
+    "phases": [
+      "造成{otherParams[0]}[伤害]（若对方生命≤{otherParams[1]}，此牌的效果改为令对方生命变为-100）(",
+      "造成{otherParams[0]}[伤害]（若对方生命≤{otherParams[1]}，此牌的效果改为令对方生命变为-100）("
+    ],
+    "phase_count": 2
+  },
+  "梦·锻拳": {
+    "phases": [
+      "{attack}攻\\n[体魄]+{physique}\\n使用下张牌时加{physique}[体魄]\\n此牌算作崩拳",
+      "{attack}攻\\n[体魄]+{physique}\\n使用下张牌时加{physique}[体魄]\\n此牌算作崩拳",
+      "{attack}攻\\n[体魄]+{physique}\\n使用下张牌时加{physique}[体魄]\\n此牌算作崩拳",
+      "{attack}攻×{attackCount}\\n加[击伤]值{otherParams[0]}%的[体魄]（下张有攻的牌也触发此效果）\\n此牌算作崩拳",
+      "{attack}攻×{attackCount}\\n加[击伤]值{otherParams[0]}%的[体魄]（下张有攻的牌也触发此效果）\\n此牌算作崩拳"
+    ],
+    "phase_count": 5
+  },
+  "梦·锻神开海": {
+    "phases": [
+      "{attack}攻\\n[防]+{def}\\n[体魄]+{physique}",
+      "{attack}攻\\n[防]+{def}\\n[体魄]+{physique}",
+      "{attack}攻\\n[防]+{def}\\n[体魄]+{physique}",
+      "{attack}攻\\n[防]+{def}\\n[体魄]+{physique}\\n每有1[灵气]此牌多1攻、1[防]和1[体魄]",
+      "{attack}攻\\n[防]+{def}\\n[体魄]+{physique}\\n每有1[灵气]此牌多1攻、1[防]和1[体魄]"
+    ],
+    "phase_count": 5
+  },
+  "梦·锻筋": {
+    "phases": [
+      "[体魄]+{physique}\\n[防]+{def}",
+      "[体魄]+{physique}\\n[防]+{def}",
+      "[体魄]+{physique}\\n[防]+{def}",
+      "[体魄]+{physique}\\n加生命上限{otherParams[0]}%的[防]",
+      "[体魄]+{physique}\\n加生命上限{otherParams[0]}%的[防]"
+    ],
+    "phase_count": 5
+  },
+  "梦·飞云丹": {
+    "phases": [
+      "[灵气]+{anima}\\n[持续]：自身回合开始时，若对方有[防]，则自身下{otherParams[0]}次攻击[无视防御]，否则加{otherParams[0]}[灵气](",
+      "[灵气]+{anima}\\n[持续]：自身回合开始时，若对方有[防]，则自身下{otherParams[0]}次攻击[无视防御]，否则加{otherParams[0]}[灵气]("
+    ],
+    "phase_count": 2
+  },
+  "梦·飞枭灵芝": {
+    "phases": [
+      "[炼化]：下场战斗开始时自身[速度]+{otherParams[0]}，若自身为后手，则获得[死战之志]效果("
+    ],
+    "phase_count": 1
+  },
+  "梦·飞牙剑": {
+    "phases": [
+      "{attack}攻\\n返还此牌所耗[剑意]",
+      "{attack}攻\\n返还此牌所耗[剑意]",
+      "{attack}攻\\n返还此牌所耗[剑意]",
+      "{attack}攻×{attackCount}\\n返还此牌所耗[剑意]",
+      "{attack}攻×{attackCount}\\n返还此牌所耗[剑意]"
+    ],
+    "phase_count": 5
+  },
+  "梦·黄雀在后": {
+    "phases": [
+      "{attack}攻\\n已用过后招牌则追加{otherParams[0]}攻\\n[先机]：反转[出牌方向]",
+      "{attack}攻\\n已用过后招牌则追加{otherParams[0]}攻\\n[先机]：反转[出牌方向]",
+      "{attack}攻\\n已用过后招牌则追加{otherParams[0]}攻\\n[先机]：反转[出牌方向]",
+      "{attack}攻\\n每用过一次后招牌就追加一次{otherParams[0]}攻\\n[先机]：反转[出牌方向]",
+      "{attack}攻\\n每用过一次后招牌就追加一次{otherParams[0]}攻\\n反转[出牌方向]"
+    ],
+    "phase_count": 5
+  }
+}
