@@ -43692,10 +43692,24 @@
       error
     };
   }
+  function sanitizePlantStacks(plantStacks) {
+    if (!plantStacks || typeof plantStacks !== "object") return {};
+    const out = {};
+    for (const k in plantStacks) {
+      const v = plantStacks[k];
+      if (typeof v === "number" && v > 0) out[k] = v;
+    }
+    return out;
+  }
   function buildPlayers(normalizedSlots, fuzzy2, guessChar, options = {}) {
     const playerState = normalizePlayerState(options.playerState);
     const playerCards = normalizedSlots.map((slot) => resolveDetectedCardId(slot, fuzzy2));
     const player = {
+      // 灵植成长层数(归元草等)从游戏 permanentBuffTempDatas 读出,作为初始 *_stacks 并入
+      // player(放最前,确保 hp/physique 等核心字段不会被异常输入覆盖);
+      // do_plant_start_permanent_buffs 据此施加归元草加血/归岩草防御等永久 buff,
+      // runSingleSimulation 的 Object.assign 把整个 player 带进 sim。
+      ...sanitizePlantStacks(options.plantStacks),
       hp: playerState.hp,
       physique: playerState.physique,
       max_physique: playerState.maxPhysique,
@@ -43707,15 +43721,6 @@
     const playerBaseMaxHp = Number.isFinite(playerState.maxHp) ? Math.max(playerState.maxHp, player.hp) : player.hp;
     player.max_hp = playerBaseMaxHp + (player.physique || 0);
     player.character = guessChar(player);
-    // 灵植成长层数(origin_herb_stacks 等):从游戏 permanentBuffTempDatas 读出,作为初始
-    // *_stacks 写到 player 上(runSingleSimulation 用 Object.assign 拷进 sim Player,覆盖构造
-    // 默认 0)。do_plant_start_permanent_buffs 据此施加归元草加血/归岩草防御等永久 buff。
-    if (options.plantStacks && typeof options.plantStacks === "object") {
-      for (const k in options.plantStacks) {
-        const v = options.plantStacks[k];
-        if (typeof v === "number" && v > 0) player[k] = v;
-      }
-    }
     let opponent;
     if (Array.isArray(options.opponentSlots) && options.opponentSlots.some(Boolean)) {
       const oppState = normalizePlayerState(options.opponentState);
@@ -43796,7 +43801,6 @@
     }
     const perTurnDealt = [];
     const perTurnTaken = [];
-    // 每回合结束时双方的实际剩余 HP(含战斗开始效果如金梭兰造伤、归元草加血) → HUD 剩命显示。
     const myHpSeries = [];
     const oppHpSeries = [];
     const pushHp = () => {
@@ -43970,7 +43974,6 @@
       maxTurns,
       turnOrder,
       lastStandSecond,
-      plantStacks: options.plantStacks || null,
       playerState: {
         hp: playerState.hp,
         maxHp: playerState.maxHp,
@@ -43982,6 +43985,7 @@
       slots: normalizedSlots.map((s) => s ? { name: s.name, level: s.level, phase: s.phase ?? null, isDream: !!s.isDream } : null),
       opp: opponentSlots ? opponentSlots.map((s) => s ? { name: s.name, level: s.level } : null) : null,
       oppState: options.opponentState || null,
+      plantStacks: options.plantStacks || null,
       talents: normalizedTalents.map((t) => ({ position: t.position, phase: t.phase, name: t.name, simulationKind: t.simulationKind, runtimeKey: t.runtimeKey, grantedCardBaseIds: t.grantedCardBaseIds })),
       oppTalents: normalizedOppTalents.map((t) => ({ position: t.position, phase: t.phase, name: t.name, simulationKind: t.simulationKind, runtimeKey: t.runtimeKey, grantedCardBaseIds: t.grantedCardBaseIds }))
     });
@@ -43998,6 +44002,7 @@
         opponentState: options.opponentState,
         playerSwordplayTalentCards: options.playerSwordplayTalentCards,
         opponentSwordplayTalentCards: options.opponentSwordplayTalentCards,
+        // 灵植成长层数透传给 buildPlayers → 并入 player → sim 初始 *_stacks。
         plantStacks: options.plantStacks
       });
       const probeGame = new GameState();
