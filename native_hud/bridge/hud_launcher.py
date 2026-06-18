@@ -469,6 +469,32 @@ def consumer():
             print("[consumer] %s" % e, flush=True)
 
 
+def _fmt_damage_table(my_cum, opp_cum, tag):
+    """造伤显示:去掉 T1..T8,做成表格。solo 一行(己方),matchup 两行(第一行己方造伤,
+    第二行对手造伤),战斗结论 tag(必胜/可赢/会输 @Tn)单独一行。
+
+    游戏字体是比例字体且数字非等宽,这套 TMP 又不认 <mspace>/<pos> 富文本布局标签,纯文本
+    无法逐列对齐 → C# 侧(Hud32.DrawTotal)改用"每格独立定位的网格"渲染。这里只负责把数据
+    排成 C# 约定的格式:行用 '\\n' 分隔,单元格用 '\\t' 分隔;每行首格是 我/敌 标签,后面每
+    个回合一格,' | ' 作为列前缀(空缺格留空,不出多余竖线)。"""
+    grid = [("我", my_cum)]
+    if opp_cum:
+        grid.append(("敌", opp_cum))
+    if not any(c for _, c in grid):
+        return ""
+    ncol = max(len(c) for _, c in grid)
+    lines = []
+    for label, cum in grid:
+        cells = [label]
+        for i in range(ncol):
+            v = str(cum[i]) if i < len(cum) else ""
+            cells.append("" if v == "" else (v if i == 0 else "| " + v))
+        lines.append("\t".join(cells))
+    if tag:
+        lines.append(tag.strip())   # 战斗结论单独一行(网格里是单格行)
+    return "\n".join(lines)
+
+
 def total_loop():
     """Whole-board yisim damage (the SAME number the web tool shows: 8-turn
     cumulative), fed the same inputs the web does (board levels + 仙命/天衍
@@ -490,6 +516,15 @@ def total_loop():
                     "board": board,
                     "talents": me.get("fates") or [],
                     "deckSlots": me.get("unlocked") or len(board) or 8,
+                    # 灵植成长层数(归元草加血等)→ yisim player.*_stacks,solo/matchup 都带。
+                    "plantStacks": me.get("plantStacks") or {},
+                    # 我方真实状态(血量/体魄/修为)→ 剩命显示要准必须传(否则 yisim 用默认 110)。
+                    "playerState": {
+                        "hp": me.get("hp"), "maxHp": me.get("hp"),
+                        "physique": me.get("tipo") or 0,
+                        "maxPhysique": me.get("tipo") or 0,
+                        "cultivation": me.get("xiuwei") or 0,
+                    },
                 }
                 # MATCHUP: if enabled AND we know the opponent's (last-seen) board,
                 # sim real combat against it so the damage reflects THIS opponent.
@@ -514,18 +549,27 @@ def total_loop():
                 res = json.loads(p.stdout.decode("utf-8", "replace") or "{}")
                 full = res.get("full")
                 cum = res.get("cumulative") or []
+                my_hp = res.get("myHpSeries") or []
+                opp_hp = res.get("oppHpSeries") or []
                 outcome = res.get("outcome")
                 end_turn = res.get("endTurn")
-                print("[total] mode=%s full=%s outcome=%s@T%s cumulative=%s"
-                      % (res.get("mode"), full, outcome, end_turn, cum), flush=True)
+                is_matchup = res.get("mode") == "matchup"
+                print("[total] mode=%s full=%s outcome=%s@T%s myHp=%s oppHp=%s plant=%s"
+                      % (res.get("mode"), full, outcome, end_turn, my_hp, opp_hp,
+                         obj.get("plantStacks")), flush=True)
                 # outcome tag (matchup only): 必胜/可赢/会输 @Tn
                 tag = ""
                 if outcome == "win":
                     tag = "  %s@T%s" % ("必胜" if res.get("deterministic") else "可赢", end_turn)
                 elif outcome == "lose":
                     tag = "  会输@T%s" % end_turn
-                if cum:
-                    txt = "  ".join("T%d %s" % (i + 1, v) for i, v in enumerate(cum)) + tag
+                # matchup → 两行剩余血量(我方剩命/对手剩命,含金梭兰等战斗开始效果);
+                # solo(无对手)→ 一行造伤累计(无对手不谈剩命)。
+                if is_matchup and (my_hp or opp_hp):
+                    txt = _fmt_damage_table(my_hp, opp_hp or None, tag)
+                    ex.call_str(HUD_T, "SetTotal", txt)
+                elif cum:
+                    txt = _fmt_damage_table(cum, None, tag)
                     ex.call_str(HUD_T, "SetTotal", txt)
                 elif full is not None:
                     ex.call_str(HUD_T, "SetTotal", "造伤 %s%s" % (full, tag))

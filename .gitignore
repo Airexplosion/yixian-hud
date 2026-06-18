@@ -24,3 +24,7 @@ Thumbs.db
 # ── 大型第三方源(发布只用 web/yisim.bundle.js,不要整个引擎源) ──
 vendor/
 node_modules/
+
+# 反编译工作产物(逆向用,勿提交)
+_decomp/
+native_hud/csharp/_out/

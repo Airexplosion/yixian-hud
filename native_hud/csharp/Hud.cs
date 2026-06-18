@@ -32,9 +32,15 @@ namespace YiXianBot
         static bool s_showLeft = true;   // 记牌器 剩X toggle
         static Dictionary<int, int> s_marginal = new Dictionary<int, int>();           // by board slot index
         static float s_dmgY = -2f;   // damage label Y (on the card top, below the prepare bar)
-        static string s_total = "";  // whole-board total damage (yisim), screen-anchored
+        static string s_total = "";  // 造伤表格:行用 \n 分隔,单元格用 \t 分隔(screen-anchored)
         static GameObject s_totalGo;
-        static List<TextMeshProUGUI> s_totalLayers;
+        // 造伤改用"每格独立定位"的网格渲染:游戏字体比例字 + TMP 不认 <mspace>/<pos>,纯文本
+        // 无法对齐 → 每个单元格是独立 TMP(9 层描边),钉在固定列像素 x 上,逐列严格对齐。
+        static List<List<TextMeshProUGUI>> s_totalCells;   // 扁平 r*ncol+c → 该格的 9 层
+        static int s_totalRows = -1, s_totalCols = -1;     // 缓存网格维度,仅维度变化时重建
+        const float TT_COLW = 60f;    // 列宽 px
+        const float TT_LINEH = 30f;   // 行高 px
+        const float TT_FS = 24f;      // 造伤字号
         static string s_opp = "";    // opponent HP cap + 修为 (top-left, by 生命上限)
         static GameObject s_oppGo;
         static List<TextMeshProUGUI> s_oppLayers;
@@ -90,7 +96,7 @@ namespace YiXianBot
                     if (g != null && (g.name == DMG || g.name == LEFT || g.name == "BotTotal"
                         || g.name == "BotOpp" || g.name == "BotWarn")) UnityEngine.Object.Destroy(g);
                 }
-                s_totalGo = null; s_totalLayers = null;
+                s_totalGo = null; s_totalCells = null; s_totalRows = -1; s_totalCols = -1;
                 s_oppGo = null; s_oppLayers = null; s_warnGo = null; s_warnLayers = null;
                 return "ok:hidden";
             } catch (Exception e) { return "EX:" + e.Message; }
@@ -528,14 +534,66 @@ namespace YiXianBot
             return go;
         }
 
+        // 左对齐的单元格描边层(MakeLayer 是居中版;造伤网格要左对齐才能逐列对齐)
+        static TextMeshProUGUI MakeCellLayer(Transform c, float size, Color col, Vector2 off)
+        {
+            var go = new GameObject(off == Vector2.zero ? "fg" : "o"); go.transform.SetParent(c, false);
+            var lbl = go.AddComponent(typeof(TextMeshProUGUI)) as TextMeshProUGUI;
+            var f = FindFont(); if (f != null) lbl.font = f;
+            lbl.fontSize = size; lbl.color = col; lbl.alignment = TextAlignmentOptions.Left;
+            lbl.raycastTarget = false; lbl.enableWordWrapping = false; lbl.overflowMode = TextOverflowModes.Overflow;
+            var rt = lbl.rectTransform; rt.anchorMin = Vector2.zero; rt.anchorMax = Vector2.one; rt.offsetMin = off; rt.offsetMax = off;
+            return lbl;
+        }
+
+        // 造伤表格:s_total = 行(\n) × 单元格(\t)。每格是独立定位的 TMP,钉在固定列像素 x,
+        // 逐列严格对齐(不依赖字体宽度 / 不用 <mspace>/<pos>,因为这套 TMP 都不认)。
         static void DrawTotal()
         {
             if (string.IsNullOrEmpty(s_total)) { if (s_totalGo != null) s_totalGo.SetActive(false); return; }
+            string[] rows = s_total.Split('\n');
+            int nrow = rows.Length, ncol = 1;
+            string[][] cells = new string[nrow][];
+            for (int r = 0; r < nrow; r++) { cells[r] = rows[r].Split('\t'); if (cells[r].Length > ncol) ncol = cells[r].Length; }
+
+            // 维度变化 → 销毁重建;否则复用同一批单元格只改文字。
+            if (s_totalGo != null && (s_totalRows != nrow || s_totalCols != ncol))
+            { UnityEngine.Object.Destroy(s_totalGo); s_totalGo = null; s_totalCells = null; }
+
             if (s_totalGo == null)
-                s_totalGo = MakeScreenLabel("BotTotal", new Vector2(0.5f, 1f), new Vector2(0.5f, 1f),
-                    s_totalPos, new Vector2(1180f, 44f), 26f, new Color(1f, 0.85f, 0.35f, 1f), out s_totalLayers);
-            if (s_totalGo == null) return;
-            s_totalGo.SetActive(true); ApplyPos(s_totalGo, s_totalPos); SetText(s_totalLayers, s_total);
+            {
+                var canv = FindRootCanvas(); if (canv == null) return;
+                s_totalGo = new GameObject("BotTotal"); s_totalGo.transform.SetParent(canv.transform, false);
+                var crt = AddRT(s_totalGo);
+                crt.anchorMin = new Vector2(0.5f, 1f); crt.anchorMax = new Vector2(0.5f, 1f); crt.pivot = new Vector2(0.5f, 1f);
+                crt.anchoredPosition = s_totalPos; crt.sizeDelta = new Vector2(ncol * TT_COLW, nrow * TT_LINEH);
+                s_totalCells = new List<List<TextMeshProUGUI>>();
+                var col = new Color(1f, 0.85f, 0.35f, 1f);
+                float xBase = -(ncol * TT_COLW) / 2f + TT_COLW / 2f;   // 居中整块
+                for (int r = 0; r < nrow; r++)
+                    for (int c = 0; c < ncol; c++)
+                    {
+                        var cellGo = new GameObject("cell"); cellGo.transform.SetParent(s_totalGo.transform, false);
+                        var rt = AddRT(cellGo);
+                        rt.anchorMin = new Vector2(0.5f, 1f); rt.anchorMax = new Vector2(0.5f, 1f); rt.pivot = new Vector2(0.5f, 1f);
+                        rt.anchoredPosition = new Vector2(xBase + c * TT_COLW, -r * TT_LINEH);
+                        rt.sizeDelta = new Vector2(TT_COLW, TT_LINEH);
+                        var layers = new List<TextMeshProUGUI>();
+                        for (int k = 0; k < OFF.Length; k++) layers.Add(MakeCellLayer(cellGo.transform, TT_FS, s_black, OFF[k]));
+                        layers.Add(MakeCellLayer(cellGo.transform, TT_FS, col, Vector2.zero));
+                        s_totalCells.Add(layers);
+                    }
+                s_totalRows = nrow; s_totalCols = ncol;
+            }
+            if (s_totalGo == null || s_totalCells == null) return;
+            s_totalGo.SetActive(true); ApplyPos(s_totalGo, s_totalPos);
+            for (int r = 0; r < nrow; r++)
+                for (int c = 0; c < ncol; c++)
+                {
+                    int idx = r * ncol + c; if (idx >= s_totalCells.Count) continue;
+                    string txt = (c < cells[r].Length) ? cells[r][c] : "";
+                    SetText(s_totalCells[idx], txt);
+                }
         }
 
         static void DrawOpp()

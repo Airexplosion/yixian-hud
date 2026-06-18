@@ -43707,6 +43707,15 @@
     const playerBaseMaxHp = Number.isFinite(playerState.maxHp) ? Math.max(playerState.maxHp, player.hp) : player.hp;
     player.max_hp = playerBaseMaxHp + (player.physique || 0);
     player.character = guessChar(player);
+    // 灵植成长层数(origin_herb_stacks 等):从游戏 permanentBuffTempDatas 读出,作为初始
+    // *_stacks 写到 player 上(runSingleSimulation 用 Object.assign 拷进 sim Player,覆盖构造
+    // 默认 0)。do_plant_start_permanent_buffs 据此施加归元草加血/归岩草防御等永久 buff。
+    if (options.plantStacks && typeof options.plantStacks === "object") {
+      for (const k in options.plantStacks) {
+        const v = options.plantStacks[k];
+        if (typeof v === "number" && v > 0) player[k] = v;
+      }
+    }
     let opponent;
     if (Array.isArray(options.opponentSlots) && options.opponentSlots.some(Boolean)) {
       const oppState = normalizePlayerState(options.opponentState);
@@ -43787,6 +43796,13 @@
     }
     const perTurnDealt = [];
     const perTurnTaken = [];
+    // 每回合结束时双方的实际剩余 HP(含战斗开始效果如金梭兰造伤、归元草加血) → HUD 剩命显示。
+    const myHpSeries = [];
+    const oppHpSeries = [];
+    const pushHp = () => {
+      myHpSeries.push(Math.max(0, game.players[0].hp ?? 0));
+      oppHpSeries.push(Math.max(0, game.players[1].hp ?? 0));
+    };
     let endTurn = null;
     let lastSlotMe = null;
     let lastSlotOpp = null;
@@ -43803,6 +43819,7 @@
         if (game.game_over) {
           perTurnDealt.push(Math.max(0, oppBefore - (game.players[1].hp ?? oppBefore)));
           perTurnTaken.push(0);
+          pushHp();
           endTurn = turnIndex + 1;
           break;
         }
@@ -43818,6 +43835,7 @@
         if (game.game_over) {
           perTurnDealt.push(0);
           perTurnTaken.push(Math.max(0, myBefore - (game.players[0].hp ?? myBefore)));
+          pushHp();
           endTurn = turnIndex + 1;
           break;
         }
@@ -43826,6 +43844,7 @@
       }
       perTurnDealt.push(Math.max(0, oppBefore - (game.players[1].hp ?? oppBefore)));
       perTurnTaken.push(Math.max(0, myBefore - (game.players[0].hp ?? myBefore)));
+      pushHp();
       if (game.game_over) {
         endTurn = turnIndex + 1;
         break;
@@ -43850,6 +43869,8 @@
     return {
       perTurnDealt,
       perTurnTaken,
+      myHpSeries,
+      oppHpSeries,
       outcome,
       endTurn,
       myHp,
@@ -43909,6 +43930,9 @@
       oppHp: avgOppHp,
       myMaxHp: avgMyMaxHp,
       oppMaxHp: avgOppMaxHp,
+      // 每回合剩余 HP(取代表性 run;matchup 快路径通常单 run)。HUD 剩命显示用。
+      myHpSeries: sampleRun.myHpSeries || [],
+      oppHpSeries: sampleRun.oppHpSeries || [],
       myIncAtk: Math.round(runs.reduce((s, r) => s + (r.myIncAtk ?? 0), 0) / n),
       oppIncAtk: Math.round(runs.reduce((s, r) => s + (r.oppIncAtk ?? 0), 0) / n),
       myDef: Math.round(runs.reduce((s, r) => s + (r.myDef ?? 0), 0) / n),
@@ -43946,6 +43970,7 @@
       maxTurns,
       turnOrder,
       lastStandSecond,
+      plantStacks: options.plantStacks || null,
       playerState: {
         hp: playerState.hp,
         maxHp: playerState.maxHp,
@@ -43972,7 +43997,8 @@
         opponentSlots,
         opponentState: options.opponentState,
         playerSwordplayTalentCards: options.playerSwordplayTalentCards,
-        opponentSwordplayTalentCards: options.opponentSwordplayTalentCards
+        opponentSwordplayTalentCards: options.opponentSwordplayTalentCards,
+        plantStacks: options.plantStacks
       });
       const probeGame = new GameState();
       const probePlayer = probeGame.players[0];

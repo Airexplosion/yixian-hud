@@ -29,6 +29,8 @@ function buildOpts(j, deckSlots) {
     maxTurns: 64,
     talents: j.talents || [],
     playerState: j.playerState || null,
+    // 灵植成长层数 {origin_herb_stacks:5,...} → 注入我方 sim player(归元草加血等)。
+    plantStacks: j.plantStacks || null,
   };
   const o = j.opponent;
   if (o && Array.isArray(o.board) && o.board.some(x => x)) {
@@ -66,10 +68,16 @@ async function total(slots, opts) {
   if (j.totalOnly) {
     const r = await Promise.resolve(Y.simulate(slots, opts));
     const cum = (r && r.cumulativeDamage) ? r.cumulativeDamage.slice(0, 8).map(x => Math.round(x)) : [];
+    // matchup 下 cumulativeTaken = 己方承受的累积伤害(即对手对我方造成的) → HUD 第二行。
+    const taken = (r && r.cumulativeTaken) ? r.cumulativeTaken.slice(0, 8).map(x => Math.round(x)) : [];
+    // 每回合实际剩余 HP(含金梭兰等战斗开始效果) → HUD 剩命显示(我方剩命/对手剩命)。
+    const myHp = (r && r.myHpSeries) ? r.myHpSeries.slice(0, 8).map(x => Math.round(x)) : [];
+    const oppHp = (r && r.oppHpSeries) ? r.oppHpSeries.slice(0, 8).map(x => Math.round(x)) : [];
     const full = (r && r.first8Turns != null) ? Math.round(r.first8Turns)
                : (cum.length ? cum[cum.length - 1] : 0);
     process.stdout.write(JSON.stringify({
-      full, cumulative: cum, mode: opts.mode,
+      full, cumulative: cum, cumulativeTaken: taken,
+      myHpSeries: myHp, oppHpSeries: oppHp, mode: opts.mode,
       outcome: r && r.outcome, endTurn: r && r.endTurn,
       deterministic: r && r.deterministic,
     }));

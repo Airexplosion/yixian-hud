@@ -20,6 +20,5 @@
     <Reference Include="Unity.TextMeshPro"><HintPath>..\_refs\Unity.TextMeshPro.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="UniRx"><HintPath>..\_refs\UniRx.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="UniTask"><HintPath>..\_refs\UniTask.dll</HintPath><Private>false</Private></Reference>
-    <Reference Include="UnityEngine.InputLegacyModule"><HintPath>..\_refs\UnityEngine.InputLegacyModule.dll</HintPath><Private>false</Private></Reference>
   </ItemGroup>
 </Project>

@@ -82,6 +82,9 @@ class PlayerState:
     rerolls: int = 0      # reroll count — team container field 4 (only me's is reliable)
     board: list = field(default_factory=list)   # list[CardState|None] — field 200.6
     fates: list = field(default_factory=list)   # list[int] fate ids (R24-Phase-B; from p[17])
+    # 永久 buff 累积值(灵植成长等):field 200.9 = map<BuffType:int, 层数:int>,
+    # 镜像在顶层 p[17]。每项是 {1:键, 2:值}。喂给 yisim 算灵植加成(归元草加血等)。
+    perm_buffs: dict = field(default_factory=dict)   # {buff_key:int -> value:int}
     # Matchup pairing UIDs (Round 13 finding): every player struct carries
     #   field 9  = the player you're about to fight THIS round (next),
     #   field 10 = the player you just fought (previous; absent on R1).
@@ -332,6 +335,25 @@ def parse_game_state(pb: dict, phase: str = "prep", me_uid: str = "") -> GameSta
                     continue
                 if fid_i and fid_i not in fates:
                     fates.append(fid_i)
+        # 永久 buff 累积值:field 200.9 = repeated map entry {1:键, 2:值}(灵植成长层数等);
+        # 镜像在顶层 p[17]。注意 top-level p[9] 是对手 UID,不是这个 → 必须用 200.9。
+        perm_buffs: dict[int, int] = {}
+        _pb_raw = f200.get("9")
+        if _pb_raw is None:
+            _pb_raw = p.get("17")
+        if isinstance(_pb_raw, dict):
+            _pb_raw = [_pb_raw]
+        if isinstance(_pb_raw, list):
+            for _e in _pb_raw:
+                if not isinstance(_e, dict):
+                    continue
+                try:
+                    _k = int(_e.get("1", 0) or 0)
+                    _v = int(_e.get("2", 0) or 0)
+                except (TypeError, ValueError):
+                    continue
+                if _k:
+                    perm_buffs[_k] = _v
         # Next/prev opponent UIDs (broadcast on each player's struct).
         next_opp = p.get("9")
         prev_opp = p.get("10")
@@ -360,6 +382,7 @@ def parse_game_state(pb: dict, phase: str = "prep", me_uid: str = "") -> GameSta
             rerolls=rerolls,
             board=board,
             fates=fates,
+            perm_buffs=perm_buffs,
             next_opponent_id=_to_str(next_opp) if next_opp else "",
             prev_opponent_id=_to_str(prev_opp) if prev_opp else "",
         ))

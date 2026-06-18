@@ -288,6 +288,34 @@ def _battle_log_stats(round_num: int, display_name: str):
         return None
 
 
+# 游戏永久 buff 键(BuffType) → yisim player.*_stacks 字段(灵植成长喂给伤害模拟)。
+# 键来自逆向 DarkSun.HotUpdate.dll BuffType 枚举 + permanentBuffTempDatas(game_state 解 200.9)。
+# 中文名经 yisim bundle namecn 核对。只作用于我方(yisim 灵植 buff 仅施于 players[0])。
+LINGZHI_BUFF_TO_YISIM = {
+    10008: "origin_herb_stacks",         # 归元草   +生命/上限
+    10009: "shuttle_orchid_stacks",      # 金梭兰   造伤(键待 live 核实)
+    10010: "healing_chamomile_stacks",   # 愈甘菊   regen
+    10011: "divine_power_grass_stacks",  # 神力草   +攻
+    10012: "flying_owl_reishi_stacks",   # 飞枭灵芝  +速度
+    10013: "toxic_purple_fern_stacks",   # 穿肠紫蕨  敌内伤
+    10014: "rock_herb_stacks",           # 归岩草   +防御
+    10017: "fire_orchid_stacks",         # 火梭兰   减敌上限
+    10018: "lose_power_grass_stacks",    # 失力草   敌减攻
+    10019: "clear_chamomile_stacks",     # 清甘菊   hexproof
+    10020: "shadow_owl_reishi_stacks",   # 影枭灵芝  减己方血
+}
+
+
+def _plant_stacks(perm_buffs):
+    """perm_buffs({BuffType键:层数}) → yisim {*_stacks字段:层数}(只留灵植项、值>0)。"""
+    out = {}
+    for k, field_name in LINGZHI_BUFF_TO_YISIM.items():
+        v = (perm_buffs or {}).get(k)
+        if v:
+            out[field_name] = int(v)
+    return out
+
+
 def build_view_model(state, counter=None, last_battle=None, opp_tracker=None):
     sh = shadow_state.shadow
     unlocked = shadow_state.unlocked_board_slots(state.round_num)
@@ -376,6 +404,8 @@ def build_view_model(state, counter=None, last_battle=None, opp_tracker=None):
             # non-empty, the UI shows "未识别卡片 — 伤害计算不可用" instead of
             # damage numbers (yisim has no 灵羽 implementation).
             "lingyuUnresolved": lingyu_unresolved,
+            # 灵植成长层数 → yisim *_stacks(归元草加血等),喂给伤害模拟。
+            "plantStacks": _plant_stacks(getattr(me, "perm_buffs", None)),
         }
 
     # ── Opponent (matchup target) ──────────────────────────────────────────────
