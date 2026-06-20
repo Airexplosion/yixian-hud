@@ -2174,7 +2174,8 @@
   "nameCn": "铸剑师",
   "simulationKind": "runtime-stack",
   "runtimeKey": "swordsmith_stacks",
-  "grantedCardBaseIds": null
+  "grantedCardBaseIds": null,
+  "stackSource": "round_minus_1"
  },
  "93": {
   "name": "Blade Forging",

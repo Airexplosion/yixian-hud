@@ -20,6 +20,8 @@ YiXianHUD_config.json
 feed_*.json
 .DS_Store
 Thumbs.db
+shadow_log.txt
+proxy/config.json
 
 # ── 大型第三方源(发布只用 web/yisim.bundle.js,不要整个引擎源) ──
 vendor/

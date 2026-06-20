@@ -543,6 +543,23 @@ def total_loop():
                         },
                     }
                 payload = json.dumps(obj, ensure_ascii=False)
+                # 入参快照(控制台):核对喂给 yisim 的 talents/board/playerState 是否传对。
+                try:
+                    _b = lambda bd: [("%s·%s" % (c["name"], c.get("level"))) if c else "_"
+                                     for c in (bd or [])]
+                    _t = lambda ts: [(t.get("name"), t.get("simulationKind"), t.get("runtimeKey"),
+                                      ("x%s" % t["stackOverride"]) if t.get("stackOverride") is not None
+                                      else "x?")
+                                     for t in (ts or [])]
+                    print("[total-in] myBoard=%s" % _b(board), flush=True)
+                    print("[total-in] myFateNames=%s" % (me.get("fateNames") or []), flush=True)
+                    print("[total-in] myTalents=%s" % _t(me.get("fates")), flush=True)
+                    if obj.get("opponent"):
+                        _o = obj["opponent"]
+                        print("[total-in] oppBoard=%s" % _b(_o.get("board")), flush=True)
+                        print("[total-in] oppTalents=%s" % _t(_o.get("talents")), flush=True)
+                except Exception as _e:
+                    print("[total-in] dump failed: %s" % _e, flush=True)
                 p = subprocess.run([node_exe(), NODE_MARGINAL], input=payload.encode("utf-8"),
                                    capture_output=True, timeout=25,
                                    creationflags=(0x08000000 if sys.platform.startswith("win") else 0))

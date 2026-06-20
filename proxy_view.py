@@ -78,7 +78,7 @@ def _warn_unmapped_fate(fid: int) -> None:
           file=sys.stderr, flush=True)
 
 
-def _fates_to_talents(fate_ids):
+def _fates_to_talents(fate_ids, round_num=0):
     """Convert a list of fate ids (in PICK ORDER) into (talents, names).
 
     Each entry's index in the list = phase (1-indexed). The phase is stored
@@ -109,7 +109,7 @@ def _fates_to_talents(fate_ids):
         if not meta:
             _warn_unmapped_fate(fid_i)
             continue
-        talents.append({
+        talent = {
             "detected": True,
             "position": phase,
             "phase": phase,
@@ -117,18 +117,24 @@ def _fates_to_talents(fate_ids):
             "simulationKind": meta.get("simulationKind", "non-combat-or-unsupported"),
             "runtimeKey": meta.get("runtimeKey"),
             "grantedCardBaseIds": meta.get("grantedCardBaseIds") or [],
-        })
+        }
+        # 按轮数缩放的 runtime-stack 层数(如铸剑师:每轮战斗后澄心剑胚+1攻,
+        # 层数 = 已打过的轮数 = round_num-1,yisim 端 min(层数,18))。不带 stackSource
+        # 的仙命 yisim 默认按 1 层算;带了就用真实层数覆盖。
+        if meta.get("stackSource") == "round_minus_1":
+            talent["stackOverride"] = max(0, int(round_num) - 1)
+        talents.append(talent)
     return talents, names
 
 
-def _build_fates():
+def _build_fates(round_num=0):
     """Back-compat shim: ME's fates from addon.chosen_fates → (talents, names)."""
     try:
         import addon
         ids = list(addon.chosen_fates)
     except Exception:
         ids = []
-    return _fates_to_talents(ids)
+    return _fates_to_talents(ids, round_num)
 
 
 def _card(c):
@@ -373,7 +379,14 @@ def build_view_model(state, counter=None, last_battle=None, opp_tracker=None):
         max_tipo = log_maxtp  # 0 if log missing — UI treats 0 as "unknown"
 
         avail, thr, gate = shadow_state.breakthrough_status(realm, xiuwei, tipo_val)
-        fates, fate_names = _build_fates()
+        # 我方仙命优先用玩家结构 me.fates(GameStatus 每回合全量广播,与对手 opp.fates
+        # 同一通道,中途 attach 也拿得全);只有它为空时才回退到 addon.chosen_fates
+        # (增量监听「选仙命」包,需从开局就挂着,中途 attach 会丢 → talents 空)。
+        me_fate_ids = list(getattr(me, "fates", []) or [])
+        if me_fate_ids:
+            fates, fate_names = _fates_to_talents(me_fate_ids, state.round_num)
+        else:
+            fates, fate_names = _build_fates(state.round_num)
         # Annotate every hand card with how many copies are left in the deck
         # so the deck_tracker.jsonl debug dump shows them inline. `remaining()`
         # is keyed by canonical name (handles paired transform cards).
@@ -425,7 +438,7 @@ def build_view_model(state, counter=None, last_battle=None, opp_tracker=None):
         # Phase B addendum 8) flow through the SAME pipeline as me's fates —
         # `_fates_to_talents` builds talent objects with `phase = pick order`
         # so the matchup-mode sim can apply them via opts.opponentTalents.
-        opp_fates, opp_fate_names = _fates_to_talents(getattr(opp, "fates", []) or [])
+        opp_fates, opp_fate_names = _fates_to_talents(getattr(opp, "fates", []) or [], state.round_num)
         # R28: BattleLog override for opponent too (same precedence as ME).
         opp_log = _battle_log_stats(state.round_num, getattr(opp, "display_name", ""))
         opp_log_hp    = int(opp_log["max_hp"])     if opp_log else 0
