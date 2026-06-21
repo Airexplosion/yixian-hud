@@ -1234,10 +1234,9 @@ class Counter:
                 + reroll_mult * self._reroll_discards.get(name, 0)
             )
             left = max(0, max_copies - removed)
-            # Exhausted cards (0 left in deck) drop off the list — no point
-            # showing a card you can no longer draw.
-            if left > 0:
-                out[name] = left
+            # 见过的牌(在手/board/抽过)即使删到 0 也产出 → HUD 显「剩0」(已抽空),
+            # 与「剩?」(没见过、数量未知)区分开。没见过的牌不在 held → 不在此 dict → 仍「剩?」。
+            out[name] = left
         return out
 
     def deck_pool(self, player_sect: int, player_phase: int) -> dict:

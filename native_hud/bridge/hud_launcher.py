@@ -407,6 +407,7 @@ def consumer():
     opp = OpponentTracker()
     last_round = [0]
     pool_cache = {"round": -1, "sect": 0, "phase": 0}   # 宗门/阶段按回合缓存,免每帧主线程 RPC
+    vm_clock = [0.0, -1]   # [上次 build_vm 时间, 轮次];较重的 vm(对手/卡池/伤害)节流,不阻塞剩X
     while True:
         try:
             state = _sq.state_queue.get(timeout=0.5)
@@ -441,13 +442,10 @@ def consumer():
         state = batch[-1]                  # 只渲染最新帧
         rn = int(getattr(state, "round_num", 0) or 0)
         try:
-            vm = build_view_model(state, counter=counter,
-                                  last_battle=addon.last_battle, opp_tracker=opp)
-            _latest["vm"] = vm
-            rem = (vm.get("counter") or {}).get("remaining") or {}
-            print("[r%s] in=%d out=%d remaining=%d (batch=%d)"
-                  % (rn, _counts["in"], _counts["out"], len(rem), len(batch)), flush=True)
             ex = _hud_ex["ex"]
+            # 快路径:剩X 每帧第一时间从 counter 直接取并推,不等较重的 build_view_model →
+            # 换牌后即时刷新(剩X 延迟只取决于 observe+remaining,与对手/卡池/伤害脱钩)。
+            rem = counter.remaining()
             if ex is not None and _hud_ready.is_set():
                 ex.call_str(HUD_T, "SetShowLeft", "1" if SETTINGS["remaining"] else "0")
                 ex.call_str(HUD_T, "SetShowSkip", "1" if SETTINGS["skip"] else "0")
@@ -455,6 +453,16 @@ def consumer():
                     payload = remaining_with_aliases(rem)
                     ex.call_str(HUD_T, "SetRemaining",
                                 "|".join("%s:%s" % (k, v) for k, v in payload.items()))
+            # 较重部分(对手/卡池/警告 + 伤害用的 vm)节流到 ~0.35s 一次(换轮立刻刷),
+            # 不让 build_view_model 每帧阻塞剩X 推送。
+            now = time.monotonic()
+            if (now - vm_clock[0] >= 0.35 or rn != vm_clock[1]) \
+                    and ex is not None and _hud_ready.is_set():
+                vm_clock[0], vm_clock[1] = now, rn
+                vm = build_view_model(state, counter=counter,
+                                      last_battle=addon.last_battle, opp_tracker=opp)
+                _latest["vm"] = vm
+                print("[r%s] remaining=%d batch=%d" % (rn, len(rem), len(batch)), flush=True)
                 # #1 卡池补全:本宗门 + 当前阶段的全部常规牌(含没抽到的满数牌)。
                 # 宗门 id 从 C# GetPlayerSect 取(记牌器没存主宗门),phase 用玩家境界。
                 from pool_payload import pool_payload
