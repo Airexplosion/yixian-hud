@@ -705,9 +705,17 @@ namespace YiXianBot
                 if (bm.allBattleExecuters != null)
                 {
                     var list = bm.allBattleExecuters;
-                    // 还有 executer 在执行 → 飙速等它结束(强断后很快 settle),先别切场景。
+                    // 每 tick 持续强断所有在执行的 executer —— 含"点击时还没开始执行"的那些:
+                    // 按钮刚出现就狂按时,这轮 executer 还在入场(isExecuting=false),DoSkip 的
+                    // 一次性强断漏掉它们;旧逻辑只"等"不"断" → 它们在 100x 下完整跑完才 settle =
+                    // 卡在斗法阶段一会儿。改成每 tick 都强断,漏网的也立刻被打断 → 必定跳掉。
+                    bool anyExecuting = false;
                     for (int i = 0; i < list.Count; i++)
-                    { if (list[i] != null && list[i].isExecuting) { Time.timeScale = 100f; return; } }
+                    {
+                        var be = list[i];
+                        if (be != null && be.isExecuting) { be.forceBreakExecuting = true; anyExecuting = true; }
+                    }
+                    if (anyExecuting) { Time.timeScale = 100f; return; }
                 }
                 if (bm.currentScene == SceneType.斗法阶段)
                 {
