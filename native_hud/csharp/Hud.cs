@@ -790,6 +790,23 @@ namespace YiXianBot
                     if (s_skipBtnGo != null) s_skipBtnGo.SetActive(false);
                     if (s_poolGo != null) s_poolGo.SetActive(false);
                     s_poolVisible = false;
+                    // 逐卡剩X(BotLeft):卡的子物体,HideScreen 不管 → 用和绘制相同的
+                    // CardPanel 逐卡 SetText "" 清掉(每帧,含新发的牌),重新启用后卡循环写回。
+                    try {
+                        var bpd = ILRPanelBase.FindILRPanel<BattlePanel>();
+                        var cpd = bpd != null ? bpd.FindILRSubPanel<CardPanel>() : null;
+                        if (cpd != null) {
+                            var gd = cpd.GetCardGrids();
+                            for (int i = 0; i < gd.Count; i++) {
+                                var c = gd[i].GetCard(); if (c == null) continue;
+                                var v = c.movableRT; if (v != null) SetText(Ensure(v, LEFT, true), "");
+                            }
+                            var hd = cpd.GetHandCards();
+                            for (int i = 0; i < hd.Count; i++) {
+                                var v = hd[i].movableRT; if (v != null) SetText(Ensure(v, LEFT, true), "");
+                            }
+                        }
+                    } catch (Exception) { }
                     return;
                 }
                 DrawSkipButton();   // independent of placement state — shows during battle
