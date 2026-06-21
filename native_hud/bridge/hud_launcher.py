@@ -406,31 +406,47 @@ def consumer():
     counter = Counter()
     opp = OpponentTracker()
     last_round = [0]
+    pool_cache = {"round": -1, "sect": 0, "phase": 0}   # 宗门/阶段按回合缓存,免每帧主线程 RPC
     while True:
         try:
             state = _sq.state_queue.get(timeout=0.5)
         except Exception:
             continue
-        rn = int(getattr(state, "round_num", 0) or 0)
-        if _sq.new_game_event.is_set() or (last_round[0] > 1 and rn <= 1):
+        # 抽干队列:Counter 是 diff 式(逐帧累计抽牌),必须 observe 每一帧才不漏数 → 全 observe;
+        # 但换牌/出牌会连发多帧,旧逻辑逐帧都 build_vm + 推 HUD(还每帧调主线程 RPC)→ 积压,
+        # 屏上剩X 慢半拍。只对**最新帧**渲染+推送,既准又即时。
+        batch = [state]
+        while True:
             try:
-                _sq.new_game_event.clear()
+                batch.append(_sq.state_queue.get_nowait())
             except Exception:
-                pass
-            counter.reset()
-            opp.reset()
-            print("[reset] 新局 (round %d->%d)" % (last_round[0], rn), flush=True)
-        last_round[0] = rn
+                break
+        for st in batch:
+            rn_i = int(getattr(st, "round_num", 0) or 0)
+            if _sq.new_game_event.is_set() or (last_round[0] > 1 and rn_i <= 1):
+                try:
+                    _sq.new_game_event.clear()
+                except Exception:
+                    pass
+                counter.reset()
+                opp.reset()
+                pool_cache["round"] = -1
+                print("[reset] 新局 (round %d->%d)" % (last_round[0], rn_i), flush=True)
+            last_round[0] = rn_i
+            try:
+                counter.observe(st)        # 每帧都 observe(计数靠逐帧 diff,不可跳)
+                opp.observe(st)
+            except Exception as e:
+                print("[consumer.observe] %s" % e, flush=True)
+        state = batch[-1]                  # 只渲染最新帧
+        rn = int(getattr(state, "round_num", 0) or 0)
         try:
-            counter.observe(state)
-            opp.observe(state)
             vm = build_view_model(state, counter=counter,
                                   last_battle=addon.last_battle, opp_tracker=opp)
             _latest["vm"] = vm
             rem = (vm.get("counter") or {}).get("remaining") or {}
-            print("[r%s] in=%d out=%d remaining=%d keys=%s"
-                  % (rn, _counts["in"], _counts["out"], len(rem),
-                     list(rem.keys())[:10]), flush=True)
+            print("[r%s] in=%d out=%d remaining=%d (batch=%d)"
+                  % (rn, _counts["in"], _counts["out"], len(rem), len(batch)), flush=True)
             ex = _hud_ex["ex"]
             if ex is not None and _hud_ready.is_set():
                 ex.call_str(HUD_T, "SetShowLeft", "1" if SETTINGS["remaining"] else "0")
@@ -443,12 +459,15 @@ def consumer():
                 # 宗门 id 从 C# GetPlayerSect 取(记牌器没存主宗门),phase 用玩家境界。
                 from pool_payload import pool_payload
                 try:
-                    _r = ex.call_str(HUD_T, "GetPlayerSect", "")
-                    _si = (_r.get("result", "") if isinstance(_r, dict) else "") or ""
-                    _ps = _si.split(",")
-                    _psect, _pphase = int(_ps[0]), int(_ps[1])
-                    _full = counter.deck_pool(_psect, _pphase)
-                    print("[pool] sect=%d phase=%d 常规牌=%d" % (_psect, _pphase, len(_full)), flush=True)
+                    # GetPlayerSect 是主线程 RPC,宗门/阶段一回合内不变 → 按回合缓存,不每帧调
+                    # (每帧 marshal 主线程会拖慢循环 + 挤占游戏渲染 → 剩X 慢半拍)。
+                    if rn != pool_cache["round"]:
+                        _r = ex.call_str(HUD_T, "GetPlayerSect", "")
+                        _si = (_r.get("result", "") if isinstance(_r, dict) else "") or ""
+                        _ps = _si.split(",")
+                        pool_cache["sect"], pool_cache["phase"] = int(_ps[0]), int(_ps[1])
+                        pool_cache["round"] = rn
+                    _full = counter.deck_pool(pool_cache["sect"], pool_cache["phase"])
                     ex.call_str(HUD_T, "SetPool", pool_payload(_full, NAME_TO_ID))
                 except Exception as _pe:
                     print("[pool] %s -> 退回见过的牌" % _pe, flush=True)
