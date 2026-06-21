@@ -408,14 +408,15 @@ def consumer():
     last_round = [0]
     pool_cache = {"round": -1, "sect": 0, "phase": 0}   # 宗门/阶段按回合缓存,免每帧主线程 RPC
     vm_clock = [0.0, -1]   # [上次 build_vm 时间, 轮次];较重的 vm(对手/卡池/伤害)节流,不阻塞剩X
+    push_cache = {}        # 上次推给 C# 的各值;**没变就不发 RPC**(每次 call_str ~0.2s,省掉是关键)
+    last_ex = [None]       # HUD ex 对象;(重)加载后换了对象 → 清缓存强制重推
     while True:
         try:
             state = _sq.state_queue.get(timeout=0.5)
         except Exception:
             continue
         # 抽干队列:Counter 是 diff 式(逐帧累计抽牌),必须 observe 每一帧才不漏数 → 全 observe;
-        # 但换牌/出牌会连发多帧,旧逻辑逐帧都 build_vm + 推 HUD(还每帧调主线程 RPC)→ 积压,
-        # 屏上剩X 慢半拍。只对**最新帧**渲染+推送,既准又即时。
+        # 只对**最新帧**渲染,且所有 Set* 去重(值没变不发 RPC)→ 剩X 即时刷新(瓶颈是 RPC 次数)。
         batch = [state]
         while True:
             try:
@@ -443,32 +444,35 @@ def consumer():
         rn = int(getattr(state, "round_num", 0) or 0)
         try:
             ex = _hud_ex["ex"]
-            # 快路径:剩X 每帧第一时间从 counter 直接取并推,不等较重的 build_view_model →
-            # 换牌后即时刷新(剩X 延迟只取决于 observe+remaining,与对手/卡池/伤害脱钩)。
+            if ex is None or not _hud_ready.is_set():
+                continue
+            if ex is not last_ex[0]:       # HUD (重)加载 → C# 状态已重置,清缓存强制重推
+                push_cache.clear()
+                last_ex[0] = ex
+
+            def _push(method, value):      # 值没变就不发 RPC(call_str ~0.2s/次)
+                if push_cache.get(method) != value:
+                    ex.call_str(HUD_T, method, value)
+                    push_cache[method] = value
+
+            # 快路径:剩X 即时刷新。排序保证同一计数生成同一串 → 去重可靠,换牌时只发 1 次。
+            _push("SetShowLeft", "1" if SETTINGS["remaining"] else "0")
+            _push("SetShowSkip", "1" if SETTINGS["skip"] else "0")
             rem = counter.remaining()
-            if ex is not None and _hud_ready.is_set():
-                ex.call_str(HUD_T, "SetShowLeft", "1" if SETTINGS["remaining"] else "0")
-                ex.call_str(HUD_T, "SetShowSkip", "1" if SETTINGS["skip"] else "0")
-                if rem:
-                    payload = remaining_with_aliases(rem)
-                    ex.call_str(HUD_T, "SetRemaining",
-                                "|".join("%s:%s" % (k, v) for k, v in payload.items()))
-            # 较重部分(对手/卡池/警告 + 伤害用的 vm)节流到 ~0.35s 一次(换轮立刻刷),
-            # 不让 build_view_model 每帧阻塞剩X 推送。
+            if rem:
+                _push("SetRemaining", "|".join("%s:%s" % (k, v)
+                      for k, v in sorted(remaining_with_aliases(rem).items())))
+
+            # 较重部分(对手/卡池/警告 + 伤害用的 vm)节流到 ~0.35s 一次(换轮立刻刷)。
             now = time.monotonic()
-            if (now - vm_clock[0] >= 0.35 or rn != vm_clock[1]) \
-                    and ex is not None and _hud_ready.is_set():
+            if now - vm_clock[0] >= 0.35 or rn != vm_clock[1]:
                 vm_clock[0], vm_clock[1] = now, rn
                 vm = build_view_model(state, counter=counter,
                                       last_battle=addon.last_battle, opp_tracker=opp)
                 _latest["vm"] = vm
-                print("[r%s] remaining=%d batch=%d" % (rn, len(rem), len(batch)), flush=True)
-                # #1 卡池补全:本宗门 + 当前阶段的全部常规牌(含没抽到的满数牌)。
-                # 宗门 id 从 C# GetPlayerSect 取(记牌器没存主宗门),phase 用玩家境界。
+                # 卡池(Tab overlay):宗门/阶段一回合内不变 → GetPlayerSect 按回合缓存,不每帧调。
                 from pool_payload import pool_payload
                 try:
-                    # GetPlayerSect 是主线程 RPC,宗门/阶段一回合内不变 → 按回合缓存,不每帧调
-                    # (每帧 marshal 主线程会拖慢循环 + 挤占游戏渲染 → 剩X 慢半拍)。
                     if rn != pool_cache["round"]:
                         _r = ex.call_str(HUD_T, "GetPlayerSect", "")
                         _si = (_r.get("result", "") if isinstance(_r, dict) else "") or ""
@@ -476,28 +480,23 @@ def consumer():
                         pool_cache["sect"], pool_cache["phase"] = int(_ps[0]), int(_ps[1])
                         pool_cache["round"] = rn
                     _full = counter.deck_pool(pool_cache["sect"], pool_cache["phase"])
-                    ex.call_str(HUD_T, "SetPool", pool_payload(_full, NAME_TO_ID))
+                    _push("SetPool", "|".join(sorted(pool_payload(_full, NAME_TO_ID).split("|"))))
                 except Exception as _pe:
                     print("[pool] %s -> 退回见过的牌" % _pe, flush=True)
-                    ex.call_str(HUD_T, "SetPool", pool_payload(rem, NAME_TO_ID))
-                # Opponent HP cap + 修为. The tracked values are LAST round's;
-                # user's rule: this round ≈ last HP +2, last 修为 +5.
-                # NB: keep `opp` = the OpponentTracker (do NOT rebind it here, or
-                # next round's opp.observe() blows up — use a separate name).
+                    _push("SetPool", "|".join(sorted(pool_payload(rem, NAME_TO_ID).split("|"))))
+                # 对手 命/修(上一轮值 + 经验规则 +2/+5)
                 opp_vm = vm.get("opponent")
                 if opp_vm and SETTINGS["opponent"]:
                     ohp = int(opp_vm.get("hp") or 0) + 2
                     oxw = int(opp_vm.get("xiuwei") or 0) + 5
-                    ex.call_str(HUD_T, "SetOpponent", "敌 命%d 修%d (预估)" % (ohp, oxw))
+                    _push("SetOpponent", "敌 命%d 修%d (预估)" % (ohp, oxw))
                 else:
-                    ex.call_str(HUD_T, "SetOpponent", "")
+                    _push("SetOpponent", "")
                 names = {_card_name(c).translate(_SEP_NORM)
                          for c in ((opp_vm or {}).get("board") or []) if c}
                 danger = sorted(names & DANGER_CARDS)
-                if danger and SETTINGS["warning"]:
-                    ex.call_str(HUD_T, "SetWarning", "⚠ 对手危险牌: " + " ".join(danger))
-                else:
-                    ex.call_str(HUD_T, "SetWarning", "")
+                _push("SetWarning", ("⚠ 对手危险牌: " + " ".join(danger))
+                      if (danger and SETTINGS["warning"]) else "")
         except Exception as e:
             print("[consumer] %s" % e, flush=True)
 
