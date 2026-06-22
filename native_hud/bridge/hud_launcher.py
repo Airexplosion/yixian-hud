@@ -742,6 +742,24 @@ def total_loop():
 PROCESS = os.environ.get("YX_PROC", "YiXianPai.exe")
 
 
+def _find_game_pid(name=PROCESS):
+    """用 tasklist 找游戏进程 PID。frida 的 enumerate 会漏掉不同完整性级别的进程
+    (WeGame 版以管理员跑 → frida 按名字 attach 报 ProcessNotFound),但 attach(pid) 能挂。
+    tasklist 看得全,拿到 PID 再按 PID attach → Steam/WeGame 都行。返回 pid 或 None。"""
+    try:
+        raw = subprocess.run(
+            ["tasklist", "/fi", "imagename eq %s" % name, "/fo", "csv", "/nh"],
+            capture_output=True, timeout=8,
+            creationflags=(0x08000000 if sys.platform.startswith("win") else 0)).stdout
+        for line in raw.decode("gbk", "replace").splitlines():
+            parts = line.split('","')
+            if len(parts) >= 2 and parts[0].strip('" ').lower() == name.lower():
+                return int(parts[1].strip('" '))
+    except Exception:
+        pass
+    return None
+
+
 def _hotkey_loop():
     import ctypes
     user32 = ctypes.windll.user32
@@ -885,16 +903,23 @@ def main():
     attach_mode = os.environ.get("YX_ATTACH", "1" if ATTACH else "0") != "0"
     pid = None
     if attach_mode:
-        print("attach %s (运行中的游戏)…" % PROCESS, flush=True)
+        # 按 PID attach(不按名字):tasklist 找 PID,兼容 Steam + WeGame(后者以管理员跑,
+        # frida 按名字枚举不到 → ProcessNotFound;按 PID 能挂)。
+        gpid = _find_game_pid(PROCESS)
+        print("attach %s pid=%s (运行中的游戏)…" % (PROCESS, gpid), flush=True)
         try:
-            feed_session = frida.attach(PROCESS)
-            hud_session = frida.attach(PROCESS)
+            if gpid is None:
+                raise RuntimeError("没找到运行中的 %s" % PROCESS)
+            feed_session = frida.attach(gpid)
+            hud_session = frida.attach(gpid)
         except Exception as e:
             print("\n[!] 挂载失败:%s" % e, flush=True)
-            print("[!] 请先从 Steam 打开弈仙牌(到登录/大厅),再运行本程序。", flush=True)
-            # --windowed 无控制台,弹窗告知(否则双击的 attach 版会静默退出)
+            print("[!] 请先打开弈仙牌(Steam 或 WeGame,到登录/大厅),再运行本程序。", flush=True)
+            # --windowed 无控制台,弹窗告知(否则双击的 attach 版会静默退出)。
+            # WeGame 版以管理员跑时,本程序可能也需「以管理员身份运行」才挂得上。
             _msgbox("YiXianHUD — 挂载失败",
-                    "没找到运行中的弈仙牌。\n\n请先从 Steam 打开游戏(到登录/大厅),再运行本程序。")
+                    "没挂上运行中的弈仙牌。\n\n请先打开游戏(Steam 或 WeGame,到登录/大厅)再运行;\n"
+                    "若是 WeGame 版,可能需右键本程序「以管理员身份运行」。")
             return
     else:
         game_exe = resolve_game_exe()
