@@ -98,7 +98,7 @@ from proxy_view import (Counter, OpponentTracker,             # noqa: E402
 BUILD = Path(os.environ.get("YX_HUD_BUILD", REPO / "native_hud" / "_build"))
 CAPTURE = str(BUILD / "capture.agent.js")
 GLUE = str(BUILD / "bot_glue3.agent.js")
-HUD_DLL = str(BUILD / "YiXianHud32.dll")
+HUD_DLL = str(BUILD / "YiXianHud33.dll")
 NODE_MARGINAL = str(REPO / "native_hud" / "bridge" / "yisim_marginal.js")
 NODE_SERVER = str(REPO / "native_hud" / "bridge" / "yisim_server.js")
 GAME_NAME = "YiXianPai.exe"
@@ -107,9 +107,9 @@ try:                                  # 版本变体:Lite 不带 yisim/伤害(sp
     from hud_edition import LITE
 except Exception:
     LITE = False
-HUD_T = "YiXianBot.Hud32"
+HUD_T = "YiXianBot.Hud33"
 # Earlier HUD iterations to hide on (re)load so only the current one draws.
-OLD_HUDS = ["Hud31", "Hud30", "Hud29", "Hud28", "Hud27", "Hud26", "Hud25", "Hud24", "Hud23", "Hud22", "Hud21", "Hud20", "Hud19", "Hud18", "Hud17", "Hud16"]
+OLD_HUDS = ["Hud32", "Hud31", "Hud30", "Hud29", "Hud28", "Hud27", "Hud26", "Hud25", "Hud24", "Hud23", "Hud22", "Hud21", "Hud20", "Hud19", "Hud18", "Hud17", "Hud16"]
 
 # Live settings (toggled from the GUI). Loops read these each iteration.
 SETTINGS = {
@@ -163,13 +163,16 @@ DEFAULT_POS = {"total": (0, -182), "warn": (0, -222), "opp": (70, -240), "skip":
 
 
 # ── 可配置热键 ────────────────────────────────────────────────────────────────
-DEFAULT_HOTKEYS = {"place":  {"vk": 0x57, "ctrl": False},   # W 上牌(手牌→空格)
-                   "evict":  {"vk": 0x53, "ctrl": False},   # S 下牌(场上→手牌)
-                   "swap":   {"vk": 0x44, "ctrl": False},   # D 换牌
-                   "refine": {"vk": 0x52, "ctrl": False},   # R 炼化
-                   "pool":   {"vk": 0x09, "ctrl": False}}   # Tab 卡池
-# 卡牌快捷动作(走 C# CardAction:射线找光标下的卡 → 按 position 调游戏方法,跟右键同路径)
-_CARD_ACTS = ("place", "evict", "swap", "refine")
+DEFAULT_HOTKEYS = {"place":     {"vk": 0x57, "ctrl": False},  # W 上牌(手牌→空格)
+                   "evict":     {"vk": 0x53, "ctrl": False},  # S 下牌(场上→手牌)
+                   "moveleft":  {"vk": 0x41, "ctrl": False},  # A 场上卡和左邻位换格
+                   "moveright": {"vk": 0x44, "ctrl": False},  # D 场上卡和右邻位换格
+                   "merge":     {"vk": 0x51, "ctrl": False},  # Q 合成(找同名同级牌)
+                   "swap":      {"vk": 0x45, "ctrl": False},  # E 换牌(replaceArea;原 D 已让给右移)
+                   "refine":    {"vk": 0x52, "ctrl": False},  # R 炼化
+                   "pool":      {"vk": 0x09, "ctrl": False}}  # Tab 卡池
+# 卡牌快捷动作(走 C# 读键 + 射线找光标下的卡 → 按 position 调游戏方法,跟右键同路径)
+_CARD_ACTS = ("place", "evict", "moveleft", "moveright", "merge", "swap", "refine")
 _VK_NAMES = {0x01: "鼠标左键", 0x02: "鼠标右键", 0x04: "鼠标中键", 0x05: "鼠标侧键1", 0x06: "鼠标侧键2",
              0x08: "Backspace", 0x09: "Tab", 0x0D: "Enter", 0x1B: "Esc", 0x20: "Space",
              0x25: "←", 0x26: "↑", 0x27: "→", 0x28: "↓",
@@ -207,6 +210,7 @@ def _set_hotkey(act, vk, ctrl):
     cfg = _load_cfg()
     cfg.setdefault("hotkeys", {})[act] = {"vk": int(vk), "ctrl": bool(ctrl)}
     _save_cfg(cfg)
+    _push_hotkeys()   # 立即把新绑定推给 C#(读键侧),不必等 _hotkey_loop 下一轮
 
 
 def _capture_hotkey(act, on_done):
@@ -766,45 +770,37 @@ def _find_game_pid(name=PROCESS):
     return None
 
 
-def _hotkey_loop():
-    import ctypes
-    user32 = ctypes.windll.user32
-    VK_CTRL = 0x11
-    acts = _CARD_ACTS + ("pool",)   # place/evict/swap/refine 走 CardAction;pool 走 TogglePool
-    prev = {a: False for a in acts}
+def _hotkey_spec():
+    # 下发给 C# SetHotkeys 的绑定串:"place:87:0|evict:83:0|swap:68:0|refine:82:0|pool:9:0"
+    # 每段 = 动作:Windows虚拟键码vk:是否需Ctrl(1/0)。
+    parts = []
+    for act in DEFAULT_HOTKEYS:
+        b = HOTKEYS.get(act) or DEFAULT_HOTKEYS[act]
+        parts.append("%s:%d:%d" % (act, int(b.get("vk", 0)), 1 if b.get("ctrl") else 0))
+    return "|".join(parts)
 
-    def _fg_is_game():
+
+def _push_hotkeys():
+    # 改键后立即重推绑定给 C#(否则要等下一轮 _hotkey_loop 才生效)。
+    ex = _hud_ex.get("ex")
+    if ex is not None:
         try:
-            hwnd = user32.GetForegroundWindow()
-            buf = ctypes.create_unicode_buffer(256)
-            user32.GetWindowTextW(hwnd, buf, 256)
-            return "YiXian" in buf.value or "弈仙" in buf.value
+            ex.call_str(HUD_T, "SetHotkeys", _hotkey_spec())
         except Exception:
-            return False
+            pass
 
+
+def _hotkey_loop():
+    # ★读键已搬进 C#(主线程泵每帧 Input.GetKey,跟手、零 RPC)。Python 这边只把绑定定期下发,
+    #   并在改键后立即重推(_push_hotkeys)。定期重推也能扛 HUD 热重载(重载后 C# 绑定会清空)。
     while True:
         try:
             ex = _hud_ex.get("ex")
-            if ex is not None and _fg_is_game():
-                ctrl = (user32.GetAsyncKeyState(VK_CTRL) & 0x8000) != 0
-                for act in acts:
-                    b = HOTKEYS.get(act) or DEFAULT_HOTKEYS[act]
-                    vk = int(b.get("vk", 0)); need_ctrl = bool(b.get("ctrl", False))
-                    # 需 Ctrl 的:vk 按下且 Ctrl 按下;不需 Ctrl 的:vk 按下且 Ctrl 没按(避免 Ctrl+vk 误触发)
-                    raw = (user32.GetAsyncKeyState(vk) & 0x8000) != 0
-                    down = raw and (ctrl if need_ctrl else not ctrl)
-                    if down and not prev[act]:
-                        try:
-                            if act == "pool":
-                                ex.call_str(HUD_T, "TogglePool", "")
-                            else:                          # 卡牌动作:C# 射线找光标下的卡 + 按 position 调方法
-                                ex.call_str(HUD_T, "CardAction", act)
-                        except Exception:
-                            pass
-                    prev[act] = down
+            if ex is not None:
+                ex.call_str(HUD_T, "SetHotkeys", _hotkey_spec())
         except Exception:
             pass
-        time.sleep(0.01)   # 10ms 轮询,按键更跟手(原 30ms 偏迟钝)
+        time.sleep(2.0)   # 2s 重推一次绑定(非热路径;真正读键在 C# 每帧做)
 
 
 EULA_TEXT = """YiXianHUD 最终用户许可协议(EULA)与使用须知

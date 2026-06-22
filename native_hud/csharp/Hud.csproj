@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net40</TargetFramework>
-    <AssemblyName>YiXianHud32</AssemblyName>
+    <AssemblyName>YiXianHud33</AssemblyName>
     <DebugType>none</DebugType>
     <Deterministic>true</Deterministic>
     <NoWarn>CS1701;CS1702;CS0436</NoWarn>

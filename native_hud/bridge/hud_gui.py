@@ -216,10 +216,20 @@ def run_gui(settings, on_exit, status_get=None, pos_get=None, on_pos=None,
             hotkey_label=None, hotkey_capture=None, guard_get=None):
     root = tk.Tk()
     root.title("弈仙牌 HUD")
-    root.geometry("300x820")          # 容下显示元素/伤害模式/位置/5行快捷键/状态/守护红字 + 底部三按钮(关于/说明/退出)
+    root.geometry("330x680")          # 内容可滚动(下面 Canvas),窗口高度够看主体即可,放不下的滚轮/拖条查看
     root.attributes("-topmost", True)
-    frm = ttk.Frame(root, padding=12)
-    frm.pack(fill="both", expand=True)
+    # 可滚动容器:内容多(显示元素/伤害/位置/8行快捷键/状态/守护/三按钮)时不被裁切,小屏也能滚。
+    _outer = ttk.Frame(root); _outer.pack(fill="both", expand=True)
+    _canvas = tk.Canvas(_outer, borderwidth=0, highlightthickness=0)
+    _vsb = ttk.Scrollbar(_outer, orient="vertical", command=_canvas.yview)
+    _canvas.configure(yscrollcommand=_vsb.set)
+    _vsb.pack(side="right", fill="y")
+    _canvas.pack(side="left", fill="both", expand=True)
+    frm = ttk.Frame(_canvas, padding=12)
+    _win = _canvas.create_window((0, 0), window=frm, anchor="nw")
+    frm.bind("<Configure>", lambda e: _canvas.configure(scrollregion=_canvas.bbox("all")))
+    _canvas.bind("<Configure>", lambda e: _canvas.itemconfigure(_win, width=e.width))
+    _canvas.bind_all("<MouseWheel>", lambda e: _canvas.yview_scroll(int(-e.delta / 120), "units"))
 
     # 窗口置顶开关:默认开(保持原行为);取消后本窗口不再强制置顶,可被游戏盖住。
     top_var = tk.BooleanVar(value=True)
@@ -260,7 +270,9 @@ def run_gui(settings, on_exit, status_get=None, pos_get=None, on_pos=None,
     if hotkey_label and hotkey_capture:
         ttk.Separator(frm).pack(fill="x", pady=8)
         ttk.Label(frm, text="快捷键 (悬停卡牌按键秒操作 · 支持 Ctrl组合/鼠标侧键)", font=("", 10, "bold")).pack(anchor="w")
-        for hk, htext in (("place", "上牌"), ("evict", "下牌"), ("swap", "换牌"),
+        for hk, htext in (("place", "上牌"), ("evict", "下牌"),
+                          ("moveleft", "左移"), ("moveright", "右移"),
+                          ("merge", "合成"), ("swap", "换牌"),
                           ("refine", "炼化"), ("pool", "卡池 浏览")):
             hrow = ttk.Frame(frm)
             hrow.pack(fill="x", pady=1)

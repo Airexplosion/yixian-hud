@@ -69,7 +69,7 @@ cmd = [
     "--add-data", f"web{SEP}web",
     "--add-data", f"{B}/capture.agent.js{SEP}{B}",
     "--add-data", f"{B}/bot_glue3.agent.js{SEP}{B}",
-    "--add-data", f"{B}/YiXianHud32.dll{SEP}{B}",
+    "--add-data", f"{B}/YiXianHud33.dll{SEP}{B}",
     "--add-data", f"native_hud/bridge/yisim_marginal.js{SEP}native_hud/bridge",
     "--add-data", f"native_hud/bridge/yisim_server.js{SEP}native_hud/bridge",
     "--add-data", f"native_hud/bridge/hud_gui.py{SEP}native_hud/bridge",

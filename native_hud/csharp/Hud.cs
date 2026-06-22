@@ -14,7 +14,7 @@ namespace YiXianBot
     //  · board card top:  "配置攻击(边际贡献)"  e.g. 12(42)  — config from bot, marginal pushed (yisim).
     //  · every card top-right: 剩X (counter.remaining() by NAME).
     // 8-layer manual outline (font-agnostic). Parented to movableRT (scales on hover).
-    public static class Hud32
+    public static class Hud33
     {
         const string DMG = "BotDmg";
         const string LEFT = "BotLeft";
@@ -25,8 +25,13 @@ namespace YiXianBot
         static IDisposable s_sub;
         static IDisposable s_fast;   // 0.05s 主线程泵:执行 Tab/D 待办(RPC 跑在注入线程,Unity 操作必须回主线程)
         static bool s_pendingToggle = false;   // Tab 按下 → 主线程泵切换卡池
-        static string s_pendingAction = null;  // 待执行的卡牌快捷动作(place/evict/swap/refine),主线程泵处理
+        static string s_pendingAction = null;  // 兼容:Python 触发的待执行动作(现已改 C# 直接读键)
         static List<RaycastResult> s_ray = new List<RaycastResult>();   // 射线命中缓存(找光标下的卡)
+        // 热键改 C# 侧每帧读(免 Python→RPC 的 ~0.2s 延迟,跟手):action ↔ KeyCode/Ctrl,Python 经 SetHotkeys 下发绑定。
+        static readonly string[] s_hkActs = { "place", "evict", "moveleft", "moveright", "swap", "merge", "refine", "pool" };
+        static int[] s_hkKey = new int[8];     // 每个动作的 Unity KeyCode(0=未绑)
+        static bool[] s_hkCtrl = new bool[8];
+        static bool[] s_hkPrev = new bool[8];  // 上一帧是否按下(边沿检测)
         static int s_noCard = 0;     // consecutive ticks with no visible card (battle debounce)
         static TMP_FontAsset s_font;
         static Dictionary<string, int> s_remaining = new Dictionary<string, int>();   // by card name
@@ -186,8 +191,71 @@ namespace YiXianBot
         // F3:D 热键(Python 端)同理只置标志,换牌动作在 PumpActions(主线程)里做。
         public static string SwapHovered(string _) { s_pendingAction = "swap"; return "ok:queued"; }
         // 卡牌快捷动作:Python 检测到热键即调,排队到主线程泵执行(射线找光标下的卡 → 按 position 调游戏方法)。
-        // action ∈ place(上牌)/evict(下牌)/swap(换牌)/refine(炼化)。
+        // action ∈ place(上牌)/evict(下牌)/swap(换牌)/refine(炼化)。(兼容保留;现默认走 C# 读键。)
         public static string CardAction(string action) { s_pendingAction = action; return "ok:queued " + action; }
+
+        // ★跟手关键:把读键搬进 C#(每帧 Input.GetKey),免掉 Python→glue RPC 的 ~0.2s 延迟。
+        // Python 经此把绑定下发一次(periodic),spec 形如 "place:87:0|evict:83:0|swap:68:0|refine:82:0|pool:9:0"
+        // 每段 = 动作:Windows虚拟键码vk:是否需Ctrl(1/0)。vk 在 C# 侧转成 Unity KeyCode。
+        public static string SetHotkeys(string spec)
+        {
+            try {
+                var parts = spec.Split('|');
+                for (int p = 0; p < parts.Length; p++) {
+                    var f = parts[p].Split(':'); if (f.Length < 2) continue;
+                    int idx = -1;
+                    for (int i = 0; i < s_hkActs.Length; i++) if (s_hkActs[i] == f[0]) { idx = i; break; }
+                    if (idx < 0) continue;
+                    int vk; if (!int.TryParse(f[1], out vk)) continue;
+                    s_hkKey[idx] = VkToKeyCode(vk);
+                    s_hkCtrl[idx] = f.Length > 2 && f[2] == "1";
+                }
+                return "ok:hotkeys";
+            } catch (Exception e) { return "EX:" + e.Message; }
+        }
+
+        // Windows 虚拟键码 → Unity KeyCode 整数值。覆盖字母/数字/F键/方向/常用键/鼠标键;不认识返回 0(不绑)。
+        static int VkToKeyCode(int vk)
+        {
+            if (vk >= 0x41 && vk <= 0x5A) return vk + 32;          // A-Z(0x41..) → KeyCode.a..z(97..122)
+            if (vk >= 0x30 && vk <= 0x39) return vk;               // 0-9(0x30..) → KeyCode.Alpha0..9(48..57)
+            if (vk >= 0x70 && vk <= 0x7B) return (vk - 0x70) + 282; // F1-F12 → KeyCode.F1=282..
+            switch (vk) {
+                case 0x09: return 9;    // Tab
+                case 0x20: return 32;   // Space
+                case 0x0D: return 13;   // Return
+                case 0x1B: return 27;   // Escape
+                case 0x25: return 276;  // Left  → KeyCode.LeftArrow
+                case 0x26: return 273;  // Up
+                case 0x27: return 275;  // Right
+                case 0x28: return 274;  // Down
+                case 0x01: return 323;  // 鼠标左 → KeyCode.Mouse0
+                case 0x02: return 324;  // 鼠标右 → Mouse1
+                case 0x04: return 325;  // 鼠标中 → Mouse2
+                case 0x05: return 326;  // 侧键1 → Mouse3
+                case 0x06: return 327;  // 侧键2 → Mouse4
+                default: return 0;
+            }
+        }
+
+        // 每帧读热键(主线程泵内调):对每个已绑动作做边沿检测 → 直接执行,零 RPC。
+        // Unity Input 只在游戏聚焦时有效 → 天然只在游戏内生效(不必再判前台窗口)。
+        static void ReadHotkeys()
+        {
+            bool ctrl = Input.GetKey((KeyCode)306) || Input.GetKey((KeyCode)305);  // Left/RightControl
+            for (int i = 0; i < s_hkActs.Length; i++) {
+                int kc = s_hkKey[i]; if (kc == 0) { s_hkPrev[i] = false; continue; }
+                bool raw = Input.GetKey((KeyCode)kc);
+                bool down = raw && (s_hkCtrl[i] ? ctrl : !ctrl);   // 需Ctrl的要Ctrl同按;不需的要Ctrl没按(避免Ctrl组合误触)
+                if (down && !s_hkPrev[i]) {
+                    try {
+                        if (s_hkActs[i] == "pool") DoTogglePool();
+                        else DoCardAction(s_hkActs[i]);
+                    } catch (Exception) { }
+                }
+                s_hkPrev[i] = down;
+            }
+        }
 
         // #1 卡池补全:返回玩家主宗门 id(对应 card_phases.json 的 sect 编号)+ 当前境界,
         // 供记牌器列出"本宗门 + 当前阶段所有常规牌"。格式 "sect,realm"。
@@ -203,6 +271,7 @@ namespace YiXianBot
         // 不再靠"放大猜悬浮卡" —— 精确、跟手。
         static void PumpActions(long n)
         {
+            try { ReadHotkeys(); } catch (Exception) { }   // ★C# 侧每帧读键(跟手),取代 Python→RPC
             try { if (s_pendingToggle) { s_pendingToggle = false; DoTogglePool(); } } catch (Exception) { }
             try { if (s_poolRebuild) { s_poolRebuild = false; if (s_poolVisible) { s_poolDirty = true; ShowPool(); } } } catch (Exception) { }
             try { var a = s_pendingAction; if (a != null) { s_pendingAction = null; DoCardAction(a); } } catch (Exception) { }
@@ -264,8 +333,57 @@ namespace YiXianBot
                     if (pos == CardPosition.Hand && cp.replaceArea != null) cp.replaceArea.ReplaceCard(card);
                 } else if (action == "refine") {               // 炼化
                     if (pos == CardPosition.Hand && cp.refineArea != null) cp.refineArea.RefineCard(card);
+                } else if (action == "moveleft" || action == "moveright") {  // board卡和左/右邻位换格
+                    if (pos == CardPosition.Used) {
+                        var grids = cp.GetCardGrids();
+                        int tgt = card.cardInfo.index + (action == "moveleft" ? -1 : 1);
+                        if (tgt >= 0 && tgt < grids.Count && grids[tgt] != null && grids[tgt].unlocked)
+                            cp.MoveToGrid(card, grids[tgt]);   // 目标格有卡→游戏自动交换;空→移过去
+                    }
+                } else if (action == "merge") {                // 合成:找同名同级伙伴牌
+                    DoMerge(cp, card);
                 }
             } catch (Exception) { }
+        }
+
+        // 合成:把光标下的卡与另一张「同 cardInfo.id(同名同级)、可升级」的牌合并(手牌或场上都找)。
+        // 按两张牌的位置组合走游戏自己的升级路径:双手牌→TryUpgradeHandCard;任一在场上→MoveToGrid(同id目标格会自动升级)。
+        static void DoMerge(CardPanel cp, CardItem hovered)
+        {
+            try {
+                if (hovered.cardConfig.noUpgrade) return;
+                var partner = FindMergePartner(cp, hovered.cardInfo.id,
+                                                hovered.cardInfo.position, hovered.cardInfo.index);
+                if (partner == null) return;
+                bool hHand = hovered.cardInfo.position == CardPosition.Hand;
+                if (hHand && partner.cardInfo.position == CardPosition.Hand) {
+                    cp.TryUpgradeHandCard(hovered, partner);                    // 双手牌:悬停留升级、伙伴消耗
+                } else if (partner.cardInfo.position == CardPosition.Used) {
+                    cp.MoveToGrid(hovered, cp.GetCardGrids()[partner.cardInfo.index]);  // 把悬停移到伙伴格→升级
+                } else {                                                        // 悬停在场上、伙伴在手:把手牌伙伴移到悬停格→升级
+                    cp.MoveToGrid(partner, cp.GetCardGrids()[hovered.cardInfo.index]);
+                }
+            } catch (Exception) { }
+        }
+
+        // 找一张可与之合成的伙伴牌:同 id、可升级、非自身(用 位置+index 排除自身,避免桥对象引用不一致)。先场上后手牌。
+        static CardItem FindMergePartner(CardPanel cp, int id, CardPosition selfPos, int selfIdx)
+        {
+            var used = cp.GetUsedCards();
+            for (int i = 0; i < used.Count; i++) {
+                var c = used[i]; if (c == null) continue;
+                if (c.cardInfo.id != id || c.cardConfig.noUpgrade) continue;
+                if (c.cardInfo.position == selfPos && c.cardInfo.index == selfIdx) continue;
+                return c;
+            }
+            var hand = cp.GetHandCards();
+            for (int i = 0; i < hand.Count; i++) {
+                var c = hand[i]; if (c == null) continue;
+                if (c.cardInfo.id != id || c.cardConfig.noUpgrade) continue;
+                if (c.cardInfo.position == selfPos && c.cardInfo.index == selfIdx) continue;
+                return c;
+            }
+            return null;
         }
 
         // 预热图鉴卡面 prefab 池:InitPrefabPool 异步从 Addressables 加载卡面 prefab,
