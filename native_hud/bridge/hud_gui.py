@@ -216,7 +216,7 @@ def run_gui(settings, on_exit, status_get=None, pos_get=None, on_pos=None,
             hotkey_label=None, hotkey_capture=None, guard_get=None):
     root = tk.Tk()
     root.title("弈仙牌 HUD")
-    root.geometry("300x730")          # 加高:容下显示元素/伤害模式/位置/快捷键/状态/守护红字 + 底部三按钮(关于/说明/退出)
+    root.geometry("300x820")          # 容下显示元素/伤害模式/位置/5行快捷键/状态/守护红字 + 底部三按钮(关于/说明/退出)
     root.attributes("-topmost", True)
     frm = ttk.Frame(root, padding=12)
     frm.pack(fill="both", expand=True)
@@ -259,8 +259,9 @@ def run_gui(settings, on_exit, status_get=None, pos_get=None, on_pos=None,
 
     if hotkey_label and hotkey_capture:
         ttk.Separator(frm).pack(fill="x", pady=8)
-        ttk.Label(frm, text="快捷键 (支持 Ctrl组合 / 鼠标侧键)", font=("", 10, "bold")).pack(anchor="w")
-        for hk, htext in (("swap", "D牌 换牌"), ("pool", "卡池 浏览")):
+        ttk.Label(frm, text="快捷键 (悬停卡牌按键秒操作 · 支持 Ctrl组合/鼠标侧键)", font=("", 10, "bold")).pack(anchor="w")
+        for hk, htext in (("place", "上牌"), ("evict", "下牌"), ("swap", "换牌"),
+                          ("refine", "炼化"), ("pool", "卡池 浏览")):
             hrow = ttk.Frame(frm)
             hrow.pack(fill="x", pady=1)
             ttk.Label(hrow, text=htext, width=10).pack(side="left")

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using TMPro;
 using UniRx;
 using Proto;
@@ -24,8 +25,8 @@ namespace YiXianBot
         static IDisposable s_sub;
         static IDisposable s_fast;   // 0.05s 主线程泵:执行 Tab/D 待办(RPC 跑在注入线程,Unity 操作必须回主线程)
         static bool s_pendingToggle = false;   // Tab 按下 → 主线程泵切换卡池
-        static bool s_pendingSwap = false;     // D 按下 → 主线程泵换悬浮手牌
-        static CardItem s_lastHovered = null;  // 主线程每帧记录的悬浮手牌(按 D 时用它,防"按D后移开就丢")
+        static string s_pendingAction = null;  // 待执行的卡牌快捷动作(place/evict/swap/refine),主线程泵处理
+        static List<RaycastResult> s_ray = new List<RaycastResult>();   // 射线命中缓存(找光标下的卡)
         static int s_noCard = 0;     // consecutive ticks with no visible card (battle debounce)
         static TMP_FontAsset s_font;
         static Dictionary<string, int> s_remaining = new Dictionary<string, int>();   // by card name
@@ -183,7 +184,10 @@ namespace YiXianBot
         public static string TogglePool(string _) { s_pendingToggle = true; return "ok:queued"; }
 
         // F3:D 热键(Python 端)同理只置标志,换牌动作在 PumpActions(主线程)里做。
-        public static string SwapHovered(string _) { s_pendingSwap = true; return "ok:queued"; }
+        public static string SwapHovered(string _) { s_pendingAction = "swap"; return "ok:queued"; }
+        // 卡牌快捷动作:Python 检测到热键即调,排队到主线程泵执行(射线找光标下的卡 → 按 position 调游戏方法)。
+        // action ∈ place(上牌)/evict(下牌)/swap(换牌)/refine(炼化)。
+        public static string CardAction(string action) { s_pendingAction = action; return "ok:queued " + action; }
 
         // #1 卡池补全:返回玩家主宗门 id(对应 card_phases.json 的 sect 编号)+ 当前境界,
         // 供记牌器列出"本宗门 + 当前阶段所有常规牌"。格式 "sect,realm"。
@@ -195,15 +199,13 @@ namespace YiXianBot
             } catch (Exception e) { return "EX:" + e.Message; }
         }
 
-        // 主线程泵(~16ms):处理热键待办 + 每帧记录悬浮手牌。注意顺序:先用"上一帧记录的
-        // 悬浮卡"处理换牌待办,再更新本帧悬浮卡 —— 用户按 D 后常立刻移开鼠标,等这里执行
-        // 时卡面已缩回、找不到悬浮卡,所以必须用上一帧的记录。
+        // 主线程泵(~16ms):处理热键待办。卡牌动作在这里**当场射线找光标下的卡**(和游戏右键同一套),
+        // 不再靠"放大猜悬浮卡" —— 精确、跟手。
         static void PumpActions(long n)
         {
             try { if (s_pendingToggle) { s_pendingToggle = false; DoTogglePool(); } } catch (Exception) { }
             try { if (s_poolRebuild) { s_poolRebuild = false; if (s_poolVisible) { s_poolDirty = true; ShowPool(); } } } catch (Exception) { }
-            try { if (s_pendingSwap) { s_pendingSwap = false; if (s_lastHovered != null) DoSwap(s_lastHovered); } } catch (Exception) { }
-            try { s_lastHovered = FindHoveredCard(); } catch (Exception) { s_lastHovered = null; }
+            try { var a = s_pendingAction; if (a != null) { s_pendingAction = null; DoCardAction(a); } } catch (Exception) { }
         }
 
         // 三按钮切换置顶模式(Unity Button onClick 调,主线程);设标志,下一帧泵重建 overlay。
@@ -220,34 +222,50 @@ namespace YiXianBot
             else if (s_poolGo != null) s_poolGo.SetActive(false);
         }
 
-        // 找当前"悬浮放大"的手牌:悬浮的卡 movableRT 被 DOTween 放大到 ZOOMIN_SIZE(1.5),
-        // 取手牌里 localScale 最大且明显>1 的那张。无则返回 null。
-        static CardItem FindHoveredCard()
+        // 射线找光标正下方的 CardItem —— 和游戏右键完全同一套:UIManager.graphicRaycaster 在鼠标
+        // 位置射线,取 tag=="Card" 的命中,经 ILRComponentBridge 桥回 ILRuntime 的 CardItem。精确、零猜测。
+        static CardItem FindCardUnderCursor()
         {
-            var bp = ILRPanelBase.FindILRPanel<BattlePanel>();
-            var cp = bp != null ? bp.FindILRSubPanel<CardPanel>() : null;
-            if (cp == null) return null;
-            var hand = cp.GetHandCards();
-            if (hand == null || hand.Count == 0) return null;
-            CardItem best = null; float bestScale = 1.05f;   // 需明显放大才算悬浮
-            for (int i = 0; i < hand.Count; i++)
-            {
-                var c = hand[i];
-                if (c == null) continue;
-                var mrt = c.movableRT;
-                float s = mrt != null ? mrt.localScale.x : c.transform.localScale.x;
-                if (s > bestScale) { bestScale = s; best = c; }
-            }
-            return best;
+            try {
+                var ev = new PointerEventData(EventSystem.current);
+                ev.position = Input.mousePosition;
+                s_ray.Clear();
+                UIManager.graphicRaycaster.Raycast(ev, s_ray);
+                for (int i = 0; i < s_ray.Count; i++)
+                {
+                    var go = s_ray[i].gameObject;
+                    if (go == null || !go.CompareTag("Card")) continue;
+                    var br = go.GetComponent<ILRComponentBridge>();
+                    var ci = br != null ? br.GetILRObject<CardItem>() : null;
+                    if (ci != null) return ci;
+                }
+            } catch (Exception) { }
+            return null;
         }
 
-        // 换掉指定手牌(主线程执行,客户端自己发包+播动画)。
-        static void DoSwap(CardItem card)
+        // 对光标下的卡执行动作(主线程):按卡的 position 走游戏自己的 CardPanel 方法 —— 与右键同路径。
+        static void DoCardAction(string action)
         {
-            if (card == null) return;
+            var card = FindCardUnderCursor(); if (card == null) return;
             var bp = ILRPanelBase.FindILRPanel<BattlePanel>();
             var cp = bp != null ? bp.FindILRSubPanel<CardPanel>() : null;
-            if (cp != null && cp.replaceArea != null) cp.replaceArea.ReplaceCard(card);
+            if (cp == null) return;
+            try {
+                var pos = card.cardInfo.position;
+                if (action == "place") {                       // 上牌:手牌 → 首个空格
+                    if (pos == CardPosition.Hand) {
+                        var grids = cp.GetCardGrids(); CardGrid g = null;
+                        for (int i = 0; i < grids.Count; i++) if (grids[i].GetCard() == null) { g = grids[i]; break; }
+                        if (g != null) cp.MoveToGrid(card, g);
+                    }
+                } else if (action == "evict") {                // 下牌:场上 → 手牌
+                    if (pos == CardPosition.Used) cp.MoveToHand(card);
+                } else if (action == "swap") {                 // 换牌
+                    if (pos == CardPosition.Hand && cp.replaceArea != null) cp.replaceArea.ReplaceCard(card);
+                } else if (action == "refine") {               // 炼化
+                    if (pos == CardPosition.Hand && cp.refineArea != null) cp.refineArea.RefineCard(card);
+                }
+            } catch (Exception) { }
         }
 
         // 预热图鉴卡面 prefab 池:InitPrefabPool 异步从 Addressables 加载卡面 prefab,

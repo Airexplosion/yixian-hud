@@ -163,8 +163,13 @@ DEFAULT_POS = {"total": (0, -182), "warn": (0, -222), "opp": (70, -240), "skip":
 
 
 # ── 可配置热键 ────────────────────────────────────────────────────────────────
-DEFAULT_HOTKEYS = {"swap": {"vk": 0x44, "ctrl": False},   # D 换牌
-                   "pool": {"vk": 0x09, "ctrl": False}}   # Tab 卡池
+DEFAULT_HOTKEYS = {"place":  {"vk": 0x57, "ctrl": False},   # W 上牌(手牌→空格)
+                   "evict":  {"vk": 0x53, "ctrl": False},   # S 下牌(场上→手牌)
+                   "swap":   {"vk": 0x44, "ctrl": False},   # D 换牌
+                   "refine": {"vk": 0x52, "ctrl": False},   # R 炼化
+                   "pool":   {"vk": 0x09, "ctrl": False}}   # Tab 卡池
+# 卡牌快捷动作(走 C# CardAction:射线找光标下的卡 → 按 position 调游戏方法,跟右键同路径)
+_CARD_ACTS = ("place", "evict", "swap", "refine")
 _VK_NAMES = {0x01: "鼠标左键", 0x02: "鼠标右键", 0x04: "鼠标中键", 0x05: "鼠标侧键1", 0x06: "鼠标侧键2",
              0x08: "Backspace", 0x09: "Tab", 0x0D: "Enter", 0x1B: "Esc", 0x20: "Space",
              0x25: "←", 0x26: "↑", 0x27: "→", 0x28: "↓",
@@ -175,7 +180,7 @@ _VK_NAMES = {0x01: "鼠标左键", 0x02: "鼠标右键", 0x04: "鼠标中键", 0
 def _load_hotkeys():
     hk = (_load_cfg().get("hotkeys") or {})
     out = {}
-    for act in ("swap", "pool"):
+    for act in DEFAULT_HOTKEYS:
         b = hk.get(act) or {}
         d = DEFAULT_HOTKEYS[act]
         out[act] = {"vk": int(b.get("vk", d["vk"])), "ctrl": bool(b.get("ctrl", d["ctrl"]))}
@@ -765,8 +770,8 @@ def _hotkey_loop():
     import ctypes
     user32 = ctypes.windll.user32
     VK_CTRL = 0x11
-    acts = (("pool", "TogglePool"), ("swap", "SwapHovered"))
-    prev = {"pool": False, "swap": False}
+    acts = _CARD_ACTS + ("pool",)   # place/evict/swap/refine 走 CardAction;pool 走 TogglePool
+    prev = {a: False for a in acts}
 
     def _fg_is_game():
         try:
@@ -782,7 +787,7 @@ def _hotkey_loop():
             ex = _hud_ex.get("ex")
             if ex is not None and _fg_is_game():
                 ctrl = (user32.GetAsyncKeyState(VK_CTRL) & 0x8000) != 0
-                for act, method in acts:
+                for act in acts:
                     b = HOTKEYS.get(act) or DEFAULT_HOTKEYS[act]
                     vk = int(b.get("vk", 0)); need_ctrl = bool(b.get("ctrl", False))
                     # 需 Ctrl 的:vk 按下且 Ctrl 按下;不需 Ctrl 的:vk 按下且 Ctrl 没按(避免 Ctrl+vk 误触发)
@@ -790,7 +795,10 @@ def _hotkey_loop():
                     down = raw and (ctrl if need_ctrl else not ctrl)
                     if down and not prev[act]:
                         try:
-                            ex.call_str(HUD_T, method, "")
+                            if act == "pool":
+                                ex.call_str(HUD_T, "TogglePool", "")
+                            else:                          # 卡牌动作:C# 射线找光标下的卡 + 按 position 调方法
+                                ex.call_str(HUD_T, "CardAction", act)
                         except Exception:
                             pass
                     prev[act] = down
