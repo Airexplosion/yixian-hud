@@ -103,11 +103,10 @@ NODE_MARGINAL = str(REPO / "native_hud" / "bridge" / "yisim_marginal.js")
 NODE_SERVER = str(REPO / "native_hud" / "bridge" / "yisim_server.js")
 GAME_NAME = "YiXianPai.exe"
 
-try:                                  # 版本变体:Lite 不带 yisim/伤害;ATTACH 默认挂已运行的游戏
-    from hud_edition import LITE, ATTACH
+try:                                  # 版本变体:Lite 不带 yisim/伤害(spawn/attach 已自动判定,无需变体)
+    from hud_edition import LITE
 except Exception:
     LITE = False
-    ATTACH = False
 HUD_T = "YiXianBot.Hud32"
 # Earlier HUD iterations to hide on (re)load so only the current one draws.
 OLD_HUDS = ["Hud31", "Hud30", "Hud29", "Hud28", "Hud27", "Hud26", "Hud25", "Hud24", "Hud23", "Hud22", "Hud21", "Hud20", "Hud19", "Hud18", "Hud17", "Hud16"]
@@ -478,7 +477,9 @@ def consumer():
                 break
         for st in batch:
             rn_i = int(getattr(st, "round_num", 0) or 0)
-            if _sq.new_game_event.is_set() or (last_round[0] > 1 and rn_i <= 1):
+            # 新局判定:① StartGameResp 包(可能漏);② 守卫——回合数倒退(局内只增不减,
+            # 故 rn < 上一回合 必是新局;比旧的"回退到≤1"更稳,能抓到漏了 round1 的新局)。
+            if _sq.new_game_event.is_set() or (last_round[0] > 0 and rn_i < last_round[0]):
                 try:
                     _sq.new_game_event.clear()
                 except Exception:
@@ -899,14 +900,20 @@ def main():
     # is spawn (launch the game ourselves → everything correct from round 1).
     # Default: SPAWN (launch the game through frida → hook before frame 1 → counts
     # correct from round 1). Set YX_ATTACH=1 to attach to an already-running game.
-    # 默认 spawn;ATTACH 变体默认 attach。环境变量 YX_ATTACH 始终可覆盖。
-    attach_mode = os.environ.get("YX_ATTACH", "1" if ATTACH else "0") != "0"
+    # 自动模式:游戏已在跑 → attach(按 PID,WeGame 也行);没跑 → spawn 拉起游戏。
+    # 覆盖:YX_SPAWN=1 强制拉起;YX_ATTACH=1 强制挂已运行的。
+    gpid = _find_game_pid(PROCESS)
+    if os.environ.get("YX_SPAWN") == "1":
+        attach_mode = False
+    elif os.environ.get("YX_ATTACH") == "1":
+        attach_mode = True
+    else:
+        attach_mode = gpid is not None        # 游戏在跑就 attach,否则 spawn
     pid = None
     if attach_mode:
         # 按 PID attach(不按名字):tasklist 找 PID,兼容 Steam + WeGame(后者以管理员跑,
         # frida 按名字枚举不到 → ProcessNotFound;按 PID 能挂)。
-        gpid = _find_game_pid(PROCESS)
-        print("attach %s pid=%s (运行中的游戏)…" % (PROCESS, gpid), flush=True)
+        print("游戏已在运行 → attach %s pid=%s …" % (PROCESS, gpid), flush=True)
         try:
             if gpid is None:
                 raise RuntimeError("没找到运行中的 %s" % PROCESS)
@@ -914,14 +921,12 @@ def main():
             hud_session = frida.attach(gpid)
         except Exception as e:
             print("\n[!] 挂载失败:%s" % e, flush=True)
-            print("[!] 请先打开弈仙牌(Steam 或 WeGame,到登录/大厅),再运行本程序。", flush=True)
-            # --windowed 无控制台,弹窗告知(否则双击的 attach 版会静默退出)。
-            # WeGame 版以管理员跑时,本程序可能也需「以管理员身份运行」才挂得上。
+            # --windowed 无控制台,弹窗告知。WeGame 版以管理员跑时,本程序可能也需以管理员运行。
             _msgbox("YiXianHUD — 挂载失败",
-                    "没挂上运行中的弈仙牌。\n\n请先打开游戏(Steam 或 WeGame,到登录/大厅)再运行;\n"
-                    "若是 WeGame 版,可能需右键本程序「以管理员身份运行」。")
+                    "没挂上运行中的弈仙牌。\n\n若是 WeGame 版,可能需右键本程序「以管理员身份运行」再试。")
             return
     else:
+        print("游戏未运行 → spawn 拉起", flush=True)
         game_exe = resolve_game_exe()
         if not game_exe:
             print("[err] 未选择游戏路径,退出。", flush=True)

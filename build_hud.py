@@ -33,14 +33,13 @@ if _m:
         'HUD_VERSION = "%s"\n' % _m.group(1), encoding="utf-8")
     print("[version] HUD_VERSION=%s (from tag %s)" % (_m.group(1), _ref), flush=True)
 
-# 版本变体:--lite(精简,无 yisim/node)/ --attach(默认挂已运行的游戏,不 spawn)。可组合。
+# 版本变体:--lite(精简,无 yisim/node)。spawn/attach 运行时自动判定,不再分变体。
 LITE = "--lite" in sys.argv
-ATTACH = "--attach" in sys.argv
-NAME = "YiXianHUD" + ("-lite" if LITE else "") + ("-attach" if ATTACH else "")
+NAME = "YiXianHUD-lite" if LITE else "YiXianHUD"
 (HERE / "native_hud" / "bridge" / "hud_edition.py").write_text(
-    "# -*- coding: utf-8 -*-\n# edition marker written by build_hud.py\n"
-    "LITE = %s\nATTACH = %s\n" % (LITE, ATTACH), encoding="utf-8")
-print("[edition] LITE=%s ATTACH=%s name=%s" % (LITE, ATTACH, NAME), flush=True)
+    "# -*- coding: utf-8 -*-\n# edition marker written by build_hud.py\nLITE = %s\n" % LITE,
+    encoding="utf-8")
+print("[edition] LITE=%s name=%s" % (LITE, NAME), flush=True)
 
 # Bundle node.exe so the published exe runs the yisim damage sim WITHOUT the user
 # having node installed. The builder needs node; the OUTPUT is self-contained.
@@ -61,6 +60,7 @@ B = "native_hud/_build"
 cmd = [
     sys.executable, "-m", "PyInstaller",
     "--noconfirm", "--onefile", "--windowed",   # --windowed: 无控制台窗口(启动不弹黑框);日志走 YiXianHUD.log
+    "--uac-admin",                              # 启动自动请求管理员(WeGame 以管理员跑,需同权限才挂得上 + Tab 等热键不被 UIPI 挡)
     "--name", NAME,
     "--paths", ".", "--paths", "proxy", "--paths", "native_hud/bridge",
     # data: python modules' maps + yisim bundle + the 3 build artefacts + node sim

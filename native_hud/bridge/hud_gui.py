@@ -216,7 +216,7 @@ def run_gui(settings, on_exit, status_get=None, pos_get=None, on_pos=None,
             hotkey_label=None, hotkey_capture=None, guard_get=None):
     root = tk.Tk()
     root.title("弈仙牌 HUD")
-    root.geometry("300x600")          # 位置区移到弹窗后内容变短;够放下底部三个按钮(含更新提示换行余量)
+    root.geometry("300x730")          # 加高:容下显示元素/伤害模式/位置/快捷键/状态/守护红字 + 底部三按钮(关于/说明/退出)
     root.attributes("-topmost", True)
     frm = ttk.Frame(root, padding=12)
     frm.pack(fill="both", expand=True)

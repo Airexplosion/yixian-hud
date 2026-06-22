@@ -29,13 +29,11 @@ jobs:
       - name: Install Python deps
         run: pip install pyinstaller frida blackboxprotobuf msgpack pystray pillow
 
-      - name: Build 4 变体 (spawn/attach × full/lite)
+      - name: Build (完整 + Lite;spawn/attach 自动判定)
         shell: bash                       # set -e:任一构建失败即整步失败(pwsh 只看最后一条)
         run: |
           python build_hud.py
           python build_hud.py --lite
-          python build_hud.py --attach
-          python build_hud.py --lite --attach
 
       - name: Upload artifact (供手动触发时下载)
         uses: actions/upload-artifact@v4
@@ -44,8 +42,6 @@ jobs:
           path: |
             YiXianHUD.exe
             YiXianHUD-lite.exe
-            YiXianHUD-attach.exe
-            YiXianHUD-lite-attach.exe
 
       - name: Publish Release
         if: startsWith(github.ref, 'refs/tags/')
@@ -54,6 +50,4 @@ jobs:
           files: |
             YiXianHUD.exe
             YiXianHUD-lite.exe
-            YiXianHUD-attach.exe
-            YiXianHUD-lite-attach.exe
           generate_release_notes: true
