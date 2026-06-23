@@ -107,6 +107,14 @@ try:                                  # 版本变体:Lite 不带 yisim/伤害(sp
     from hud_edition import LITE
 except Exception:
     LITE = False
+try:                                  # 当前版本号 + 更新检测;缺失则旧版守护降级为不锁
+    from hud_version import HUD_VERSION
+except Exception:
+    HUD_VERSION = "0"
+try:
+    import update_check
+except Exception:
+    update_check = None
 HUD_T = "YiXianBot.Hud33"
 # Earlier HUD iterations to hide on (re)load so only the current one draws.
 OLD_HUDS = ["Hud32", "Hud31", "Hud30", "Hud29", "Hud28", "Hud27", "Hud26", "Hud25", "Hud24", "Hud23", "Hud22", "Hud21", "Hud20", "Hud19", "Hud18", "Hud17", "Hud16"]
@@ -286,9 +294,10 @@ def _ask_game_exe():
         return None
 
 
-def resolve_game_exe():
+def resolve_game_exe(ask=True):
     """Find the game exe: env override → same folder as us → remembered choice →
-    ask the user (and remember it). Returns a path or None if the user cancels."""
+    (ask 时)弹文件框让用户选。返回路径或 None。ask=False:不弹框(供注入按钮的后台线程调,
+    tkinter 不能在非主线程新建 root)。"""
     p = os.environ.get("YX_GAME_EXE")
     if p and os.path.exists(p):
         return p
@@ -299,6 +308,8 @@ def resolve_game_exe():
     saved = cfg.get("game_exe")
     if saved and os.path.exists(saved):
         return saved
+    if not ask:
+        return None
     chosen = _ask_game_exe()
     if chosen and os.path.exists(chosen):
         cfg["game_exe"] = chosen
@@ -893,6 +904,108 @@ def _msgbox(title, msg):
         pass
 
 
+# 当前 + 历代 HUD 类型名;attach 时用来探测游戏内是否已加载过任意一代 HUD。
+_ALL_HUDS = [HUD_T.split(".")[-1]] + OLD_HUDS
+
+
+def _loaded_hud(ex):
+    """attach 到一个已在跑的游戏时,探测它的 ILRuntime AppDomain 里是否已加载过任意一代
+    HUD(上次注入残留)。ILRuntime 无法热替换/卸载同名程序集 → 只要已有,本次注入的新代码
+    就不会真正生效(会复用旧程序集,表现为"装了新版还跑旧版")。返回已加载的类型名,否则
+    None。探测:对每个类型调一次无害的 Hide,已加载→返回 ok,未加载→报错/非 ok。"""
+    for h in _ALL_HUDS:
+        try:
+            r = ex.call_s("YiXianBot." + h, "Hide", [])
+            if r and r.get("ok"):
+                return h
+        except Exception:
+            pass
+    return None
+
+
+# ── 注入(可被 GUI「注入」按钮重复触发;幂等)────────────────────────────────────
+_INJ = {"done": False, "feed": None, "hud": None, "pid": None, "mode": None}
+_INJ_LOCK = threading.Lock()
+
+
+def _resolve_mode():
+    """决定 attach 还是 spawn,返回 (attach_mode, gpid)。YX_SPAWN=1 强制拉起;
+    YX_ATTACH=1 强制挂已运行的;否则游戏在跑就 attach(按 PID,兼容 WeGame),没跑就 spawn。"""
+    gpid = _find_game_pid(PROCESS)
+    if os.environ.get("YX_SPAWN") == "1":
+        return False, gpid
+    if os.environ.get("YX_ATTACH") == "1":
+        return True, gpid
+    return (gpid is not None), gpid
+
+
+def do_inject():
+    """执行一次注入(幂等,带锁防并发)。返回 (status, message):
+      ok 成功 / already 已注入 / stale 游戏内是旧版需重启 / nogame 没找到游戏 /
+      nopath spawn 但没游戏路径 / fail 挂载或注入报错(message 含原因)。"""
+    with _INJ_LOCK:
+        if _INJ["done"]:
+            return ("already", "HUD 已经注入并在运行,无需重复注入。")
+        attach_mode, gpid = _resolve_mode()
+        pid = None
+        try:
+            if attach_mode:
+                if gpid is None:
+                    return ("nogame", "没检测到运行中的弈仙牌。\n请先打开游戏再点「注入」;"
+                                      "或关掉游戏后点「注入」,由本程序拉起。")
+                print("attach pid=%s …" % gpid, flush=True)
+                feed_session = frida.attach(gpid)
+                hud_session = frida.attach(gpid)
+            else:
+                game_exe = resolve_game_exe(ask=False)
+                if not game_exe:
+                    return ("nopath", "没找到游戏 exe。\n把本程序放进弈仙牌安装目录,"
+                                      "或先打开游戏再点「注入」(改走 attach)。")
+                print("spawn %s …" % game_exe, flush=True)
+                pid = frida.spawn([game_exe])
+                feed_session = frida.attach(pid)
+                hud_session = frida.attach(pid)
+        except Exception as e:
+            print("\n[!] 挂载失败:%s" % e, flush=True)
+            return ("fail", "挂载游戏失败:\n%s\n\nWeGame 版以管理员运行 → 需右键本程序"
+                            "「以管理员身份运行」。也可能是杀软拦截了 frida。详见 YiXianHUD.log。" % e)
+        try:
+            feed_script = feed_session.create_script(open(CAPTURE, encoding="utf-8").read(), runtime="qjs")
+            feed_script.on("message", on_feed)
+            feed_script.load()
+            hud_script = hud_session.create_script(open(GLUE, encoding="utf-8").read(), runtime="qjs")
+            hud_script.load()
+            _hud_ex["ex"] = hud_script.exports_sync
+            if not attach_mode:
+                frida.resume(pid)
+        except Exception as e:
+            print("\n[!] 注入脚本失败:%s" % e, flush=True)
+            if not attach_mode and pid is not None:
+                try:
+                    frida.kill(pid)
+                except Exception:
+                    pass
+            return ("fail", "已挂上进程,但注入脚本失败:\n%s\n详见 YiXianHUD.log。" % e)
+        # 旧版守护:attach 到已注入过旧 HUD 的游戏 → ILRuntime 无法热替换,提示重启。
+        if attach_mode:
+            stale = _loaded_hud(_hud_ex["ex"])
+            if stale:
+                print("[stale] 游戏内已加载 %s → 提示重启" % stale, flush=True)
+                try:
+                    feed_session.detach()
+                    hud_session.detach()
+                except Exception:
+                    pass
+                _hud_ex["ex"] = None
+                return ("stale", "检测到游戏里已经注入过 HUD(%s)。\n受机制限制无法热替换,"
+                                 "\n请完全退出弈仙牌、重新打开游戏后,再点「注入」。" % stale)
+        _INJ.update(done=True, feed=feed_session, hud=hud_session, pid=pid,
+                    mode=("attach" if attach_mode else "spawn"))
+        threading.Thread(target=hud_loader, daemon=True).start()
+        print(">>> 注入完成 (%s) <<<" % _INJ["mode"], flush=True)
+        return ("ok", "注入成功(%s)。进对局后会自动在牌上叠加显示。" % _INJ["mode"])
+
+
 def main():
     # 首次启动:弹 EULA / 注入风险 / 封禁 / 保密声明,必须勾选同意才继续(已同意过则跳过)。
     if not _show_eula_gate():
@@ -906,76 +1019,58 @@ def main():
     # correct from round 1). Set YX_ATTACH=1 to attach to an already-running game.
     # 自动模式:游戏已在跑 → attach(按 PID,WeGame 也行);没跑 → spawn 拉起游戏。
     # 覆盖:YX_SPAWN=1 强制拉起;YX_ATTACH=1 强制挂已运行的。
-    gpid = _find_game_pid(PROCESS)
-    if os.environ.get("YX_SPAWN") == "1":
-        attach_mode = False
-    elif os.environ.get("YX_ATTACH") == "1":
-        attach_mode = True
-    else:
-        attach_mode = gpid is not None        # 游戏在跑就 attach,否则 spawn
-    pid = None
-    if attach_mode:
-        # 按 PID attach(不按名字):tasklist 找 PID,兼容 Steam + WeGame(后者以管理员跑,
-        # frida 按名字枚举不到 → ProcessNotFound;按 PID 能挂)。
-        print("游戏已在运行 → attach %s pid=%s …" % (PROCESS, gpid), flush=True)
-        try:
-            if gpid is None:
-                raise RuntimeError("没找到运行中的 %s" % PROCESS)
-            feed_session = frida.attach(gpid)
-            hud_session = frida.attach(gpid)
-        except Exception as e:
-            print("\n[!] 挂载失败:%s" % e, flush=True)
-            # --windowed 无控制台,弹窗告知。WeGame 版以管理员跑时,本程序可能也需以管理员运行。
-            _msgbox("YiXianHUD — 挂载失败",
-                    "没挂上运行中的弈仙牌。\n\n若是 WeGame 版,可能需右键本程序「以管理员身份运行」再试。")
-            return
-    else:
-        print("游戏未运行 → spawn 拉起", flush=True)
-        game_exe = resolve_game_exe()
-        if not game_exe:
-            print("[err] 未选择游戏路径,退出。", flush=True)
-            return
-        print("spawn %s …" % game_exe, flush=True)
-        pid = frida.spawn([game_exe])
-        feed_session = frida.attach(pid)
-        hud_session = frida.attach(pid)
-    feed_script = feed_session.create_script(open(CAPTURE, encoding="utf-8").read(), runtime="qjs")
-    feed_script.on("message", on_feed)
-    feed_script.load()
-    hud_script = hud_session.create_script(open(GLUE, encoding="utf-8").read(), runtime="qjs")
-    hud_script.load()
-    _hud_ex["ex"] = hud_script.exports_sync
-    if not attach_mode:
-        frida.resume(pid)
-    print(">>> capture+glue 已挂 (%s). 进对局后自动加载HUD. Ctrl-C 停 <<<"
-          % ("attach" if attach_mode else "spawn"), flush=True)
-    threading.Thread(target=hud_loader, daemon=True).start()
+    # 后台循环常驻:注入前空转(都 guard 了 _hud_ex/_hud_ready),注入后一就位即开始工作。
     threading.Thread(target=consumer, daemon=True).start()
     if not LITE:                         # Lite 版不带 yisim/伤害,不起 total_loop
         threading.Thread(target=total_loop, daemon=True).start()
     threading.Thread(target=_hotkey_loop, daemon=True).start()
     threading.Thread(target=_guard_loop, daemon=True).start()   # 直播/旧版本检测 → 隐藏全部
 
+    # 启动自动注入:仅当游戏已在跑 → 自动 attach(省一次点击)。游戏没跑就不自动 spawn
+    # (避免 WeGame 等场景误拉起),等用户点 GUI 的「注入」按钮。
+    def _auto():
+        if _find_game_pid(PROCESS) is not None:
+            st, _msg = do_inject()
+            print("[auto-inject] %s" % st, flush=True)
+    threading.Thread(target=_auto, daemon=True).start()
+
     def _cleanup():
         try:
             _YISIM.stop()                # 关掉常驻 node(若有)
         except Exception:
             pass
+        f, h, p = _INJ.get("feed"), _INJ.get("hud"), _INJ.get("pid")
+        # attach 模式(游戏不被我们关掉)→ 先让 C# 把注入的 HUD 拆干净:Hide() 会注销每帧 tick
+        # 订阅并销毁所有 Bot* 叠加元素(剩X/对手/警告/卡池/跳过按钮…)。否则关掉本程序后,游戏里
+        # 会残留一个不再更新的 HUD。spawn 模式下游戏随后会被 kill,无需 Hide。
+        ex = _hud_ex.get("ex")
+        if ex is not None and p is None:
+            _hud_ready.clear()           # 先停推送,免拆除途中 consumer 还往里写
+            for h_type in ([HUD_T.split(".")[-1]] + OLD_HUDS):   # 当前 + 历代,一并拆掉残留
+                try:
+                    ex.call_s("YiXianBot." + h_type, "Hide", [])
+                except Exception:
+                    pass
+        _hud_ex["ex"] = None
         try:
-            feed_session.detach()
-            hud_session.detach()
+            if f:
+                f.detach()
+            if h:
+                h.detach()
         except Exception:
             pass
-        if pid is not None:
+        if p is not None:
             try:
-                frida.kill(pid)
+                frida.kill(p)
             except Exception:
                 pass
 
     def _status():
+        if not _INJ["done"]:
+            return "未注入 — 点下方「注入」开始\nin=%d out=%d" % (_counts["in"], _counts["out"])
         hud = "已挂✓" if _hud_ready.is_set() else "等待对局…"
         return "HUD: %s\nin=%d out=%d (%s)" % (
-            hud, _counts["in"], _counts["out"], "attach" if attach_mode else "spawn")
+            hud, _counts["in"], _counts["out"], _INJ["mode"])
 
 
     # GUI settings window (default). YX_NOGUI=1 → headless console (Ctrl-C to stop).
@@ -992,7 +1087,7 @@ def main():
             run_gui(SETTINGS, on_exit=_cleanup, status_get=_status,
                     pos_get=_pos_get, on_pos=_make_on_pos(),
                     hotkey_label=_hotkey_label, hotkey_capture=_capture_hotkey,
-                    guard_get=lambda: _guard["msg"])
+                    guard_get=lambda: _guard["msg"], on_inject=do_inject)
         except Exception as e:
             print("[gui] %s — 退回控制台(Ctrl-C 停)" % e, flush=True)
             try:

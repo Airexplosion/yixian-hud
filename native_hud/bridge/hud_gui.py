@@ -213,13 +213,18 @@ def _make_tray(on_show, on_quit, on_help=None, on_about=None):
 
 
 def run_gui(settings, on_exit, status_get=None, pos_get=None, on_pos=None,
-            hotkey_label=None, hotkey_capture=None, guard_get=None):
+            hotkey_label=None, hotkey_capture=None, guard_get=None, on_inject=None):
     root = tk.Tk()
     root.title("弈仙牌 HUD")
-    root.geometry("330x680")          # 内容可滚动(下面 Canvas),窗口高度够看主体即可,放不下的滚轮/拖条查看
+    root.geometry("330x735")          # 内容可滚动(下面 Canvas),窗口高度够看主体即可,放不下的滚轮/拖条查看
     root.attributes("-topmost", True)
-    # 可滚动容器:内容多(显示元素/伤害/位置/8行快捷键/状态/守护/三按钮)时不被裁切,小屏也能滚。
-    _outer = ttk.Frame(root); _outer.pack(fill="both", expand=True)
+    # 底部按钮条:固定在窗口底部、永远可见(不随上面内容滚动)。先 pack(side=bottom) 占住底部,
+    # 再 pack 滚动区填满其余空间 → 一打开就能直接看到「关于 / 使用说明 / 退出」三个按钮。
+    _btnbar = ttk.Frame(root, padding=(12, 8))
+    _btnbar.pack(side="bottom", fill="x")
+    ttk.Separator(root).pack(side="bottom", fill="x")
+    # 可滚动容器:内容多(显示元素/伤害/位置/8行快捷键/状态/守护)时不被裁切,小屏也能滚。
+    _outer = ttk.Frame(root); _outer.pack(side="top", fill="both", expand=True)
     _canvas = tk.Canvas(_outer, borderwidth=0, highlightthickness=0)
     _vsb = ttk.Scrollbar(_outer, orient="vertical", command=_canvas.yview)
     _canvas.configure(yscrollcommand=_vsb.set)
@@ -281,6 +286,12 @@ def run_gui(settings, on_exit, status_get=None, pos_get=None, on_pos=None,
             hcur.pack(side="left")
 
             def _rebind(k=hk, lbl=hcur):
+                # 关键:把键盘焦点从「改键」按钮挪开。否则按钮带焦点时,Tk 会把空格当成
+                # 「激活按钮」→ 又触发一次改键,导致空格永远绑不上。挪开焦点后空格才能被捕获。
+                try:
+                    root.focus_set()
+                except Exception:
+                    pass
                 lbl.config(text="按键中…", foreground="#aa6600")
 
                 def _done():
@@ -289,7 +300,8 @@ def run_gui(settings, on_exit, status_get=None, pos_get=None, on_pos=None,
                     except Exception:
                         pass
                 hotkey_capture(k, lambda: root.after(0, _done))
-            ttk.Button(hrow, text="改键", width=5, command=_rebind).pack(side="left", padx=4)
+            ttk.Button(hrow, text="改键", width=5, command=_rebind,
+                       takefocus=False).pack(side="left", padx=4)
 
     ttk.Separator(frm).pack(fill="x", pady=8)
     status = ttk.Label(frm, text="启动中…", foreground="gray", wraplength=270)
@@ -319,11 +331,45 @@ def run_gui(settings, on_exit, status_get=None, pos_get=None, on_pos=None,
         except Exception:
             pass
 
-    ttk.Button(frm, text="退出 (关HUD+游戏)", command=_quit).pack(side="bottom", fill="x", pady=(8, 0))
-    # 帮助/关于按钮(pack 在退出之后 → 显示在退出上方;关于在最上)
-    ttk.Button(frm, text="❓ 使用说明", command=lambda: _show_help(root)).pack(side="bottom", fill="x", pady=(8, 0))
-    ttk.Button(frm, text="ℹ️ 关于 / 检查更新",
-               command=lambda: _show_about(root, chk)).pack(side="bottom", fill="x", pady=(8, 0))
+    # 注入按钮(最显眼,放三按钮之上):点一下执行/重试注入,结果弹窗回报。注入在后台线程跑
+    # (frida 挂载会阻塞),结果用 root.after marshal 回主线程弹窗,避免卡界面 / 跨线程动 tk。
+    if on_inject is not None:
+        _inj_titles = {"ok": "注入成功", "already": "已注入", "stale": "请重启游戏",
+                       "nogame": "未找到游戏", "nopath": "未找到游戏", "fail": "注入失败"}
+
+        def _do_inject():
+            inject_btn.config(state="disabled", text="注入中…")
+
+            def work():
+                try:
+                    st, msg = on_inject()
+                except Exception as e:
+                    st, msg = "fail", str(e)
+
+                def show():
+                    try:
+                        inject_btn.config(state="normal", text="💉 注入 / 重新注入")
+                    except Exception:
+                        pass
+                    from tkinter import messagebox
+                    title = "YiXianHUD — " + _inj_titles.get(st, "注入")
+                    (messagebox.showinfo if st in ("ok", "already")
+                     else messagebox.showwarning)(title, msg)
+                try:
+                    root.after(0, show)
+                except Exception:
+                    pass
+            threading.Thread(target=work, daemon=True).start()
+        inject_btn = ttk.Button(_btnbar, text="💉 注入 / 重新注入",
+                                command=_do_inject, takefocus=False)
+        inject_btn.pack(fill="x", pady=(0, 6))
+
+    # 三个按钮放进固定底部条(永远可见,不随内容滚动):关于 → 使用说明 → 退出(上到下)。
+    ttk.Button(_btnbar, text="ℹ️ 关于 / 检查更新",
+               command=lambda: _show_about(root, chk)).pack(fill="x", pady=(0, 5))
+    ttk.Button(_btnbar, text="❓ 使用说明",
+               command=lambda: _show_help(root)).pack(fill="x", pady=(0, 5))
+    ttk.Button(_btnbar, text="退出 (关HUD+游戏)", command=_quit).pack(fill="x")
 
     # Close button → minimize to tray (don't quit) if a tray icon exists.
     def _on_close():

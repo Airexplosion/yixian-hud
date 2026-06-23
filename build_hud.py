@@ -60,7 +60,9 @@ B = "native_hud/_build"
 cmd = [
     sys.executable, "-m", "PyInstaller",
     "--noconfirm", "--onefile", "--windowed",   # --windowed: 无控制台窗口(启动不弹黑框);日志走 YiXianHUD.log
-    "--uac-admin",                              # 启动自动请求管理员(WeGame 以管理员跑,需同权限才挂得上 + Tab 等热键不被 UIPI 挡)
+    # 不再强制 --uac-admin:提权进程 spawn 直接拉起 Steam 的 exe(绕过 Steam)易被校验退 → 注入不上;
+    # 且读键已搬进 C#(进程内 Input.GetKey),不再靠提权扛 UIPI。WeGame 版(以管理员跑)需挂上时,
+    # 用户手动右键「以管理员身份运行」即可(挂载失败弹窗已提示)。提权由此变成"按需可选"。
     "--name", NAME,
     "--paths", ".", "--paths", "proxy", "--paths", "native_hud/bridge",
     # data: python modules' maps + yisim bundle + the 3 build artefacts + node sim
