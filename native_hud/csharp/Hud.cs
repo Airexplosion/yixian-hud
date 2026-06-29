@@ -14,7 +14,7 @@ namespace YiXianBot
     //  · board card top:  "配置攻击(边际贡献)"  e.g. 12(42)  — config from bot, marginal pushed (yisim).
     //  · every card top-right: 剩X (counter.remaining() by NAME).
     // 8-layer manual outline (font-agnostic). Parented to movableRT (scales on hover).
-    public static class Hud33
+    public static class Hud34
     {
         const string DMG = "BotDmg";
         const string LEFT = "BotLeft";
@@ -559,7 +559,7 @@ namespace YiXianBot
                         nlbl.raycastTarget = false; nlbl.enableWordWrapping = false;
                         nlbl.color = empty ? new Color(1f, 0.55f, 0.55f, 1f)
                             : (low ? new Color(1f, 0.88f, 0.35f, 1f) : new Color(0.62f, 1f, 0.72f, 1f));
-                        nlbl.text = "剩 " + rem;
+                        nlbl.text = rem.ToString();
                     }
 
                     // 右侧三按钮:手牌 / 已空 / 危险,点击切换置顶模式(当前模式高亮)
@@ -634,7 +634,7 @@ namespace YiXianBot
             {
                 size = 26f; col = new Color(0.62f, 0.93f, 1f, 1f);
                 crt.anchorMin = new Vector2(1f, 1f); crt.anchorMax = new Vector2(1f, 1f); crt.pivot = new Vector2(1f, 1f);
-                crt.anchoredPosition = new Vector2(1f, -18f); crt.sizeDelta = new Vector2(72f, 38f);
+                crt.anchoredPosition = new Vector2(9f, -18f); crt.sizeDelta = new Vector2(72f, 38f);
             }
             else
             {
@@ -990,7 +990,7 @@ namespace YiXianBot
             } catch (Exception) { }
         }
         static string LeftTxt(string name)
-        { if (!s_showLeft) return ""; int left; return s_remaining.TryGetValue(name ?? "", out left) ? ("剩" + left) : "剩?"; }
+        { if (!s_showLeft) return ""; int left; return s_remaining.TryGetValue(name ?? "", out left) ? left.ToString() : "?"; }
 
     }
 }

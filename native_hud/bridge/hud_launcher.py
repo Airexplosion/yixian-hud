@@ -98,7 +98,7 @@ from proxy_view import (Counter, OpponentTracker,             # noqa: E402
 BUILD = Path(os.environ.get("YX_HUD_BUILD", REPO / "native_hud" / "_build"))
 CAPTURE = str(BUILD / "capture.agent.js")
 GLUE = str(BUILD / "bot_glue3.agent.js")
-HUD_DLL = str(BUILD / "YiXianHud33.dll")
+HUD_DLL = str(BUILD / "YiXianHud34.dll")
 NODE_MARGINAL = str(REPO / "native_hud" / "bridge" / "yisim_marginal.js")
 NODE_SERVER = str(REPO / "native_hud" / "bridge" / "yisim_server.js")
 GAME_NAME = "YiXianPai.exe"
@@ -115,9 +115,9 @@ try:
     import update_check
 except Exception:
     update_check = None
-HUD_T = "YiXianBot.Hud33"
+HUD_T = "YiXianBot.Hud34"
 # Earlier HUD iterations to hide on (re)load so only the current one draws.
-OLD_HUDS = ["Hud32", "Hud31", "Hud30", "Hud29", "Hud28", "Hud27", "Hud26", "Hud25", "Hud24", "Hud23", "Hud22", "Hud21", "Hud20", "Hud19", "Hud18", "Hud17", "Hud16"]
+OLD_HUDS = ["Hud33", "Hud32", "Hud31", "Hud30", "Hud29", "Hud28", "Hud27", "Hud26", "Hud25", "Hud24", "Hud23", "Hud22", "Hud21", "Hud20", "Hud19", "Hud18", "Hud17", "Hud16"]
 
 # Live settings (toggled from the GUI). Loops read these each iteration.
 SETTINGS = {

@@ -30,3 +30,5 @@ node_modules/
 # 反编译工作产物(逆向用,勿提交)
 _decomp/
 native_hud/csharp/_out/
+
+battle_log
